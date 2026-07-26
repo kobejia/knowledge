@@ -22,6 +22,12 @@
 
 - [Vue 状态管理演进：从 Vuex 到 Pinia](vue/vuex-pinia.md)
 
+### 工具
+
+#### AI 工具
+
+- [Codex：从上手到高效协作](ai/codex-high-efficiency-guide.md)
+
 ## 编辑规范
 
 文档生成和研究标准见 [编辑指南](EDITORIAL_GUIDE.md)，默认深度由 [读者画像](READER_PROFILE.md) 决定。
