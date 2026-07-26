@@ -171,24 +171,26 @@ Add exactly:
 ---
 title: Vue 状态管理演进：从 Vuex 到 Pinia
 status: ai-draft
-created: 2026-07-26
+created: 2026-02-28
 updated: 2026-07-26
 reviewed: null
 ---
 
 ```
 
-Do not alter any existing body bytes below the new blank line.
+Do not alter any existing body text below the new blank line. The legacy file uses CRLF line endings, so validation must ignore `\r` rather than rewriting the whole document.
 
 - [ ] **Step 3: Verify that the original body is unchanged**
 
 Run:
 
 ```bash
-tail -n +9 vue/vuex-pinia.md | cmp - /tmp/vuex-pinia-body-before.md
+diff -u \
+  <(LC_ALL=C perl -0777 -pe 's/\r\n/\n/g; s/\n?\z/\n/' /tmp/vuex-pinia-body-before.md) \
+  <(tail -n +9 vue/vuex-pinia.md | LC_ALL=C perl -0777 -pe 's/\r\n/\n/g; s/\n?\z/\n/')
 ```
 
-Expected: exit status 0 and no output.
+Expected: exit status 0 and no output. This ignores the legacy CRLF format and the missing final newline while still comparing all body text.
 
 ### Task 5: Validate and Commit the Knowledge Base
 

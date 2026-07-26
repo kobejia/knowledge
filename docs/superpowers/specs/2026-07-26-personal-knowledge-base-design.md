@@ -69,7 +69,7 @@ README 按以下顺序组织：
 ---
 title: Vuex 与 Pinia
 status: ai-draft
-created: 2026-07-26
+created: 2026-02-28
 updated: 2026-07-26
 reviewed: null
 ---
