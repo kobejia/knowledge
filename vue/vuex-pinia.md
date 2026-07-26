@@ -1,9 +1,9 @@
 ---
 title: Vue 状态管理演进：从 Vuex 到 Pinia
-status: ai-draft
+domain: frontend
+depth: expert
 created: 2026-02-28
 updated: 2026-07-26
-reviewed: null
 ---
 
 # Vue 状态管理演进：从 Vuex 到 Pinia 的技术深度解析
