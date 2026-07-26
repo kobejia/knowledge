@@ -28,6 +28,12 @@
 
 - [Codex：从上手到高效协作](ai/codex-high-efficiency-guide.md)
 
+### 资料
+
+#### 奖项与荣誉
+
+- [奖项与荣誉清单（第一轮）](awards/awards-catalog.md)
+
 ## 编辑规范
 
 文档生成和研究标准见 [编辑指南](EDITORIAL_GUIDE.md)，默认深度由 [读者画像](READER_PROFILE.md) 决定。
