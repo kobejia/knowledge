@@ -3,7 +3,7 @@ title: 奖项与荣誉清单（第一轮）
 domain: reference
 depth: survey
 created: 2026-07-26
-updated: 2026-07-26
+updated: 2026-07-27
 ---
 
 # 奖项与荣誉清单（第一轮）
@@ -127,6 +127,161 @@ updated: 2026-07-26
 - 文物保护杰出贡献者
 
 来源： [中国人大网说明](https://www.npc.gov.cn/npc/c2/c30834/201909/t20190917_300775.html)
+
+## 还可以继续扩展的方向
+
+## 第二轮补充：更多主干奖项与荣誉
+
+### 国际科学、数学与技术
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| Wolf Prize | 科学/医学/艺术 | 覆盖科学、医学和艺术的国际大奖。 | [Wolf Prize](https://wolffund.org.il/the-wolf-prize/) |
+| Shaw Prize | 科学/医学/数学 | 聚焦天文学、生命科学与医学、数学科学的国际奖项。 | [Shaw Prize](https://www.shawprize.org/) |
+| Kavli Prize | 天体物理/纳米科学/神经科学 | 表彰在三大前沿科学领域取得突破的研究者。 | [Kavli Prize](https://www.kavliprize.org/about) |
+| Japan Prize | 科学技术 | 奖励对科学技术进步和人类福祉作出贡献的研究者。 | [Japan Prize](https://www.japanprize.jp/en/prize.html) |
+| Crafoord Prize | 科学 | 由瑞典皇家科学院颁发，覆盖若干基础学科与天文学、数学等轮转领域。 | [Crafoord Prize](https://www.crafoordprize.se/) |
+| IEEE Medal of Honor | 工程/电气与计算机 | IEEE 体系中最高级别荣誉之一。 | [IEEE Medal of Honor](https://corporate-awards.ieee.org/medal-of-honor/) |
+| Millennium Technology Prize | 技术创新 | 国际科技创新奖，聚焦改变世界的技术突破。 | [Millennium Technology Prize](https://millenniumprize.org/the-prize/) |
+
+### 国际和平、环境与人权
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| Right Livelihood Award | 环境/人权/和平 | 常被称为“另类诺贝尔奖”，表彰面向社会变革的实践者。 | [Right Livelihood Award](https://rightlivelihood.org/the-prize/) |
+| Earthshot Prize | 环境 | 聚焦可扩展、可复制的环境修复方案。 | [The Earthshot Prize](https://earthshotprize.org/the-prize/about/) |
+| Goldman Environmental Prize | 环境 | 表彰保护自然环境的基层行动者。 | [Goldman Prize](https://www.goldmanprize.org/about/) |
+| Sakharov Prize for Freedom of Thought | 人权 | 欧洲议会授予的人权与言论自由荣誉。 | [Sakharov Prize](https://www.europarl.europa.eu/sakharovprize/en/home/) |
+
+### 国际文学、科幻与出版
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| National Book Awards | 文学 | 美国国家图书奖，覆盖小说、非虚构、诗歌、翻译文学和青少年文学。 | [National Book Awards](https://www.nationalbook.org/national-book-awards/) |
+| Hugo Awards | 科幻文学 | 世界科幻领域最具影响力的奖项之一。 | [The Hugo Award](https://www.thehugoawards.org/about/) |
+| Nebula Awards | 科幻/奇幻文学 | SFWA 颁发的科幻与奇幻文学奖项体系。 | [The Nebulas](https://nebulas.sfwa.org/about-the-nebulas/) |
+
+### 国际影视、戏剧与表演
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| Golden Globes | 影视 | 电影、电视与播客领域的重要奖项。 | [Golden Globes](https://goldenglobes.com/) |
+| Palme d’Or | 电影 | 戛纳国际电影节最佳影片奖。 | [Festival de Cannes - Palme d'Or](https://www.festival-cannes.com/en/the-festival/the-palme-d-or/) |
+| Golden Lion | 电影/艺术/舞蹈/音乐/戏剧 | 威尼斯双年展体系中的核心荣誉，电影、戏剧、舞蹈、音乐、艺术均有“金狮”奖。 | [La Biennale di Venezia](https://www.labiennale.org/en) |
+| Golden Bear | 电影 | 柏林国际电影节最高奖。 | [Berlinale Awards](https://www.berlinale.de/en/archive/awards-juries/awards.html/o%3Ddesc/p%3D1/rp%3D40) |
+| César Awards | 电影 | 法国电影学院体系中的国家级电影奖项。 | [Académie des César](https://www.academie-cinema.org/lacademie/presentation/) |
+| Olivier Awards | 戏剧 | 伦敦西区戏剧界的重要荣誉。 | [Olivier Awards Voting Portal](https://vote.olivierawards.com/) |
+
+### 国际设计与建筑
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| Pritzker Architecture Prize | 建筑 | 国际建筑界最具声望的奖项之一。 | [Pritzker Prize](https://www.pritzkerprize.com/about) |
+| Aga Khan Award for Architecture | 建筑 | 关注伊斯兰世界及相关地区建筑与环境质量。 | [Aga Khan Award for Architecture](https://www.akdn.org/our-agencies/aga-khan-trust-culture/aga-khan-award-architecture) |
+| RIBA Stirling Prize | 建筑 | 英国皇家建筑师学会最高建筑奖项之一。 | [RIBA Stirling Prize](https://www.architecture.com/awards-and-competitions-landing-page/awards/stirling-prize) |
+| World Architecture Festival Awards | 建筑 | 以现场评审闻名的国际建筑奖项。 | [WAF Awards](https://www.worldarchitecturefestival.com/WAF2026/en/page/awards-page) |
+| Red Dot Design Award | 设计 | 国际设计领域知名奖项，分产品、品牌传播和概念设计。 | [Red Dot Award](https://www.red-dot.org/award) |
+| iF DESIGN AWARD | 设计 | 国际设计竞赛与认证体系。 | [iF Design](https://ifdesign.com/en/) |
+
+### 中国大陆科技与教育
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国青年科学家奖（原中国青年科技奖） | 科技 | 2025 年起更名，面向青年科技人才的重要奖项。 | [中国青年科学家奖](https://www.cast.org.cn/rc2/bzytj/zgqnkxjj/art/2025/art_a1263858caa445caaea654b623849c29.html) |
+| 中国青年女科学家奖 | 科技 | 面向青年女性科技工作者的重要荣誉。 | [中国青年女科学家奖](https://rczx.cast.org.cn/jljj/jxjs/art/2021/art_a1b0aa2af0d745aa8674257580792285.html) |
+| 全国创新争先奖 | 科技 | 表彰基础研究、工程攻关、成果转化、社会服务等领域的突出贡献者。 | [全国创新争先奖介绍](https://www.cast.org.cn/qjkx/KXJX/index.html) |
+| 最美科技工作者 | 科技 | 中央宣传部、中国科协发布的科技工作者先进典型。 | [最美科技工作者发布](https://www.cast.org.cn/xw/MTBD/art/2026/art_a9f6c410d58a4680a1f189178aa291fc.html) |
+| 国家教学成果奖 | 教育 | 教育教学研究和实践领域最高奖。 | [教学成果奖励条例](https://www.moe.gov.cn/jyb_sjzl/sjzl_zcfg/zcfg_jyxzfg/202204/t20220422_620499.html) |
+| 全国优秀教师 / 全国模范教师 / 全国优秀教育工作者 | 教育 | 教育系统的重要荣誉称号集合。 | [教育部相关表彰文件汇总](https://www.moe.gov.cn/jyb_xxgk/xxgk/neirong/fenlei/sxml_jsgz/jsgz_sdjs/sdjs_yxjs/) |
+| 中国专利奖 | 知识产权/创新 | 国家知识产权局与世界知识产权组织共同开展的专利奖。 | [中国专利奖专栏](https://www.cnipa.gov.cn/col/col41/index.html) |
+
+### 中国大陆医疗与健康
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国医师奖 | 医疗 | 医师行业的重要荣誉。 | [中国医师奖颁奖大会](https://www.nhc.gov.cn/wjw/zsdw/201406/9b833c27744548eea29c700b6d48a857.shtml) |
+| 白求恩奖章 | 医疗 | 全国卫生健康系统的重要荣誉。 | [白求恩奖章获得者决定](https://www.nhc.gov.cn/renshi/c100028/202503/5b419f06e83843edad5e6958b2746869.shtml) |
+| 中国好医生 中国好护士 | 医疗 | 国家卫健委长期展示和宣传的医疗卫生先进典型。 | [中国好医生好护士](https://www.nhc.gov.cn/xcs/2026dyp/202603/a3da853e4b934c5db96a30d29bd8c761.shtml) |
+
+### 中国大陆广播电视与传媒
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国广播电视大奖·中国广播电视节目奖 | 广电 | 国家广播电视体系内的重要节目奖。 | [国家广电总局评奖通知](https://www.nrta.gov.cn/art/2026/4/23/art_113_73130.html) |
+| 全国电视文艺“星光奖” | 电视文艺 | 中国电视文艺节目领域的重要奖项。 | [星光奖评选通知](https://www.nrta.gov.cn/art/2026/2/2/art_113_72384.html) |
+| 中国播音主持“金声奖” | 广播主持 | 播音主持专业的重要奖项。 | [金声奖评选通知](https://www.nrta.gov.cn/art/2025/3/25/art_113_70369.html?xxgkhide=1) |
+
+### 中国大陆青年、劳动与综合荣誉
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国青年五四奖章 | 青年荣誉 | 表彰优秀青年个人和集体的重要荣誉。 | [新华社 / 团中央决定](https://www.news.cn/politics/20260510/7ef95cd3777c49d6afee097ad0d81ff6/c.html) |
+| 新时代青年先锋奖 | 青年荣誉 | 与中国青年五四奖章并行的新时代青年先进典型奖项。 | [2026年度中国青年五四奖章暨新时代青年先锋奖](https://www.bjyouth.gov.cn/news/workDynamics/799222396035141.html) |
+| 共和国勋章 | 国家荣誉 | 中华人民共和国国家最高荣誉之一。 | [国家勋章和国家荣誉称号制度](https://www.npc.gov.cn/npc/c2/c30834/201909/t20190917_300775.html) |
+| 友谊勋章 | 国家荣誉 | 授予对中国建设和发展作出贡献的外国人士。 | [国家勋章和国家荣誉称号制度](https://www.npc.gov.cn/npc/c2/c30834/201909/t20190917_300775.html) |
+| 七一勋章 | 党内荣誉 | 党内最高荣誉之一。 | [中共中央关于授予“七一勋章”的决定](https://www.mod.gov.cn/gfbw/qwfb/16471023.html) |
+| 时代楷模 | 先进典型荣誉 | 由中宣部发布的先进典型荣誉称号。 | [中宣部关于授予刘永坦同志“时代楷模”称号的决定](https://www.moe.gov.cn/jyb_xwfb/s6052/moe_838/202109/t20210930_568400.html) |
+| 全国劳动模范和先进工作者 | 劳动荣誉 | 表彰各行各业的先进劳动者和先进工作者。 | [中共中央 国务院决定](https://www.mee.gov.cn/zcwj/zyygwj/202504/t20250429_1118567.shtml) |
+| 全国道德模范 | 道德荣誉 | 表彰社会公德、职业道德、家庭美德、个人品德方面的先进典型。 | [全国道德模范](https://www.nhc.gov.cn/xcs/ddmf/new_list.shtml) |
+
+### 中国大陆工程与建筑
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国建设工程鲁班奖（国家优质工程） | 建筑工程 | 中国建筑行业最高质量荣誉之一。 | [鲁班奖通报](https://www.nra.gov.cn/xxgk/gkml/ztjg/jgxx/gkgc/202204/t20220405_290300.shtml) |
+| 中国土木工程詹天佑奖 | 土木工程 | 中国土木工程领域的重要科技奖项。 | [企业获奖信息示例](https://ggzy.qingdao.gov.cn/PortalQDManage/ShareResources/CorpRewardList?corpGuid=6bb18f57-deb8-4e4f-8aa8-c61d97eabc7f&pageIndex=2) |
+
+### 中国大陆质量、技能与劳动荣誉
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国质量奖 | 质量管理 | 国家在质量领域授予组织和个人的最高荣誉。 | [中国质量奖管理办法](https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_73e66a07e1c24744bd79bd4f3629f70b.html) |
+| 中华技能大奖 | 技能人才 | 全国优秀技术技能人才的国家级最高褒奖之一。 | [高技能人才评选表彰](https://chinajob.mohrss.gov.cn/ywpd/pxjd/rmzt/gjnrcpxbz/) |
+| 全国技术能手 | 技能人才 | 对优秀技术技能人才的国家级表彰称号。 | [中华技能大奖和全国技术能手评选表彰管理办法](https://chinajob.mohrss.gov.cn/c/2013-09-23/232975.shtml) |
+| 全国五一劳动奖状 / 全国五一劳动奖章 / 全国工人先锋号 | 劳动荣誉 | 全国总工会的重要劳动荣誉体系，分别授予单位、个人和集体。 | [全国五一劳动奖评选启动](https://www.zyshgzb.gov.cn/n1/2026/0130/c461706-40655890.html) |
+
+### 中国大陆对外交流与外国专家荣誉
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| 中国政府友谊奖 | 外国专家 / 对外合作 | 授予对中国现代化建设和中外交流合作作出突出贡献的外国专家。 | [科技部中国政府友谊奖申报通知](https://most.gov.cn/xxgk/xinxifenlei/fdzdgknr/qtwj/qtwj2021/202104/t20210402_173854.html) |
+| 中国语言文化友谊奖 | 汉语教学 / 文化传播 | 授予在汉语教学、汉学研究和中国语言文化传播方面作出突出贡献的外国友人。 | [教育部“中国语言文化友谊奖”设置规定](https://www.moe.gov.cn/srcsite/A02/s5911/moe_621/199903/t19990315_81869.html) |
+
+## 国际体育、摄影与游戏
+
+### 国际体育
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| Laureus World Sports Awards | 体育 | 国际顶级体育奖项之一，表彰年度杰出运动员与体育成就。 | [Laureus World Sports Awards](https://www.laureus.com/world-sports-awards) |
+| The Best FIFA Football Awards | 足球 | 国际足联主办的年度足球奖项体系。 | [The Best FIFA Football Awards](https://www.fifa.com/en/the-best-fifa-football-awards/articles/all-award-winners-history) |
+
+### 国际摄影与新闻影像
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| World Press Photo Contest | 摄影 / 新闻影像 | 世界新闻摄影与纪实摄影领域的重要年度竞赛。 | [World Press Photo](https://www.worldpressphoto.org/about-us) |
+
+### 国际游戏
+
+| 奖项/荣誉 | 领域 | 简介 | 官方来源 |
+| --- | --- | --- | --- |
+| The Game Awards | 游戏 | 全球视频游戏行业的重要年度奖项与发布平台。 | [The Game Awards About](https://thegameawards.com/about) |
+| BAFTA Games Awards | 游戏 | 英国电影电视艺术学院主办的游戏奖项体系。 | [BAFTA Games Awards Information](https://www.bafta.org/awards/awards-information/games/) |
+
+### 中国大陆继续可扩展条目
+
+下面这些方向也建议继续补入清单：
+
+- 八一勋章
+- 国家荣誉称号各单项名称
+- 中国科学院院士 / 中国工程院院士
+- 中国工艺美术大师
+- 中国电影金鸡奖、百花奖、华表奖的历年获奖记录
+- 中国戏剧奖各子项：梅花表演奖、曹禺剧本奖等
+- 中国广播电视奖项各子项
+- 更细分的学科/行业奖项
+- 地方政府和行业协会长期保留的正式奖项
 
 ## 还可以继续扩展的方向
 
