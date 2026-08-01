@@ -1,5 +1,6 @@
 version: 1
 language: zh-CN
+review: true
 
 learner:
   goal: 通过高质量知识文档扩展视野、增加知识深度并强化复杂系统分析能力

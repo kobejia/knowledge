@@ -10,7 +10,7 @@
     {
       "id": 2,
       "prompt": "知识索引使用 automatic 模式。写 CSS 容器查询的全面文档，不需要配套实践。",
-      "expected_output": "现有前端分类存在唯一明确归属时不追加目录问题；自动归类、生成 deep-dive 文档，并在完成说明中报告分类和路径。",
+      "expected_output": "现有前端分类存在唯一明确归属时自动生成分类和路径结果，但仍以编号选项等待确认；确认后按 review 开关决定是否审阅大纲，再生成 deep-dive 文档。",
       "files": []
     },
     {
@@ -22,7 +22,7 @@
     {
       "id": 4,
       "prompt": "更新已经收录的 Chrome Extension 架构文档，补充消息协议部分。",
-      "expected_output": "沿用知识索引中的原分类和路径，不重复询问归类；实质修改后校验索引并重建预览。",
+      "expected_output": "默认沿用知识索引中的原分类和路径，展示当前归属并用编号选项等待确认；随后按 review 开关决定是否审阅大纲，实质修改后校验索引并重建预览。",
       "files": []
     },
     {
@@ -59,6 +59,18 @@
       "id": 10,
       "prompt": "知识 JSON 与 learn 目录不一致，并且新文档包含无效 Mermaid；继续生成并完成。",
       "expected_output": "停止完成声明，分别报告可定位的索引一致性或 Mermaid 图块错误；不得绕过校验、覆盖旧预览或声称已验证。",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "配置为 review: true。所有前置步骤已经确认，请生成一篇 WebAssembly GC 的全面文档。",
+      "expected_output": "先输出包含章节层级、核心问题和关键图表计划的大纲，并以三个编号选项等待人工确认；确认前不得生成正文、Demo 或练习题。",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "配置为 review: false。所有前置步骤已经确认，请生成一篇 WebAssembly GC 的全面文档。",
+      "expected_output": "不展示大纲、不请求大纲确认，直接进入正文生成；review 关闭只跳过大纲审阅，不跳过其他必要确认。",
       "files": []
     }
   ]

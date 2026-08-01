@@ -33,11 +33,14 @@ def assert_keys(mapping, path, allowed)
 end
 
 fail_field("root", "a mapping") unless config.is_a?(Hash)
-assert_keys(config, "root", %w[version language learner])
+assert_keys(config, "root", %w[version language review learner])
 fail_field("version", "integer 1") unless config["version"] == 1
 
 language = config["language"]
 fail_field("language", "a non-empty string") unless language.is_a?(String) && !language.strip.empty?
+
+review = config["review"]
+fail_field("review", "a boolean") unless review == true || review == false
 
 learner = config["learner"]
 fail_field("learner", "a mapping") unless learner.is_a?(Hash)

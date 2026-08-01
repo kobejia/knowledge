@@ -10,6 +10,7 @@ test ! -e "$fixture_dir/personal-learning-config.yaml"
 "$skill_dir/scripts/init-config.sh" "$fixture_dir"
 test -f "$fixture_dir/personal-learning-config.yaml"
 "$skill_dir/scripts/validate-config.sh" "$fixture_dir/personal-learning-config.yaml"
+grep -q '^review: true$' "$fixture_dir/personal-learning-config.yaml"
 
 if grep -q '^level_recommendations:' "$repo_root/personal-learning-config.yaml" \
   || grep -q '^level_recommendations:' "$skill_dir/assets/personal-learning-config.template.yaml"; then
@@ -54,6 +55,17 @@ cp "$fixture_dir/personal-learning-config.yaml" "$fixture_dir/invalid-utf8.yaml"
 printf '\377' >> "$fixture_dir/invalid-utf8.yaml"
 if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/invalid-utf8.yaml" >/dev/null 2>&1; then
   echo "FAIL: validator accepted invalid UTF-8" >&2
+  exit 1
+fi
+
+sed 's/^review: true$/review: false/' \
+  "$fixture_dir/personal-learning-config.yaml" > "$fixture_dir/review-disabled.yaml"
+"$skill_dir/scripts/validate-config.sh" "$fixture_dir/review-disabled.yaml"
+
+sed 's/^review: true$/review: enabled/' \
+  "$fixture_dir/personal-learning-config.yaml" > "$fixture_dir/invalid-review.yaml"
+if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/invalid-review.yaml" >/dev/null 2>&1; then
+  echo "FAIL: validator accepted a non-boolean review value" >&2
   exit 1
 fi
 

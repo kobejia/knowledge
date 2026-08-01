@@ -4,7 +4,7 @@
 
 **Goal:** 将 `personal-learning` 升级为画像自适应的五档学习 skill，并用独立 JSON 管理 `learn/` 分类、生成包含 Mermaid SVG 的单文件离线预览。
 
-**Architecture:** `personal-learning-config.yaml` 继续只保存画像；`personal-learning-knowledge.json` 是分类树和文档索引的唯一事实源。Node 脚本复用同一套严格校验逻辑，构建器读取索引和 Markdown，将 Mermaid 真实渲染成 SVG，再把导航、正文和样式嵌入 `personal-learning-preview.html`。
+**Architecture:** `personal-learning-config.yaml` 保存画像和正文生成前的大纲审阅开关；`personal-learning-knowledge.json` 是分类树和文档索引的唯一事实源。Node 脚本复用同一套严格校验逻辑，构建器读取索引和 Markdown，将 Mermaid 真实渲染成 SVG，再把导航、正文和样式嵌入 `personal-learning-preview.html`。
 
 **Tech Stack:** Node.js 22、Node 内置 test runner、Ajv 8.20.0、marked 18.0.7、gray-matter 4.0.3、`@mermaid-js/mermaid-cli` 11.16.0、POSIX shell、Markdown、JSON、HTML/CSS/JavaScript。
 
