@@ -55,6 +55,12 @@ grep -q '^name: personal-learning$' "$skill_dir/SKILL.md"
 grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
 grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
 grep -q '^## 概述$' "$skill_dir/SKILL.md"
+grep -q '^## 推荐输入格式$' "$skill_dir/SKILL.md"
+grep -q '^## 目标$' "$skill_dir/SKILL.md"
+grep -q '^## 补充内容$' "$skill_dir/SKILL.md"
+grep -q '主动读取用户提供的公开链接' "$skill_dir/SKILL.md"
+grep -q '不是自动可信的事实源' "$skill_dir/SKILL.md"
+grep -q '不得虚构页面内容' "$skill_dir/SKILL.md"
 grep -q '必须由用户选择' "$skill_dir/SKILL.md"
 grep -q '进阶（`advanced`）' "$skill_dir/SKILL.md"
 grep -q '需要完整配套实践（可运行 Demo + 配套练习题）' "$skill_dir/SKILL.md"
@@ -142,7 +148,11 @@ if grep -Eq '知识地图|EDITORIAL_GUIDE|READER_PROFILE' "$repo_root/README.md"
   exit 1
 fi
 
-readme_heading_count=$(grep -c '^#' "$repo_root/README.md")
+readme_heading_count=$(awk '
+  /^```/ { in_fence = !in_fence; next }
+  !in_fence && /^#/ { count++ }
+  END { print count + 0 }
+' "$repo_root/README.md")
 if [ "$readme_heading_count" -ne 1 ]; then
   echo "FAIL: README contains sections beyond the project introduction" >&2
   exit 1

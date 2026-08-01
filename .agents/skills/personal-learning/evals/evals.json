@@ -90,6 +90,24 @@
       "prompt": "解释一个可实际运行验证的浏览器 API 边界，现有资料只有官方说明和几篇互相转载的博客。",
       "expected_output": "将转载追溯为同一来源而非多个独立证据，优先运行最小复现实验并记录浏览器版本、环境、实际结果和未验证范围。",
       "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "## 目标\n理解 WebAssembly Component Model 的核心架构\n\n## 补充内容\n- https://github.com/WebAssembly/component-model\n- 重点解释设计动机和边界",
+      "expected_output": "将目标作为任务主线，主动读取链接正文和仓库材料，识别其来源类型、版本与相关内容；把特殊要求合并进任务理解，但仍按来源规范核验关键结论。",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "## 目标：分析某浏览器提案；## 补充内容：https://example.invalid/proposal，关注安全边界",
+      "expected_output": "能够解析单行简写；链接无法访问时明确说明限制，不猜测页面内容，继续查找可获得的官方或高质量材料，并保留关注安全边界的特殊要求。",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "帮我理解 JavaScript 事件循环",
+      "expected_output": "即使没有使用模板或提供补充内容，也能正常识别自然语言目标并进入既定理解、档位、实践、归类和 review 流程。",
+      "files": []
     }
   ]
 }

@@ -14,9 +14,19 @@
 6. 前往 IMA 知识库，选择「本地文件夹」导入整个知识库，或选择「本地文件」导入指定文档；完成后即可在手机端随时查阅。
 
 ```text
-/personal-learning 生成 WebAssembly Component Model 知识文档
-/personal-learning 深化 learn/frontend/browser/chrome-extension-architecture.md 的安全边界
+/personal-learning
+
+## 目标
+
+生成 WebAssembly Component Model 知识文档
+
+## 补充内容
+
+- https://github.com/WebAssembly/component-model
+- 重点解释核心架构、设计动机和边界
 ```
+
+`补充内容` 可以包含链接、本地文件、背景和特殊要求。Skill 会读取可访问的链接并作为补充资料，但仍会按来源质量规范核验；链接无法访问时会明确说明，不会猜测页面内容。只提供自然语言目标也可以正常使用。
 
 新文档写入 `learn/`，分类索引记录在 `personal-learning-knowledge.json`。
 
