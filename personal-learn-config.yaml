@@ -1,0 +1,18 @@
+version: 1
+language: zh-CN
+
+learner:
+  goal: 通过高质量知识文档扩展视野、增加知识深度并强化复杂系统分析能力
+  experience:
+    frontend_years: 10
+  known_domains:
+    - frontend
+    - browser
+    - javascript
+    - web-engineering
+
+level_recommendations:
+  known_technical_domains: expert
+  adjacent_technical_domains: deep-dive
+  unfamiliar_domains: deep-dive
+  quick_overview: survey
