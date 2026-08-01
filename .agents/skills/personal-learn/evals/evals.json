@@ -1,0 +1,41 @@
+{
+  "skill_name": "personal-learn",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "在这个仓库里写一篇解释浏览器渲染流水线的文档。",
+      "expected_output": "用一至两句话复述理解，基于画像推荐专家档但等待用户选择，不提前生成正文。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我想了解缓存，帮我写下来。",
+      "expected_output": "识别缓存存在多个实质不同方向，提供互斥选项消歧，而不是直接设计目录。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "主题已经确定为 WebAssembly，我选择了解档。",
+      "expected_output": "判断为技术主题，先分别确认 Demo 和练习题；生成阶段使用 survey 视野地图而非压缩版全面文档。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "写 CSS 容器查询的全面文档，需要 Demo，也需要练习题。",
+      "expected_output": "分别确认附加产物后加载全部专项规范，验证 Demo，并提供与 deep-dive 正文一致且可核对答案的练习题。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "写 JavaScript 事件循环的专家文档，不要 Demo，也不要练习题。",
+      "expected_output": "生成 expert 文档且不创建 Demo 或练习题。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "写一篇关于行为经济学中损失厌恶的全面文档。",
+      "expected_output": "识别为非技术主题，跳过 Demo 与练习题确认，使用 deep-dive 的证据、争议与边界要求。",
+      "files": []
+    }
+  ]
+}
