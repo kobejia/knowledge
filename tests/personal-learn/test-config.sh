@@ -29,6 +29,13 @@ if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/unknown-field.yaml" >/d
   exit 1
 fi
 
+cp "$fixture_dir/personal-learn-config.yaml" "$fixture_dir/classification-field.yaml"
+printf '\nclassificationMode: automatic\ncontentRoot: learn\n' >> "$fixture_dir/classification-field.yaml"
+if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/classification-field.yaml" >/dev/null 2>&1; then
+  echo "FAIL: validator accepted knowledge classification fields in learner config" >&2
+  exit 1
+fi
+
 awk '/^  experience:/ { print "  unknown_profile_field: true" } { print }' \
   "$fixture_dir/personal-learn-config.yaml" > "$fixture_dir/unknown-nested-field.yaml"
 if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/unknown-nested-field.yaml" >/dev/null 2>&1; then

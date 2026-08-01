@@ -3,38 +3,62 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "主题是浏览器渲染流水线，我已经选择专家档。",
-      "expected_output": "识别为技术主题，只询问一次是否需要配套实践，并明确实践包含可运行 Demo 与配套练习题。",
+      "prompt": "知识索引使用 confirm 模式。写一篇浏览器渲染流水线的专家文档，我需要配套实践。",
+      "expected_output": "完成主题理解、档位和实践确认后，给出 2–3 个互斥的分类与目标路径候选，允许自由输入；确认归类后才生成文档、Demo 与练习题。",
       "files": []
     },
     {
       "id": 2,
-      "prompt": "写 CSS 容器查询的全面文档，需要配套实践。",
-      "expected_output": "生成可运行 Demo 与围绕 Demo 的练习题，形成运行、观察、推理、修改、验证闭环，并实际验证行为。",
+      "prompt": "知识索引使用 automatic 模式。写 CSS 容器查询的全面文档，不需要配套实践。",
+      "expected_output": "现有前端分类存在唯一明确归属时不追加目录问题；自动归类、生成 deep-dive 文档，并在完成说明中报告分类和路径。",
       "files": []
     },
     {
       "id": 3,
-      "prompt": "写 JavaScript 事件循环的专家文档，不需要配套实践。",
-      "expected_output": "生成 expert 文档且不创建 Demo 或独立练习题产物。",
+      "prompt": "automatic 模式下写一篇同时以浏览器内核和操作系统调度为中心的文章。",
+      "expected_output": "识别存在并列分类候选或可能需要新顶级分类，暂停落盘并给出 2–3 个分类与路径选项供确认。",
       "files": []
     },
     {
       "id": 4,
-      "prompt": "写一篇 Web Components 的全面文档，再给我一个 Demo。",
-      "expected_output": "说明实践产物同时包含 Demo 与配套练习题，确认用户是否接受完整实践，不静默只生成 Demo。",
+      "prompt": "更新已经收录的 Chrome Extension 架构文档，补充消息协议部分。",
+      "expected_output": "沿用知识索引中的原分类和路径，不重复询问归类；实质修改后校验索引并重建预览。",
       "files": []
     },
     {
       "id": 5,
-      "prompt": "写 TypeScript 类型收窄的入门文档，再出一些练习题。",
-      "expected_output": "说明实践产物同时包含可运行 Demo 与练习题，确认用户是否接受完整实践，不静默只生成练习题。",
+      "prompt": "分别按专家档写 Vue 响应式和免疫系统调控。",
+      "expected_output": "两篇都保持 expert 的判断目标；Vue 压缩已熟悉的前端基础，免疫系统先补足专家推理必需的陌生领域背景，不把画像机械等同于掌握程度。",
       "files": []
     },
     {
       "id": 6,
-      "prompt": "写一篇关于行为经济学中损失厌恶的全面文档。",
-      "expected_output": "识别为非技术主题，跳过 Demo 与练习题确认，使用 deep-dive 的证据、争议与边界要求。",
+      "prompt": "写 JavaScript 事件循环的进阶文档，不需要配套实践。",
+      "expected_output": "使用 advanced，进入核心机制、关键设计、常见取舍和典型失败，但不扩张为覆盖所有历史、争议和方案的全面综述。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "解释 Chrome Extension 的多上下文架构和消息流。",
+      "expected_output": "使用合适的 Mermaid 架构或流程图，图前说明问题、图后解释阅读顺序和边界，并通过预览构建实际渲染。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "给一段只有单一结论、没有结构关系的短说明补充图表。",
+      "expected_output": "判断图表不会降低认知负担，不为了数量强加 Mermaid、表格或文本树。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "写行为经济学中损失厌恶的全面文档。",
+      "expected_output": "识别为非技术主题并跳过配套实践确认；可按关系需要使用概念图、时间线或比较表，并满足 deep-dive 的证据、争议和边界要求。",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "知识 JSON 与 learn 目录不一致，并且新文档包含无效 Mermaid；继续生成并完成。",
+      "expected_output": "停止完成声明，分别报告可定位的索引一致性或 Mermaid 图块错误；不得绕过校验、覆盖旧预览或声称已验证。",
       "files": []
     }
   ]

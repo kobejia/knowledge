@@ -9,6 +9,7 @@ assets/personal-learn-config.template.yaml
 references/editorial-policy.md
 references/markdown-quality.md
 references/practice-quality.md
+references/visual-policy.md
 scripts/init-config.sh
 scripts/validate-config.sh
 evals/evals.json'
@@ -25,13 +26,41 @@ test -f "$repo_root/personal-learn-config.yaml" || {
   exit 1
 }
 
+test -f "$repo_root/personal-learn-knowledge.json" || {
+  echo "FAIL: missing personal-learn-knowledge.json" >&2
+  exit 1
+}
+
+for relative_path in \
+  learn/frontend/vue/vuex-pinia.md \
+  learn/frontend/browser/chrome-extension-architecture.md \
+  learn/ai/tools/codex-high-efficiency-guide.md \
+  learn/reference/awards/awards-catalog.md
+do
+  test -f "$repo_root/$relative_path" || {
+    echo "FAIL: missing $relative_path" >&2
+    exit 1
+  }
+done
+
+for old_path in vue browser ai awards; do
+  test ! -e "$repo_root/$old_path" || {
+    echo "FAIL: old path remains: $old_path" >&2
+    exit 1
+  }
+done
+
 grep -q '^name: personal-learn$' "$skill_dir/SKILL.md"
 grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
 grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
 grep -q '^## 概述$' "$skill_dir/SKILL.md"
 grep -q '必须由用户选择' "$skill_dir/SKILL.md"
+grep -q '进阶（`advanced`）' "$skill_dir/SKILL.md"
 grep -q '是否需要配套实践（可运行 Demo + 配套练习题）' "$skill_dir/SKILL.md"
 grep -q '非技术主题.*跳过.*实践' "$skill_dir/SKILL.md"
+grep -q 'personal-learn-knowledge.json' "$skill_dir/SKILL.md"
+grep -q 'classificationMode' "$skill_dir/SKILL.md"
+grep -q 'references/visual-policy.md' "$skill_dir/SKILL.md"
 
 if grep -q '是否需要 Demo\|是否需要练习题' "$skill_dir/SKILL.md"; then
   echo "FAIL: SKILL.md still asks separate Demo or exercise questions" >&2
@@ -70,6 +99,10 @@ test ! -e "$skill_dir/references/exercise-quality.md" || {
 grep -q '^# 编辑规范$' "$skill_dir/references/editorial-policy.md"
 grep -q '^# Markdown 质量规范$' "$skill_dir/references/markdown-quality.md"
 grep -q '^# 配套实践质量规范$' "$skill_dir/references/practice-quality.md"
+grep -q '^# 可视化质量规范$' "$skill_dir/references/visual-policy.md"
+grep -q '`advanced` | 进阶' "$skill_dir/references/editorial-policy.md"
+grep -q 'advanced' "$skill_dir/references/markdown-quality.md"
+grep -q 'advanced' "$skill_dir/references/practice-quality.md"
 
 test ! -e "$repo_root/EDITORIAL_GUIDE.md" || {
   echo "FAIL: EDITORIAL_GUIDE.md still exists" >&2

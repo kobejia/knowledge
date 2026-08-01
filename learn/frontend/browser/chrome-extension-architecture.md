@@ -1,6 +1,6 @@
 ---
 title: Chrome Extension：运行时模型、权限边界与架构取舍
-domain: browser
+domain: frontend
 depth: expert
 created: 2026-07-26
 updated: 2026-07-26

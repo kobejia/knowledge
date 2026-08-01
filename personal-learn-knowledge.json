@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "classificationMode": "automatic",
+  "contentRoot": "learn",
+  "categories": [
+    {
+      "id": "frontend",
+      "title": "前端",
+      "path": "frontend",
+      "documents": [],
+      "children": [
+        {
+          "id": "frontend-vue",
+          "title": "Vue",
+          "path": "vue",
+          "children": [],
+          "documents": [
+            {
+              "id": "vuex-pinia",
+              "title": "Vue 状态管理演进：从 Vuex 到 Pinia",
+              "path": "vuex-pinia.md"
+            }
+          ]
+        },
+        {
+          "id": "frontend-browser",
+          "title": "浏览器",
+          "path": "browser",
+          "children": [],
+          "documents": [
+            {
+              "id": "chrome-extension-architecture",
+              "title": "Chrome Extension：运行时模型、权限边界与架构取舍",
+              "path": "chrome-extension-architecture.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "人工智能",
+      "path": "ai",
+      "documents": [],
+      "children": [
+        {
+          "id": "ai-tools",
+          "title": "工具",
+          "path": "tools",
+          "children": [],
+          "documents": [
+            {
+              "id": "codex-high-efficiency-guide",
+              "title": "Codex：从上手到高效协作",
+              "path": "codex-high-efficiency-guide.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "资料",
+      "path": "reference",
+      "documents": [],
+      "children": [
+        {
+          "id": "reference-awards",
+          "title": "奖项与荣誉",
+          "path": "awards",
+          "children": [],
+          "documents": [
+            {
+              "id": "awards-catalog",
+              "title": "奖项与荣誉清单（第一轮）",
+              "path": "awards-catalog.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
