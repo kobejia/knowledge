@@ -9,6 +9,7 @@ assets/personal-learning-config.template.yaml
 references/editorial-policy.md
 references/markdown-quality.md
 references/practice-quality.md
+references/source-quality.md
 references/visual-policy.md
 scripts/init-config.sh
 scripts/validate-config.sh
@@ -72,9 +73,18 @@ grep -q '`review: false`' "$skill_dir/SKILL.md"
 grep -q '大纲尚未得到确认时停止' "$skill_dir/SKILL.md"
 grep -q '不展示大纲，也不请求大纲确认' "$skill_dir/SKILL.md"
 grep -q 'references/visual-policy.md' "$skill_dir/SKILL.md"
+grep -q 'references/source-quality.md' "$skill_dir/SKILL.md"
 grep -q '从仓库根目录运行 `npm run check`' "$skill_dir/SKILL.md"
 grep -q '不要把运行命令转交给用户' "$skill_dir/SKILL.md"
 grep -q '检查未通过时不得宣称完成' "$skill_dir/SKILL.md"
+grep -q '^# 来源质量与证据验证规范$' "$skill_dir/references/source-quality.md"
+grep -q '^## 主张与首选来源$' "$skill_dir/references/source-quality.md"
+grep -q '^## 内部证据卡$' "$skill_dir/references/source-quality.md"
+grep -q '^## 冲突处理$' "$skill_dir/references/source-quality.md"
+grep -q '^## 可复现验证$' "$skill_dir/references/source-quality.md"
+grep -q '^## 大纲与完成审计$' "$skill_dir/references/source-quality.md"
+grep -q '国外博客也必须通过' "$skill_dir/references/source-quality.md"
+grep -q '内容农场' "$skill_dir/references/source-quality.md"
 
 if grep -q '是否需要 Demo\|是否需要练习题' "$skill_dir/SKILL.md"; then
   echo "FAIL: SKILL.md still asks separate Demo or exercise questions" >&2
