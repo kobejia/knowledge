@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "05-十-真正值得掌握的精髓",
+  "draftHash": "sha256:e5b0f7b038db7e4fefdd07e5ff4cf95a766a66c392c9689414f032d64db9fa2c",
+  "imageHash": "sha256:977c6e2c16a309a9dc3d30ee3b5fbcdea096c498e35669af5eb0055bf60dac5f",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:16:17.760Z"
+}

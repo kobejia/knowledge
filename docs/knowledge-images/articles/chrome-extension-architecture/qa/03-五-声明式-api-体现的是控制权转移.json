@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "03-五-声明式-api-体现的是控制权转移",
+  "draftHash": "sha256:de520d3daebcf43c852de152129693ef827d346ee57638e50a0ff6a6c4b08f45",
+  "imageHash": "sha256:030a2ea2475146ea91248f0207f5a932ef08d85ca0492ad87d63f3c3aa2a9f44",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:16:15.768Z"
+}

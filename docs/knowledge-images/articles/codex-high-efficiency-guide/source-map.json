@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:2d5dc68b7b4434f4a4e237591018e0d5db338cf2bad9218cc7ea8d4539596753",
+  "sections": [
+    {
+      "id": "先建立心智模型",
+      "index": 0,
+      "title": "1. 先建立心智模型",
+      "hash": "sha256:5672aca209c6c9b5e973c03e352918e7a4111db0deda0d8d7925e108add89cbf"
+    },
+    {
+      "id": "概念地图",
+      "index": 1,
+      "title": "2. 概念地图",
+      "hash": "sha256:87dafd82158d70ddcbfb4d2cfcec0a0dd49c3279fd43a653678728ffb6b476da"
+    },
+    {
+      "id": "4-周上手路径",
+      "index": 2,
+      "title": "3. 4 周上手路径",
+      "hash": "sha256:1feecb2e878a6ff1708ef60e76fe4021289ce5362bf64d05b379ccfddf365352"
+    },
+    {
+      "id": "第一次接入你的仓库",
+      "index": 3,
+      "title": "4. 第一次接入你的仓库",
+      "hash": "sha256:5d2785dd512e206a001666f8d3b601efe16de9d991691a9b465534d4e8148151"
+    },
+    {
+      "id": "深入理解-9-个核心概念",
+      "index": 4,
+      "title": "5. 深入理解 9 个核心概念",
+      "hash": "sha256:5792f1ab371d57a06c64c5fc36b7228ff2e503b24bb4f8762d8ce0ce465cb688"
+    },
+    {
+      "id": "常用工作表面与生态",
+      "index": 5,
+      "title": "6. 常用工作表面与生态",
+      "hash": "sha256:b2139b4236e70850e72c46622c7c6f483c547f39fb1326a3fd04946e3ba811dc"
+    },
+    {
+      "id": "3-个项目练习",
+      "index": 6,
+      "title": "7. 3 个项目练习",
+      "hash": "sha256:4b83e292f5e435deb798fa48a3476a82154d25e909b83a552b0d10eac7d53520"
+    },
+    {
+      "id": "学完以后往哪走",
+      "index": 7,
+      "title": "8. 学完以后往哪走",
+      "hash": "sha256:179082efe5acd773e8fd9fb721612a66719f902edaa69ced8b2ecd52789ed710"
+    },
+    {
+      "id": "资源",
+      "index": 8,
+      "title": "9. 资源",
+      "hash": "sha256:9c1cac54c2481bcdfa6bf70abeeb9a9af051ed4e0c2e11f0c6f47a6e930b726f"
+    },
+    {
+      "id": "这篇指南的核心结论",
+      "index": 9,
+      "title": "10. 这篇指南的核心结论",
+      "hash": "sha256:043a3144a9f67ff409fff8370dc56da78de6fd7746adfd236b04913279860576"
+    }
+  ],
+  "dependencies": [
+    {
+      "figure": "01-1-先建立心智模型",
+      "sourceSections": [
+        "先建立心智模型",
+        "概念地图"
+      ]
+    },
+    {
+      "figure": "02-3-4-周上手路径",
+      "sourceSections": [
+        "4-周上手路径",
+        "第一次接入你的仓库"
+      ]
+    },
+    {
+      "figure": "03-5-深入理解-9-个核心概念",
+      "sourceSections": [
+        "深入理解-9-个核心概念",
+        "常用工作表面与生态"
+      ]
+    },
+    {
+      "figure": "04-7-3-个项目练习",
+      "sourceSections": [
+        "3-个项目练习",
+        "学完以后往哪走"
+      ]
+    },
+    {
+      "figure": "05-9-资源",
+      "sourceSections": [
+        "资源",
+        "这篇指南的核心结论"
+      ]
+    }
+  ]
+}

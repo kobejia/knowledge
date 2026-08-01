@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:8acba57a314fb7e96db2832e2c4bd3d69feb8b3f72ddb795f7218b6c737b5bad",
+  "sections": [
+    {
+      "id": "核心结论-同源不同构",
+      "index": 0,
+      "title": "1. 核心结论：同源不同构",
+      "hash": "sha256:913204e90133bf1afb0edff649b91cdec16814938d67794f0940d1eccf230f5f"
+    },
+    {
+      "id": "底层机制-依赖注入与单例容器",
+      "index": 1,
+      "title": "2. 底层机制：依赖注入与单例容器",
+      "hash": "sha256:2488eeb95840394a02720011a25574fb2dd7eab81b72cb17065066a19b8aa8bb"
+    },
+    {
+      "id": "核心变革-api-设计与逻辑封装",
+      "index": 2,
+      "title": "3. 核心变革：API 设计与逻辑封装",
+      "hash": "sha256:ca6e746171aa7a8d395bd4086403f1682e1f6226019a2aec4b1e4919edb83aa1"
+    },
+    {
+      "id": "代码实战对比",
+      "index": 3,
+      "title": "4. 代码实战对比",
+      "hash": "sha256:fafd96cd1fc00708a834e4fad58defbb5a879a0d3ca5f70fcbc2500990a7a710"
+    },
+    {
+      "id": "总结与建议",
+      "index": 4,
+      "title": "5. 总结与建议",
+      "hash": "sha256:21b46a5147c7578eb7bb334b91637e3b41791f56f7fa7890fbe11da6b9c9c68f"
+    }
+  ],
+  "dependencies": [
+    {
+      "figure": "01-1-核心结论-同源不同构",
+      "sourceSections": [
+        "核心结论-同源不同构",
+        "底层机制-依赖注入与单例容器"
+      ]
+    },
+    {
+      "figure": "02-3-核心变革-api-设计与逻辑封装",
+      "sourceSections": [
+        "核心变革-api-设计与逻辑封装",
+        "代码实战对比"
+      ]
+    },
+    {
+      "figure": "03-5-总结与建议",
+      "sourceSections": [
+        "总结与建议"
+      ]
+    }
+  ]
+}

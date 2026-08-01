@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "articleId": "vuex-pinia",
+  "title": "Vue 状态管理演进：从 Vuex 到 Pinia",
+  "source": "learn/frontend/vue/vuex-pinia.md",
+  "sourceHash": "sha256:8acba57a314fb7e96db2832e2c4bd3d69feb8b3f72ddb795f7218b6c737b5bad",
+  "generator": {
+    "engine": "visual-explainer",
+    "skillVersion": "0.8.1",
+    "pipelineVersion": 1
+  },
+  "build": {
+    "mode": "hard",
+    "status": "published",
+    "updatedAt": "2026-08-01T09:43:47.121Z",
+    "cleanupStatus": "passed"
+  },
+  "figures": [
+    {
+      "id": "01-1-核心结论-同源不同构",
+      "title": "核心结论：同源不同构等 2 个主题",
+      "question": "核心结论：同源不同构等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "核心结论-同源不同构",
+        "底层机制-依赖注入与单例容器"
+      ],
+      "briefHash": "sha256:6fcbeca8daab8261f3f4cba5acdd5a6b8d0d5af745ed08428fbd7ee831eca047",
+      "draftHash": "sha256:1d0fedd1d8be8585d9c4927637d7a7686d94b4d07392122d1208e7af29f48fbf",
+      "approvedDraftHash": "sha256:1d0fedd1d8be8585d9c4927637d7a7686d94b4d07392122d1208e7af29f48fbf",
+      "publishedImageHash": "sha256:c0ceebd937aac93d68a8f65e9dc20c4cc533895c6e2456b81eae9bcee31d048b",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "02-3-核心变革-api-设计与逻辑封装",
+      "title": "核心变革：API 设计与逻辑封装等 2 个主题",
+      "question": "核心变革：API 设计与逻辑封装等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "核心变革-api-设计与逻辑封装",
+        "代码实战对比"
+      ],
+      "briefHash": "sha256:4b8334cd203313d30b2bfcb42e80c7dec871db2829e48f97351d844344632538",
+      "draftHash": "sha256:a8f30754901d0cc2b016d74b1c740784e0e12a196d62f37d7e5e953aa32d0977",
+      "approvedDraftHash": "sha256:a8f30754901d0cc2b016d74b1c740784e0e12a196d62f37d7e5e953aa32d0977",
+      "publishedImageHash": "sha256:41f57d9d2acee8f2799d5ef0ebdaf7bab55e7b0928cb69d1ba71715fb8dd7913",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "03-5-总结与建议",
+      "title": "总结与建议",
+      "question": "总结与建议：核心模型、约束与取舍",
+      "sourceSections": [
+        "总结与建议"
+      ],
+      "briefHash": "sha256:d7cb30728908f85b9b6909ed8c560ecb5cc108609ce6985f41e114c67b485dc9",
+      "draftHash": "sha256:9a021926f93c18dae3d37c4b4750a8ee3b7f9ef5acb3984f8693d98379d1b4c0",
+      "approvedDraftHash": "sha256:9a021926f93c18dae3d37c4b4750a8ee3b7f9ef5acb3984f8693d98379d1b4c0",
+      "publishedImageHash": "sha256:d10147df270160b490df4949c478839b5ac9f18550b099893c4987c5ec69e789",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    }
+  ]
+}

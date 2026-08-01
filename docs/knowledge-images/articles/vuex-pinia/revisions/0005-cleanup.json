@@ -1,0 +1,23 @@
+{
+  "id": 5,
+  "createdAt": "2026-08-01T09:43:47.122Z",
+  "type": "cleanup",
+  "status": "applied",
+  "deleted": [
+    {
+      "path": "previews/01-1-核心结论-同源不同构.draft.png",
+      "hash": "sha256:c0ceebd937aac93d68a8f65e9dc20c4cc533895c6e2456b81eae9bcee31d048b",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/02-3-核心变革-api-设计与逻辑封装.draft.png",
+      "hash": "sha256:41f57d9d2acee8f2799d5ef0ebdaf7bab55e7b0928cb69d1ba71715fb8dd7913",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/03-5-总结与建议.draft.png",
+      "hash": "sha256:d10147df270160b490df4949c478839b5ac9f18550b099893c4987c5ec69e789",
+      "reason": "superseded-intermediate"
+    }
+  ]
+}

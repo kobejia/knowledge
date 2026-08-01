@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "articleId": "codex-high-efficiency-guide",
+  "title": "Codex：从上手到高效协作",
+  "source": "learn/ai/tools/codex-high-efficiency-guide.md",
+  "sourceHash": "sha256:2d5dc68b7b4434f4a4e237591018e0d5db338cf2bad9218cc7ea8d4539596753",
+  "generator": {
+    "engine": "visual-explainer",
+    "skillVersion": "0.8.1",
+    "pipelineVersion": 1
+  },
+  "build": {
+    "mode": "hard",
+    "status": "published",
+    "updatedAt": "2026-08-01T09:43:53.103Z",
+    "cleanupStatus": "passed"
+  },
+  "figures": [
+    {
+      "id": "01-1-先建立心智模型",
+      "title": "先建立心智模型等 2 个主题",
+      "question": "先建立心智模型等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "先建立心智模型",
+        "概念地图"
+      ],
+      "briefHash": "sha256:e8f939fe08ce6fd4e55c5a76108aae0e940f4f933617b1bd64984afceced45ad",
+      "draftHash": "sha256:beb1d6d65934c7f014f4b67aa3795a13ee08559cd80507bc51cd38c0602980d2",
+      "approvedDraftHash": "sha256:beb1d6d65934c7f014f4b67aa3795a13ee08559cd80507bc51cd38c0602980d2",
+      "publishedImageHash": "sha256:389c0cbf55d6e9d5057af502e7be301929ee522a3a0400a92fbb61b65b43b2c5",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "02-3-4-周上手路径",
+      "title": "4 周上手路径等 2 个主题",
+      "question": "4 周上手路径等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "4-周上手路径",
+        "第一次接入你的仓库"
+      ],
+      "briefHash": "sha256:48ce0ee443d441d1e270fcb13bf7f7d6a580487fbc2e847670715da1e2fb10c0",
+      "draftHash": "sha256:6d57666fcac691d0e88c70cd157a387f12635a1515248ad891692014b5fe4ee1",
+      "approvedDraftHash": "sha256:6d57666fcac691d0e88c70cd157a387f12635a1515248ad891692014b5fe4ee1",
+      "publishedImageHash": "sha256:3e995a730ca21b64653d4a1742dba859a96aaeb75ecee2a0aca0aaa34de7c747",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "03-5-深入理解-9-个核心概念",
+      "title": "深入理解 9 个核心概念等 2 个主题",
+      "question": "深入理解 9 个核心概念等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "深入理解-9-个核心概念",
+        "常用工作表面与生态"
+      ],
+      "briefHash": "sha256:8e3186f66858ad5441558d41cf070fbe8947a002c4cd0acfba0687f75290befb",
+      "draftHash": "sha256:b33246f8931f1869bc3b6d85ed765117a23210286982e3213d6c3b34fc92f4ff",
+      "approvedDraftHash": "sha256:b33246f8931f1869bc3b6d85ed765117a23210286982e3213d6c3b34fc92f4ff",
+      "publishedImageHash": "sha256:80d7ce4e5c970cb0440a79191a0b081565f29dafd91eede0d99e9165e7b3dae8",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "04-7-3-个项目练习",
+      "title": "3 个项目练习等 2 个主题",
+      "question": "3 个项目练习等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "3-个项目练习",
+        "学完以后往哪走"
+      ],
+      "briefHash": "sha256:86ba7e31851b3e7da7b75ccf6691fb7b35d0a80d56af65317c51eeb9696fc2f7",
+      "draftHash": "sha256:1cc67f7da39a49a8cac062c2f8d43a41b76ebdbd2315d779717955ef31a073d0",
+      "approvedDraftHash": "sha256:1cc67f7da39a49a8cac062c2f8d43a41b76ebdbd2315d779717955ef31a073d0",
+      "publishedImageHash": "sha256:af583c6696924b2095510125082de5c70c26f1e54fe8d39b3b98581df4749d0a",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "05-9-资源",
+      "title": "资源等 2 个主题",
+      "question": "资源等 2 个主题：核心模型、约束与取舍",
+      "sourceSections": [
+        "资源",
+        "这篇指南的核心结论"
+      ],
+      "briefHash": "sha256:a66f8823c2e506b3b86d640d3f90a509891f9c50f7360e6b594cba8a2c638da7",
+      "draftHash": "sha256:18a62d35251dbe5af33871c9c9d65e1604db3b13f1a0ecec5d449431985ba6ab",
+      "approvedDraftHash": "sha256:18a62d35251dbe5af33871c9c9d65e1604db3b13f1a0ecec5d449431985ba6ab",
+      "publishedImageHash": "sha256:5dc7f8b8f75a36eb7749fbcab7ff46a65f34bb0fa43e96e557794b69b803ecb8",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    }
+  ]
+}

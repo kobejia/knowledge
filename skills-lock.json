@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "infographic": {
+      "source": "markdown-viewer/skills",
+      "sourceType": "github",
+      "skillPath": "infographic/SKILL.md",
+      "computedHash": "4d69297b63a8cf7fa9073e99a2358ecce0f4f7a6e270267a6d6361eeb2e3fff0"
+    },
+    "visual-explainer": {
+      "source": "nicobailon/visual-explainer",
+      "sourceType": "github",
+      "skillPath": "plugins/visual-explainer/SKILL.md",
+      "computedHash": "62a18fec2973791addc538fa78fcafd900964f653f725720180781b9f8368b31"
+    }
+  }
+}

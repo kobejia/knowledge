@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chrome Extension 运行时与信任边界</title>
+<style>
+:root{--bg:#f6f3ee;--surface:#fff;--ink:#22201d;--muted:#716b63;--line:#d9d2c8;--red:#b7472a;--blue:#27647a;--green:#4e722e;--amber:#a56a13}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;padding:42px;overflow-wrap:break-word}.page{max-width:1180px;margin:auto}header{margin-bottom:30px}h1{font-size:42px;line-height:1.15;margin:0 0 10px;letter-spacing:-1px}.sub{color:var(--muted);font-family:ui-monospace,monospace}.thesis{background:#fff9f3;border:1px solid #e6c9b8;border-left:5px solid var(--red);padding:20px 24px;border-radius:0 12px 12px 0;font-size:18px;line-height:1.65;margin:26px 0}.grid{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:18px;align-items:stretch}.zone{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}.zone h2{font-size:13px;text-transform:uppercase;letter-spacing:1.3px;margin:0 0 16px}.zone.low h2{color:var(--red)}.zone.core h2{color:var(--blue)}.zone.state h2{color:var(--green)}.card{background:#faf9f7;border:1px solid var(--line);border-radius:10px;padding:15px;margin:10px 0}.card strong{display:block;margin-bottom:5px}.card span{color:var(--muted);font-size:14px;line-height:1.45}.arrow{text-align:center;font-family:ui-monospace,monospace;color:var(--muted);font-size:13px;padding:9px}.protocol{border:1px dashed var(--amber);background:#fffaf0;border-radius:9px;padding:12px;text-align:center;color:#754d0f;font-weight:600}.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}.principle{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:17px}.principle:nth-child(2){border-top-color:var(--amber)}.principle:nth-child(3){border-top-color:var(--green)}.principle:nth-child(4){border-top-color:var(--red)}.principle b{display:block;margin-bottom:8px}.principle p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}.foot{margin-top:22px;padding:17px 20px;background:#282e32;color:#eef2f3;border-radius:12px;font-family:ui-monospace,monospace;line-height:1.6}.foot em{color:#e7bb69;font-style:normal}@media(max-width:850px){body{padding:20px}.grid,.principles{grid-template-columns:1fr}h1{font-size:32px}}
+</style>
+</head>
+<body><main class="page">
+<header><h1>Chrome Extension 不是“获得更多 API 的网页”</h1><div class="sub">Manifest V3 · 运行时模型 · 权限边界 · 可恢复状态</div></header>
+<section class="thesis">它是一个跨多个生命周期与信任区的事件驱动系统。真正决定质量的是：<strong>最小权限、消息协议、可恢复状态、特权隔离</strong>。</section>
+<section class="grid">
+  <div class="zone low"><h2>01 低信任与短生命周期</h2><div class="card"><strong>网页主世界</strong><span>页面代码不可信，DOM 可随时重建</span></div><div class="arrow">↓ DOM / 显式桥接</div><div class="card"><strong>Content Script</strong><span>靠近页面，只做适配与输入清理，不持有高权限</span></div><div class="card"><strong>Popup / Side Panel</strong><span>UI 各有生命周期，不应成为唯一状态源</span></div></div>
+  <div class="zone core"><h2>02 特权协调中心</h2><div class="protocol">版本化消息协议 · 来源验证 · 结构化错误</div><div class="arrow">↓ 只映射到明确允许的能力</div><div class="card"><strong>Service Worker</strong><span>事件协调、Chrome API、跨标签状态。它权限高，但会被终止，不是常驻服务器。</span></div><div class="arrow">↓ 事件到达时重建最小上下文</div><div class="card"><strong>幂等任务阶段</strong><span>pending → running → succeeded / failed，中断后可安全重试</span></div></div>
+  <div class="zone state"><h2>03 持久化与外部能力</h2><div class="card"><strong>chrome.storage / IndexedDB</strong><span>真相来源：用户配置、业务实体、任务阶段</span></div><div class="card"><strong>Chrome API / Network</strong><span>只能在 manifest 与当前用户授权的能力范围内使用</span></div><div class="card"><strong>Manifest</strong><span>同时是能力声明、攻击面、用户授权和商店审核边界</span></div></div>
+</section>
+<section class="principles"><div class="principle"><b>权限最小化</b><p>从用户动作反推 API 和 host 范围，优先 activeTab 与 optional permission。</p></div><div class="principle"><b>消息协议化</b><p>消息是跨信任边界的 RPC，不是普通函数调用。</p></div><div class="principle"><b>状态可恢复</b><p>进程不是状态所有者；内存 Map 只能作为可重建的缓存。</p></div><div class="principle"><b>特权隔离</b><p>不让低信任输入组合成任意 URL、任意注入或敏感数据泄露。</p></div></section>
+<div class="foot"><em>核心记忆点：</em> 这是一个小型分布式系统 + capability security 模型，而不是 popup + background.js + content.js 三个文件。</div>
+</main></body></html>

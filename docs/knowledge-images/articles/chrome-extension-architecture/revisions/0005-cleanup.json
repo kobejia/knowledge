@@ -1,0 +1,33 @@
+{
+  "id": 5,
+  "createdAt": "2026-08-01T09:16:17.866Z",
+  "type": "cleanup",
+  "status": "applied",
+  "deleted": [
+    {
+      "path": "previews/01-核心判断.draft.png",
+      "hash": "sha256:2a53096f7ddd77d33fde068ce514bc597bfacd962be439b920c249efe50baf3c",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/02-三-消息不是函数调用-而是内部协议.draft.png",
+      "hash": "sha256:cffbde1a32563cf2e631ec486c310c173c618e070e9e696e3a5442e2de76de8b",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/03-五-声明式-api-体现的是控制权转移.draft.png",
+      "hash": "sha256:030a2ea2475146ea91248f0207f5a932ef08d85ca0492ad87d63f3c3aa2a9f44",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/04-八-生产故障通常发生在哪里.draft.png",
+      "hash": "sha256:03ce0868ab2c0278739819e003f08637e35eac9d332e913bfbb4c086860df9e6",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/05-十-真正值得掌握的精髓.draft.png",
+      "hash": "sha256:977c6e2c16a309a9dc3d30ee3b5fbcdea096c498e35669af5eb0055bf60dac5f",
+      "reason": "superseded-intermediate"
+    }
+  ]
+}

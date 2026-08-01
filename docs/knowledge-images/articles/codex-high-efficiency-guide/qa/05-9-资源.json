@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "05-9-资源",
+  "draftHash": "sha256:18a62d35251dbe5af33871c9c9d65e1604db3b13f1a0ecec5d449431985ba6ab",
+  "imageHash": "sha256:5dc7f8b8f75a36eb7749fbcab7ff46a65f34bb0fa43e96e557794b69b803ecb8",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:43:53.022Z"
+}

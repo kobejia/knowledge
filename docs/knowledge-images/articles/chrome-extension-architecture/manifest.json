@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "articleId": "chrome-extension-architecture",
+  "title": "Chrome Extension：运行时模型、权限边界与架构取舍",
+  "source": "learn/frontend/browser/chrome-extension-architecture.md",
+  "sourceHash": "sha256:d387d717fb783640eb8935f67b11ac371dbbf2a45ec7e07ecf854997e877c3b8",
+  "generator": {
+    "engine": "visual-explainer",
+    "skillVersion": "0.8.1",
+    "pipelineVersion": 1
+  },
+  "build": {
+    "mode": "hard",
+    "status": "published",
+    "updatedAt": "2026-08-01T09:16:17.865Z",
+    "cleanupStatus": "passed"
+  },
+  "figures": [
+    {
+      "id": "01-核心判断",
+      "title": "核心判断与二、Service Worker 改变了架构的时间观",
+      "question": "核心判断与二、Service Worker 改变了架构的时间观的核心模型、约束与取舍是什么？",
+      "sourceSections": [
+        "核心判断",
+        "先建立正确的运行时模型",
+        "service-worker-改变了架构的时间观"
+      ],
+      "briefHash": "sha256:e810e2bd2b7330d41a7cb1d881dcaf5e3da3da709e2fd97149a443ecd5e48e83",
+      "draftHash": "sha256:35f0ad41c2c320546be7a92b41b892cf340dafc95a99a3d7f6189838cad0a7f4",
+      "approvedDraftHash": "sha256:35f0ad41c2c320546be7a92b41b892cf340dafc95a99a3d7f6189838cad0a7f4",
+      "publishedImageHash": "sha256:2a53096f7ddd77d33fde068ce514bc597bfacd962be439b920c249efe50baf3c",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "02-三-消息不是函数调用-而是内部协议",
+      "title": "三、消息不是函数调用，而是内部协议与四、Manifest 是能力声明，也是威胁模型",
+      "question": "三、消息不是函数调用，而是内部协议与四、Manifest 是能力声明，也是威胁模型的核心模型、约束与取舍是什么？",
+      "sourceSections": [
+        "消息不是函数调用-而是内部协议",
+        "manifest-是能力声明-也是威胁模型"
+      ],
+      "briefHash": "sha256:a3402d6316075ce35b396ba4a4be7b54305784616559b2e351ad9a9318e33f90",
+      "draftHash": "sha256:3460a906492a06471575bb413b6384369a43ea386c857e3e31761e2b29da46fa",
+      "approvedDraftHash": "sha256:3460a906492a06471575bb413b6384369a43ea386c857e3e31761e2b29da46fa",
+      "publishedImageHash": "sha256:cffbde1a32563cf2e631ec486c310c173c618e070e9e696e3a5442e2de76de8b",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "03-五-声明式-api-体现的是控制权转移",
+      "title": "五、声明式 API 体现的是控制权转移与七、四种常见架构",
+      "question": "五、声明式 API 体现的是控制权转移与七、四种常见架构的核心模型、约束与取舍是什么？",
+      "sourceSections": [
+        "声明式-api-体现的是控制权转移",
+        "ui-形态应服从任务持续时间",
+        "四种常见架构"
+      ],
+      "briefHash": "sha256:d6d6cc14df90f80cf7e5b251767ab5dcb750db5d3df2f25528d8560f94f628e3",
+      "draftHash": "sha256:de520d3daebcf43c852de152129693ef827d346ee57638e50a0ff6a6c4b08f45",
+      "approvedDraftHash": "sha256:de520d3daebcf43c852de152129693ef827d346ee57638e50a0ff6a6c4b08f45",
+      "publishedImageHash": "sha256:030a2ea2475146ea91248f0207f5a932ef08d85ca0492ad87d63f3c3aa2a9f44",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "04-八-生产故障通常发生在哪里",
+      "title": "八、生产故障通常发生在哪里与九、架构评审清单",
+      "question": "八、生产故障通常发生在哪里与九、架构评审清单的核心模型、约束与取舍是什么？",
+      "sourceSections": [
+        "生产故障通常发生在哪里",
+        "架构评审清单"
+      ],
+      "briefHash": "sha256:07ca34ca733d1ded723945cc6306bf8131cdacdf7ce6d47240b8d5136ea53f95",
+      "draftHash": "sha256:907504e31987dc24a54507a78efed1d34f4b750fb48741908078e47e59b0bc0b",
+      "approvedDraftHash": "sha256:907504e31987dc24a54507a78efed1d34f4b750fb48741908078e47e59b0bc0b",
+      "publishedImageHash": "sha256:03ce0868ab2c0278739819e003f08637e35eac9d332e913bfbb4c086860df9e6",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    },
+    {
+      "id": "05-十-真正值得掌握的精髓",
+      "title": "十、真正值得掌握的精髓与延伸阅读",
+      "question": "十、真正值得掌握的精髓与延伸阅读的核心模型、约束与取舍是什么？",
+      "sourceSections": [
+        "真正值得掌握的精髓",
+        "延伸阅读"
+      ],
+      "briefHash": "sha256:66cd7f6ec0705c0361c14733da83b57cd1ba8aab1d215182128be641435a26aa",
+      "draftHash": "sha256:e5b0f7b038db7e4fefdd07e5ff4cf95a766a66c392c9689414f032d64db9fa2c",
+      "approvedDraftHash": "sha256:e5b0f7b038db7e4fefdd07e5ff4cf95a766a66c392c9689414f032d64db9fa2c",
+      "publishedImageHash": "sha256:977c6e2c16a309a9dc3d30ee3b5fbcdea096c498e35669af5eb0055bf60dac5f",
+      "status": "published",
+      "locks": [],
+      "dirtyBlocks": []
+    }
+  ]
+}

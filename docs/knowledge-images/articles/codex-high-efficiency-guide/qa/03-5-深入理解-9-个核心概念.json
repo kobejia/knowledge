@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "03-5-深入理解-9-个核心概念",
+  "draftHash": "sha256:b33246f8931f1869bc3b6d85ed765117a23210286982e3213d6c3b34fc92f4ff",
+  "imageHash": "sha256:80d7ce4e5c970cb0440a79191a0b081565f29dafd91eede0d99e9165e7b3dae8",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:43:51.005Z"
+}

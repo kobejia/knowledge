@@ -1,0 +1,28 @@
+{
+  "id": 3,
+  "createdAt": "2026-08-01T09:16:11.995Z",
+  "type": "approve",
+  "status": "applied",
+  "figures": [
+    {
+      "id": "01-核心判断",
+      "approvedDraftHash": "sha256:35f0ad41c2c320546be7a92b41b892cf340dafc95a99a3d7f6189838cad0a7f4"
+    },
+    {
+      "id": "02-三-消息不是函数调用-而是内部协议",
+      "approvedDraftHash": "sha256:3460a906492a06471575bb413b6384369a43ea386c857e3e31761e2b29da46fa"
+    },
+    {
+      "id": "03-五-声明式-api-体现的是控制权转移",
+      "approvedDraftHash": "sha256:de520d3daebcf43c852de152129693ef827d346ee57638e50a0ff6a6c4b08f45"
+    },
+    {
+      "id": "04-八-生产故障通常发生在哪里",
+      "approvedDraftHash": "sha256:907504e31987dc24a54507a78efed1d34f4b750fb48741908078e47e59b0bc0b"
+    },
+    {
+      "id": "05-十-真正值得掌握的精髓",
+      "approvedDraftHash": "sha256:e5b0f7b038db7e4fefdd07e5ff4cf95a766a66c392c9689414f032d64db9fa2c"
+    }
+  ]
+}

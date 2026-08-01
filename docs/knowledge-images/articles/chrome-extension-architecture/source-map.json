@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:d387d717fb783640eb8935f67b11ac371dbbf2a45ec7e07ecf854997e877c3b8",
+  "sections": [
+    {
+      "id": "核心判断",
+      "index": 0,
+      "title": "核心判断",
+      "hash": "sha256:90009286367f6c0f07f6335a0d3263a85c9b48b3dce376327afe4d318fbba5e1"
+    },
+    {
+      "id": "先建立正确的运行时模型",
+      "index": 1,
+      "title": "一、先建立正确的运行时模型",
+      "hash": "sha256:012fc2729494c38f04d93e060660c4a8f84074cb7cda4e60195913fdd73f97a2"
+    },
+    {
+      "id": "service-worker-改变了架构的时间观",
+      "index": 2,
+      "title": "二、Service Worker 改变了架构的时间观",
+      "hash": "sha256:c6a00e3a4a621ef1f76c7ea6b3b232f8d2b0a118de5df7c0bffac6997c122c51"
+    },
+    {
+      "id": "消息不是函数调用-而是内部协议",
+      "index": 3,
+      "title": "三、消息不是函数调用，而是内部协议",
+      "hash": "sha256:cb5033983700089df64376116e6b1b2261f372be739a74b2c9b277af879cbdb8"
+    },
+    {
+      "id": "manifest-是能力声明-也是威胁模型",
+      "index": 4,
+      "title": "四、Manifest 是能力声明，也是威胁模型",
+      "hash": "sha256:ae933bd85ba0a0812f28afbfb77073359003ac807631d2f8c8c926333598abc4"
+    },
+    {
+      "id": "声明式-api-体现的是控制权转移",
+      "index": 5,
+      "title": "五、声明式 API 体现的是控制权转移",
+      "hash": "sha256:848bd0f5e6cfada1ee664466297bf5b3e951b3dc190cb59e2c39d7ab491f4ea3"
+    },
+    {
+      "id": "ui-形态应服从任务持续时间",
+      "index": 6,
+      "title": "六、UI 形态应服从任务持续时间",
+      "hash": "sha256:0c83c554677a41a172e9ab5b859742af3c7dcbea330cb4e039baf36da9a0a209"
+    },
+    {
+      "id": "四种常见架构",
+      "index": 7,
+      "title": "七、四种常见架构",
+      "hash": "sha256:40afec350afdf086181089bb163d3762484ae8e0a690998d0691eceba41516d9"
+    },
+    {
+      "id": "生产故障通常发生在哪里",
+      "index": 8,
+      "title": "八、生产故障通常发生在哪里",
+      "hash": "sha256:960fb0ba6d3abd9a3b00bc7bb735b7fa5bff195beb1d7b8ff07eb072f4936926"
+    },
+    {
+      "id": "架构评审清单",
+      "index": 9,
+      "title": "九、架构评审清单",
+      "hash": "sha256:b94f5c6f68de5efade54377e16c528499beffd549ae571244d6edb0d532dc601"
+    },
+    {
+      "id": "真正值得掌握的精髓",
+      "index": 10,
+      "title": "十、真正值得掌握的精髓",
+      "hash": "sha256:48ab1954357f5217a213525ed8404bac0dfc6c27c5c2e0e50601a47a675c8078"
+    },
+    {
+      "id": "延伸阅读",
+      "index": 11,
+      "title": "延伸阅读",
+      "hash": "sha256:fcb6a2cc2ac3b26d0423a480726bb02b95c9d0d6c5e544b14e0b646c4c76ae47"
+    }
+  ],
+  "dependencies": [
+    {
+      "figure": "01-核心判断",
+      "sourceSections": [
+        "核心判断",
+        "先建立正确的运行时模型",
+        "service-worker-改变了架构的时间观"
+      ]
+    },
+    {
+      "figure": "02-三-消息不是函数调用-而是内部协议",
+      "sourceSections": [
+        "消息不是函数调用-而是内部协议",
+        "manifest-是能力声明-也是威胁模型"
+      ]
+    },
+    {
+      "figure": "03-五-声明式-api-体现的是控制权转移",
+      "sourceSections": [
+        "声明式-api-体现的是控制权转移",
+        "ui-形态应服从任务持续时间",
+        "四种常见架构"
+      ]
+    },
+    {
+      "figure": "04-八-生产故障通常发生在哪里",
+      "sourceSections": [
+        "生产故障通常发生在哪里",
+        "架构评审清单"
+      ]
+    },
+    {
+      "figure": "05-十-真正值得掌握的精髓",
+      "sourceSections": [
+        "真正值得掌握的精髓",
+        "延伸阅读"
+      ]
+    }
+  ]
+}

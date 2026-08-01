@@ -1,0 +1,33 @@
+{
+  "id": 5,
+  "createdAt": "2026-08-01T09:43:53.104Z",
+  "type": "cleanup",
+  "status": "applied",
+  "deleted": [
+    {
+      "path": "previews/01-1-先建立心智模型.draft.png",
+      "hash": "sha256:389c0cbf55d6e9d5057af502e7be301929ee522a3a0400a92fbb61b65b43b2c5",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/02-3-4-周上手路径.draft.png",
+      "hash": "sha256:3e995a730ca21b64653d4a1742dba859a96aaeb75ecee2a0aca0aaa34de7c747",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/03-5-深入理解-9-个核心概念.draft.png",
+      "hash": "sha256:80d7ce4e5c970cb0440a79191a0b081565f29dafd91eede0d99e9165e7b3dae8",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/04-7-3-个项目练习.draft.png",
+      "hash": "sha256:af583c6696924b2095510125082de5c70c26f1e54fe8d39b3b98581df4749d0a",
+      "reason": "superseded-intermediate"
+    },
+    {
+      "path": "previews/05-9-资源.draft.png",
+      "hash": "sha256:5dc7f8b8f75a36eb7749fbcab7ff46a65f34bb0fa43e96e557794b69b803ecb8",
+      "reason": "superseded-intermediate"
+    }
+  ]
+}

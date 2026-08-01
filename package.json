@@ -7,11 +7,13 @@
   },
   "scripts": {
     "test": "node --test tests/personal-learn/*.test.mjs",
+    "knowledge:image": "node scripts/knowledge-image/cli.mjs",
     "validate:knowledge": "node scripts/validate-knowledge.mjs",
     "build:preview": "node scripts/build-preview.mjs",
     "check": "npm run test && sh tests/personal-learn/test-config.sh && sh tests/personal-learn/test-structure.sh && npm run validate:knowledge && npm run build:preview"
   },
   "dependencies": {
+    "@antv/infographic": "^0.2.19",
     "@mermaid-js/mermaid-cli": "11.16.0",
     "ajv": "8.20.0",
     "gray-matter": "4.0.3",

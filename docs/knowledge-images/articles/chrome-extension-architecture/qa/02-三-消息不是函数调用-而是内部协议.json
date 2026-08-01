@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "02-三-消息不是函数调用-而是内部协议",
+  "draftHash": "sha256:3460a906492a06471575bb413b6384369a43ea386c857e3e31761e2b29da46fa",
+  "imageHash": "sha256:cffbde1a32563cf2e631ec486c310c173c618e070e9e696e3a5442e2de76de8b",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:16:14.674Z"
+}

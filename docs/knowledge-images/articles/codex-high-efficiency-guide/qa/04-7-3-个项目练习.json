@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "04-7-3-个项目练习",
+  "draftHash": "sha256:1cc67f7da39a49a8cac062c2f8d43a41b76ebdbd2315d779717955ef31a073d0",
+  "imageHash": "sha256:af583c6696924b2095510125082de5c70c26f1e54fe8d39b3b98581df4749d0a",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:43:51.920Z"
+}

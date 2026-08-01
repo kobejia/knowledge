@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "figure": "02-3-4-周上手路径",
+  "draftHash": "sha256:6d57666fcac691d0e88c70cd157a387f12635a1515248ad891692014b5fe4ee1",
+  "imageHash": "sha256:3e995a730ca21b64653d4a1742dba859a96aaeb75ecee2a0aca0aaa34de7c747",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "checks": {
+    "ready": true,
+    "overflow": false,
+    "width": 1600,
+    "height": 1000,
+    "consoleErrors": [],
+    "passed": true
+  },
+  "checkedAt": "2026-08-01T09:43:49.928Z"
+}

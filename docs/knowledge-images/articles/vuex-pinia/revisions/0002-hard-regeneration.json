@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "createdAt": "2026-08-01T09:19:22.790Z",
+  "type": "hard-regeneration",
+  "status": "applied",
+  "sourceHash": "sha256:8acba57a314fb7e96db2832e2c4bd3d69feb8b3f72ddb795f7218b6c737b5bad",
+  "figures": [
+    "01-1-核心结论-同源不同构",
+    "02-3-核心变革-api-设计与逻辑封装",
+    "03-5-总结与建议"
+  ]
+}

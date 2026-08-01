@@ -1,0 +1,20 @@
+{
+  "id": 3,
+  "createdAt": "2026-08-01T09:43:43.150Z",
+  "type": "approve",
+  "status": "applied",
+  "figures": [
+    {
+      "id": "01-1-核心结论-同源不同构",
+      "approvedDraftHash": "sha256:1d0fedd1d8be8585d9c4927637d7a7686d94b4d07392122d1208e7af29f48fbf"
+    },
+    {
+      "id": "02-3-核心变革-api-设计与逻辑封装",
+      "approvedDraftHash": "sha256:a8f30754901d0cc2b016d74b1c740784e0e12a196d62f37d7e5e953aa32d0977"
+    },
+    {
+      "id": "03-5-总结与建议",
+      "approvedDraftHash": "sha256:9a021926f93c18dae3d37c4b4750a8ee3b7f9ef5acb3984f8693d98379d1b4c0"
+    }
+  ]
+}

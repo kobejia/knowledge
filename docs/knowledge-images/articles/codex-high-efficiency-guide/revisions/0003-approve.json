@@ -1,0 +1,28 @@
+{
+  "id": 3,
+  "createdAt": "2026-08-01T09:43:47.306Z",
+  "type": "approve",
+  "status": "applied",
+  "figures": [
+    {
+      "id": "01-1-先建立心智模型",
+      "approvedDraftHash": "sha256:beb1d6d65934c7f014f4b67aa3795a13ee08559cd80507bc51cd38c0602980d2"
+    },
+    {
+      "id": "02-3-4-周上手路径",
+      "approvedDraftHash": "sha256:6d57666fcac691d0e88c70cd157a387f12635a1515248ad891692014b5fe4ee1"
+    },
+    {
+      "id": "03-5-深入理解-9-个核心概念",
+      "approvedDraftHash": "sha256:b33246f8931f1869bc3b6d85ed765117a23210286982e3213d6c3b34fc92f4ff"
+    },
+    {
+      "id": "04-7-3-个项目练习",
+      "approvedDraftHash": "sha256:1cc67f7da39a49a8cac062c2f8d43a41b76ebdbd2315d779717955ef31a073d0"
+    },
+    {
+      "id": "05-9-资源",
+      "approvedDraftHash": "sha256:18a62d35251dbe5af33871c9c9d65e1604db3b13f1a0ecec5d449431985ba6ab"
+    }
+  ]
+}
