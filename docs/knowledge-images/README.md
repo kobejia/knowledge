@@ -4,6 +4,14 @@
 
 ## 快速开始
 
+在 Codex 对话中使用时，需要显式调用并指定源文件：
+
+```text
+/visual-explainer 将 learn/frontend/browser/chrome-extension-architecture.md 生成知识归纳图
+```
+
+生成草稿后可以直接用自然语言指定局部修改，例如“第 2 张只保留消息协议主路径，其他图不动”。只有“定稿”“全部定稿”“批准当前版本”等明确表达才允许进入正式图片目录。
+
 ```bash
 # 默认增量：原文哈希未变化时不改写任何产物
 npm run knowledge:image -- prepare <markdown-path>
