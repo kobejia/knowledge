@@ -8,8 +8,7 @@ required_files='SKILL.md
 assets/personal-learn-config.template.yaml
 references/editorial-policy.md
 references/markdown-quality.md
-references/demo-quality.md
-references/exercise-quality.md
+references/practice-quality.md
 scripts/init-config.sh
 scripts/validate-config.sh
 evals/evals.json'
@@ -31,8 +30,13 @@ grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
 grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
 grep -q '^## 概述$' "$skill_dir/SKILL.md"
 grep -q '必须由用户选择' "$skill_dir/SKILL.md"
-grep -q '分别询问' "$skill_dir/SKILL.md"
-grep -q '非技术主题.*跳过' "$skill_dir/SKILL.md"
+grep -q '是否需要配套实践（可运行 Demo + 配套练习题）' "$skill_dir/SKILL.md"
+grep -q '非技术主题.*跳过.*实践' "$skill_dir/SKILL.md"
+
+if grep -q '是否需要 Demo\|是否需要练习题' "$skill_dir/SKILL.md"; then
+  echo "FAIL: SKILL.md still asks separate Demo or exercise questions" >&2
+  exit 1
+fi
 
 if grep -qi 'recommend' "$skill_dir/SKILL.md"; then
   echo "FAIL: SKILL.md still recommends a level" >&2
@@ -47,17 +51,25 @@ if [ "$understand_line" -ge "$level_line" ] || [ "$level_line" -ge "$classify_li
   exit 1
 fi
 
-for reference in editorial-policy markdown-quality demo-quality exercise-quality; do
+for reference in editorial-policy markdown-quality practice-quality; do
   grep -q "references/$reference.md" "$skill_dir/SKILL.md" || {
     echo "FAIL: SKILL.md does not route to $reference.md" >&2
     exit 1
   }
 done
 
+test ! -e "$skill_dir/references/demo-quality.md" || {
+  echo "FAIL: obsolete demo-quality.md still exists" >&2
+  exit 1
+}
+test ! -e "$skill_dir/references/exercise-quality.md" || {
+  echo "FAIL: obsolete exercise-quality.md still exists" >&2
+  exit 1
+}
+
 grep -q '^# 编辑规范$' "$skill_dir/references/editorial-policy.md"
 grep -q '^# Markdown 质量规范$' "$skill_dir/references/markdown-quality.md"
-grep -q '^# Demo 质量规范$' "$skill_dir/references/demo-quality.md"
-grep -q '^# 练习题质量规范$' "$skill_dir/references/exercise-quality.md"
+grep -q '^# 配套实践质量规范$' "$skill_dir/references/practice-quality.md"
 
 test ! -e "$repo_root/EDITORIAL_GUIDE.md" || {
   echo "FAIL: EDITORIAL_GUIDE.md still exists" >&2
