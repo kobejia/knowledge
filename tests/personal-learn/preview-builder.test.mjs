@@ -5,6 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { buildPreview } from "../../scripts/build-preview.mjs";
 import { renderMarkdown } from "../../scripts/lib/render-preview.mjs";
+import { namespaceSvg } from "../../scripts/lib/render-mermaid.mjs";
 
 async function createPreviewFixture({ invalidMermaid = false } = {}) {
   const root = await mkdtemp(path.join(tmpdir(), "personal-learn-preview-"));
@@ -21,11 +22,14 @@ updated: 2026-08-01
 
 # Vue 响应式
 
+[个人配置](../../../personal-learn-config.yaml)
+
 \`\`\`mermaid
 ${diagram}
 \`\`\`
 `;
   await writeFile(path.join(directory, "reactivity.md"), document);
+  await writeFile(path.join(root, "personal-learn-config.yaml"), "version: 1\n");
   const knowledge = {
     version: 1,
     classificationMode: "automatic",
@@ -63,6 +67,14 @@ test("identifies an invalid Mermaid block", async () => {
   );
 });
 
+test("namespaces Mermaid ids and references", () => {
+  const svg = '<svg id="my-svg"><style>#my-svg .node{fill:red}</style><marker id="my-svg-pointEnd"/><path marker-end="url(#my-svg-pointEnd)"/></svg>';
+  const result = namespaceSvg(svg, "vue-reactivity-1");
+  assert.match(result, /id="personal-learn-vue-reactivity-1"/);
+  assert.match(result, /url\(#personal-learn-vue-reactivity-1-pointEnd\)/);
+  assert.doesNotMatch(result, /my-svg/);
+});
+
 test("builds an offline tree and hash-routed documents", async () => {
   const root = await createPreviewFixture();
   const output = path.join(root, "personal-learn-preview.html");
@@ -72,6 +84,7 @@ test("builds an offline tree and hash-routed documents", async () => {
   assert.match(html, /data-document-id="vue-reactivity"/);
   assert.match(html, /\\u003csvg/);
   assert.match(html, /category-contents"><ul>/);
+  assert.match(html, /href=\\"personal-learn-config\.yaml\\"/);
   assert.match(html, /addEventListener\("hashchange"/);
   assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+href=/);
 });

@@ -7,6 +7,15 @@ function escapeScriptData(value) {
   return JSON.stringify(value).replaceAll("<", "\\u003c");
 }
 
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 export async function renderMarkdown(source, context = { relativePath: "<inline>" }) {
   const diagrams = extractMermaidBlocks(source);
   let prepared = source;
@@ -32,11 +41,11 @@ function flattenCategories(categories, result = []) {
 
 function renderTree(categories) {
   return `<ul>${categories.map((category) => {
-    const documentItems = category.documents.map((document) => `<li><a href="#${encodeURIComponent(document.id)}" data-document-id="${document.id}">${document.title}</a></li>`).join("");
+    const documentItems = category.documents.map((document) => `<li><a href="#${encodeURIComponent(document.id)}" data-document-id="${escapeHtml(document.id)}">${escapeHtml(document.title)}</a></li>`).join("");
     const documents = documentItems ? `<ul>${documentItems}</ul>` : "";
     const children = category.children.length ? renderTree(category.children) : "";
     const contents = `${documents}${children}`;
-    return `<li class="category"><button type="button" aria-expanded="true">${category.title}</button><div class="category-contents">${contents || '<span class="empty">暂无文档</span>'}</div></li>`;
+    return `<li class="category"><button type="button" aria-expanded="true">${escapeHtml(category.title)}</button><div class="category-contents">${contents || '<span class="empty">暂无文档</span>'}</div></li>`;
   }).join("")}</ul>`;
 }
 
@@ -47,10 +56,12 @@ function documentPathMap(documents) {
 function rewriteDocumentLinks(content, document, paths) {
   return content.replace(/(\[[^\]]*\]\()([^)\s]+)(\))/g, (whole, open, target, close) => {
     if (/^(?:https?:|mailto:|data:|#)/i.test(target)) return whole;
-    const [withoutHash, hash = ""] = target.split("#", 2);
+    const [withoutHash] = target.split("#", 2);
     const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(document.relativePath), withoutHash));
     const id = paths.get(resolved);
-    return id ? `${open}#${encodeURIComponent(id)}${hash ? `-${encodeURIComponent(hash)}` : ""}${close}` : whole;
+    return id
+      ? `${open}#${encodeURIComponent(id)}${close}`
+      : `${open}${encodeURI(resolved)}${close}`;
   });
 }
 
