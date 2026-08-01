@@ -9,7 +9,8 @@
 1. 显式调用 `/personal-learn`，提供新主题或现有 Markdown 路径。
 2. 选择内容档位：`beginner`、`advanced`、`expert`、`deep-dive` 或 `survey`。
 3. 技术主题确认是否需要配套实践。
-4. 确认分类后生成文档，并运行 `npm run check`。
+4. 确认分类后生成文档并更新知识索引；Skill 会自动完成测试、内容校验和预览构建。
+5. 前往 IMA 知识库，选择「本地文件夹」导入整个知识库，或选择「本地文件」导入指定文档；完成后即可在手机端随时查阅。
 
 ```text
 /personal-learn 生成 WebAssembly Component Model 知识文档

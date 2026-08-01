@@ -61,6 +61,9 @@ grep -q '非技术主题.*跳过.*实践' "$skill_dir/SKILL.md"
 grep -q 'personal-learn-knowledge.json' "$skill_dir/SKILL.md"
 grep -q 'classificationMode' "$skill_dir/SKILL.md"
 grep -q 'references/visual-policy.md' "$skill_dir/SKILL.md"
+grep -q '从仓库根目录运行 `npm run check`' "$skill_dir/SKILL.md"
+grep -q '不要把运行命令转交给用户' "$skill_dir/SKILL.md"
+grep -q '检查未通过时不得宣称完成' "$skill_dir/SKILL.md"
 
 if grep -q '是否需要 Demo\|是否需要练习题' "$skill_dir/SKILL.md"; then
   echo "FAIL: SKILL.md still asks separate Demo or exercise questions" >&2
