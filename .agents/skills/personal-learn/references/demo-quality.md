@@ -1,33 +1,33 @@
-# Demo Quality
+# Demo 质量规范
 
-Load this reference only after the user selects a Demo for a technical topic.
+仅在用户为技术主题选择 Demo 后读取本文件。
 
-## Purpose and scope
+## 目标与范围
 
-- State the exact concept, runtime behavior, boundary, counterexample, or trade-off the Demo verifies.
-- Build the smallest observable example that serves that purpose.
-- Prefer plain HTML, CSS, and JavaScript unless a framework or dependency is itself part of the subject.
-- Exclude decorative features, unrelated abstractions, analytics, authentication, and production scaffolding.
+- 明确 Demo 要验证的概念、运行行为、边界、反例或取舍。
+- 构建能够观察目标行为的最小示例。
+- 除非框架或依赖本身就是主题，否则优先使用原生 HTML、CSS 和 JavaScript。
+- 排除装饰性功能、无关抽象、分析埋点、认证和生产脚手架。
 
-## Organization
+## 组织
 
-- Keep HTML responsible for semantics, CSS for presentation, and JavaScript for behavior.
-- Use names that match the document's terminology.
-- Add brief comments only where the reason is not evident from the code.
-- Keep setup instructions beside the Demo when opening the HTML file is insufficient.
+- HTML 负责语义，CSS 负责表现，JavaScript 负责行为。
+- 命名与正文术语保持一致。
+- 仅在代码无法说明原因时添加简短注释。
+- 如果不能直接打开 HTML 运行，在 Demo 旁提供启动说明。
 
-## Verification
+## 验证
 
-- Start or open the Demo using the documented path.
-- Check the initial state, each key interaction, expected state transitions, and failure or boundary cases described by the document.
-- Inspect the browser console for errors and warnings caused by the Demo.
-- Check narrow and wide viewports when layout affects the claim.
-- Verify the document does not promise behavior the code lacks.
+- 按文档说明启动或打开 Demo。
+- 检查初始状态、关键交互、预期状态变化，以及正文描述的失败或边界情况。
+- 检查浏览器控制台中由 Demo 引起的错误和警告。
+- 当布局影响结论时检查窄视口和宽视口。
+- 确认正文没有承诺代码中不存在的行为。
 
-## Completion check
+## 完成检查
 
-- The Demo has one explicit learning or verification goal.
-- It runs with the documented steps and has no unexplained console error.
-- Key interactions and relevant viewports were actually checked.
-- Code, prose, terminology, assumptions, and limitations agree.
-- Any unverified environment or behavior is disclosed rather than reported as complete.
+- Demo 只有一个明确的学习或验证目标。
+- 按说明可以运行，且没有未解释的控制台错误。
+- 关键交互和相关视口已经实际检查。
+- 代码、正文、术语、前提和限制一致。
+- 未验证的环境或行为已明确披露，没有被报告为完成。

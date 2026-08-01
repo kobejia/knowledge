@@ -1,104 +1,104 @@
-# Editorial Policy
+# 编辑规范
 
-## Core principle
+## 核心原则
 
-Start from a worthwhile question, build the model needed to answer it, and use details as evidence. A document earns its length through explanation, not coverage theater.
+从值得回答的问题出发，建立解释问题所需的模型，并用细节作为证据。文档的篇幅应来自解释需要，而不是制造覆盖面。
 
-## Four levels
+## 四个档位
 
-| ID | Name | Required treatment |
+| 内部标识 | 名称 | 内容边界 |
 | --- | --- | --- |
-| `expert` | 专家 | Skip routine setup and API catalogues. Focus on mechanisms, component/data/trust boundaries, evolution, alternatives, performance, security, reliability, maintainability, production failures, and open constraints. |
-| `beginner` | 入门 | Establish the minimum vocabulary, mental model, and basic use needed to act. Prefer one coherent path; defer exhaustive alternatives and advanced failure analysis. |
-| `deep-dive` | 全面 | Supply only necessary foundations, then examine core models, evidence, major schools or designs, history that explains current constraints, trade-offs, counterexamples, disputes, and real-world boundaries. |
-| `survey` | 了解 | Map the field: why it matters, necessary introductory context, major parts, relationships, representative approaches, and the questions worth pursuing next. Do not simulate a deep dive with compressed jargon. |
+| `expert` | 专家 | 跳过常规安装和 API 罗列，聚焦运行机制、组件与数据及信任边界、架构演化、替代方案、性能、安全、可靠性、可维护性、生产失败和未解决约束。 |
+| `beginner` | 入门 | 建立行动所需的最小术语、心智模型和基本用法。优先讲清一条连贯路径，暂缓穷举替代方案和高级失败分析。 |
+| `deep-dive` | 全面 | 补足必要基础后，深入核心模型、证据、主要理论或设计、解释当前约束的历史、取舍、反例、争议和现实边界。 |
+| `survey` | 了解 | 建立领域地图：为什么重要、必要入门背景、主要组成与关系、代表性方案及下一步值得追问的问题。不得用压缩术语伪装成全面分析。 |
 
-The selected level controls depth, not a fixed section template or word count.
+档位控制内容深度，不规定固定章节模板或字数。
 
-## Reasoning order
+## 推理顺序
 
-Use this as an internal sequence, not mandatory headings:
+将以下内容作为内部推理顺序，而不是必须照抄的标题：
 
 ```text
-core question
-  -> key conclusions
-  -> system or explanatory model
-  -> evolution and design motives
-  -> constraints and trade-offs
-  -> boundaries, counterexamples, and failure modes
-  -> useful cross-domain connections
-  -> unresolved questions
+核心问题
+  -> 关键结论
+  -> 系统或解释模型
+  -> 演化与设计动因
+  -> 约束与取舍
+  -> 边界、反例与失败模式
+  -> 有解释力的跨领域连接
+  -> 未解决问题
 ```
 
-## Technical topics
+## 技术主题
 
-At the depth selected by the user, prioritize:
+在用户选择的深度内，优先回答：
 
-- the root problem and the abstraction introduced to address it;
-- runtime model and boundaries between components, processes, threads, data, and trust;
-- why the architecture evolved and why older choices remain or were replaced;
-- alternatives and the costs of each design decision;
-- tensions among performance, security, reliability, and maintainability;
-- important production failure modes and conditions where another approach wins;
-- connections to more general systems principles and genuinely unresolved constraints.
+- 根本问题是什么，引入了什么抽象来处理它；
+- 运行模型以及组件、进程、线程、数据和信任边界；
+- 架构为何演化，旧方案为何保留或被替代；
+- 设计决策有哪些替代方案及代价；
+- 性能、安全、可靠性与可维护性之间如何制约；
+- 重要生产失败模式，以及什么条件下其他方案更合适；
+- 与一般系统原则的连接，以及真正尚未解决的约束。
 
-Examples exist to verify a model, expose a boundary, or compare designs. Do not expand them merely to demonstrate a complete product.
+示例用于验证模型、揭示边界或比较设计，不为展示完整产品而扩张。
 
-## Non-technical topics
+## 非技术主题
 
-At the depth selected by the user, prioritize:
+在用户选择的深度内，优先回答：
 
-- the minimum concepts needed to understand the question;
-- the main theories, models, or schools and the evidence behind them;
-- evidence quality, important disagreements, counterexamples, and practical limits;
-- historical, institutional, and social context when it changes the explanation;
-- cross-domain connections only when the causal structure really transfers;
-- the central insight that follows from the foundations, not a textbook inventory.
+- 理解问题所需的最小概念；
+- 主要理论、模型或学派及其证据；
+- 证据质量、重要分歧、反例和现实限制；
+- 会改变解释的历史、制度与社会背景；
+- 仅在因果结构确实可迁移时引入跨领域连接；
+- 从基础推导出的核心洞见，而不是教科书式清单。
 
-## Knowledge status
+## 知识性质
 
-Keep these categories distinct even when labels are not printed:
+即使正文不机械标注，也要区分：
 
-- **Fact:** directly supported by a reliable source.
-- **Mainstream explanation:** broadly accepted interpretation, not an unchallengeable fact.
-- **Inference:** analysis derived from facts, data, or a model.
-- **Dispute:** meaningful evidential, theoretical, or value conflict.
-- **Unknown:** evidence is insufficient or the subject is still changing.
+- **事实**：可靠来源能够直接支持的陈述。
+- **主流解释**：广泛接受的解释，不等于不可质疑的事实。
+- **推论**：从事实、数据或模型推导出的分析。
+- **争议**：存在重要证据、理论或价值冲突。
+- **未知**：证据不足或主题仍在变化。
 
-Never use phrases such as “widely believed” as a substitute for evidence.
+不能用“普遍认为”等表述代替证据。
 
-## Sources and time sensitivity
+## 来源与时效性
 
-- Place citations near the claim they support.
-- Make definitions, versions, statistics, policies, standards, quotas, and disputed claims traceable.
-- For technical work prefer official documentation, standards, papers, source code, design documents, and maintainer statements.
-- For non-technical work prefer original research, authoritative statistics, laws or policy text, classic works, and strong reviews.
-- Use secondary sources to discover leads or explain background, not to replace available primary evidence.
-- State the verification date, applicable version, or uncertainty for evolving capabilities.
-- Keep further reading selective and high-value.
+- 将引用放在其支持的结论附近。
+- 定义、版本、数据、政策、标准、配额和争议性结论必须可追溯。
+- 技术主题优先使用官方文档、标准、论文、源码、设计文档和维护者说明。
+- 非技术主题优先使用原始研究、权威统计、法律或政策原文、经典著作和高质量综述。
+- 二手资料可用于发现线索或解释背景，不能替代可获得的一手来源。
+- 对演进中的能力注明查证日期、适用版本或不确定性。
+- 延伸阅读只保留高价值来源。
 
-## Structure and voice
+## 结构与表达
 
-- Let complexity determine length and structure. Split a large subject into focused documents rather than forcing a giant guide.
-- Explain why a design or theory exists, what it optimizes, what it sacrifices, and where it fails.
-- Remove basic repetition that the configured background makes unnecessary, but never omit a reasoning step solely because the reader is experienced.
-- Use analogies only when they explain mechanism; state where causal structures differ.
-- Use concise, direct language. Remove generic filler and template-shaped paragraphs.
+- 让问题复杂度决定篇幅和结构。大型主题应拆成边界清晰的文档，而不是强行塞进一篇长指南。
+- 解释设计或理论为什么存在、优化了什么、牺牲了什么以及在哪里失效。
+- 删除画像表明无需重复的基础，但不能仅以读者有经验为由省略关键推理。
+- 类比只用于解释机制，并指出因果结构不同之处。
+- 使用简洁、直接的语言，删除套话和模板化段落。
 
-## Prohibitions
+## 禁止事项
 
-- Do not begin with a glossary dump or mechanically enumerate a fixed number of concepts, exercises, projects, or resources.
-- Do not present inference, popularity, or analogy as fact.
-- Do not describe only usage while hiding design motives and constraints.
-- Do not generalize from one successful case or predict trends without reliable support.
-- Do not invent the learner's views, history, mastery, conclusions, or progress.
-- Do not sacrifice the topic's natural structure for formatting uniformity.
+- 不从术语表开始，也不机械生成固定数量的概念、练习、项目或资源。
+- 不把推论、流行程度或类比写成事实。
+- 不只描述如何使用而隐藏设计动因与约束。
+- 不从单个成功案例过度推广，也不在缺少可靠依据时预测趋势。
+- 不虚构学习者的观点、经历、掌握程度、结论或进度。
+- 不为格式统一牺牲主题最自然的结构。
 
-## Editorial completion check
+## 编辑完成检查
 
-- The core question and actual scope agree.
-- The selected level and configured reader starting point are respected.
-- Required models, motives, evidence, trade-offs, counterexamples, and boundaries appear at the selected depth.
-- Facts, explanations, inferences, disputes, and unknowns are not conflated.
-- Important claims have nearby, appropriate sources.
-- Basic repetition, filler, and mechanical template prose have been removed.
+- 核心问题与实际范围一致。
+- 所选档位和配置中的读者起点得到尊重。
+- 模型、动因、证据、取舍、反例和边界达到对应深度。
+- 事实、解释、推论、争议和未知没有混淆。
+- 重要结论具有就近且合适的来源。
+- 基础重复、套话和机械模板内容已删除。

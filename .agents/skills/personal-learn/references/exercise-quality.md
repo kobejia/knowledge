@@ -1,26 +1,26 @@
-# Exercise Quality
+# 练习题质量规范
 
-Load this reference only after the user selects exercises for a technical topic.
+仅在用户为技术主题选择练习题后读取本文件。
 
-## Design
+## 设计
 
-- Match abstraction, prerequisites, and difficulty to the selected level.
-- Cover the document's key concepts, model, operation, or boundary; do not test trivia absent from the document.
-- Mix recall sparingly with explanation, application, debugging, comparison, or boundary analysis.
-- Prefer a small set of discriminating questions over a mechanical fixed count.
-- If a Demo also exists, exercises may ask the learner to observe or modify verified behavior.
+- 抽象程度、前置知识和难度与所选档位一致。
+- 覆盖正文中的关键概念、模型、操作或边界，不考查正文没有出现的琐碎知识。
+- 少量使用记忆题，优先考查解释、应用、调试、比较或边界分析。
+- 选择少量有区分度的问题，不机械追求固定数量。
+- 如果同时存在 Demo，可以要求学习者观察或修改已经验证的行为。
 
-## Answers
+## 答案
 
-- Give every question a checkable answer, explanation, expected observation, or grading rubric.
-- Explain why an answer follows from the document and why plausible alternatives fail when useful.
-- Keep answers separate enough that readers can attempt the question first, using Markdown disclosure blocks or a clearly marked answer section.
-- Do not require an unmentioned dependency or unverified Demo behavior.
+- 每道题提供可核对的答案、解释、预期现象或评分标准。
+- 在有价值时说明答案如何由正文推出，以及看似合理的替代答案为什么不成立。
+- 答案与题目适当分离，使读者可以先作答；可使用 Markdown 折叠块或独立答案章节。
+- 不依赖正文未提及的依赖或未经验证的 Demo 行为。
 
-## Completion check
+## 完成检查
 
-- Every question maps to material actually taught.
-- Difficulty and expected reasoning match `beginner`, `survey`, `deep-dive`, or `expert`.
-- Answers or evaluation criteria are complete and internally consistent.
-- Exercises test understanding or transfer, not wording memorization.
-- Document, Demo, questions, and answers use the same terminology and assumptions.
+- 每道题都对应正文实际讲授的内容。
+- 难度和推理要求符合 `beginner`、`survey`、`deep-dive` 或 `expert`。
+- 答案或评价标准完整且内部一致。
+- 练习检验理解或迁移能力，而不是复述原句。
+- 正文、Demo、题目和答案使用相同的术语与前提。

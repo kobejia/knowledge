@@ -28,6 +28,7 @@ test -f "$repo_root/personal-learn-config.yaml" || {
 
 grep -q '^name: personal-learn$' "$skill_dir/SKILL.md"
 grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
+grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
 grep -q '^## 概述$' "$skill_dir/SKILL.md"
 grep -q '必须由用户选择' "$skill_dir/SKILL.md"
 grep -q '分别询问' "$skill_dir/SKILL.md"

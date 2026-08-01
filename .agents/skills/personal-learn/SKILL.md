@@ -1,73 +1,75 @@
 ---
 name: personal-learn
-description: Use when a user asks to learn, understand, explore, document, or practice a topic in this repository, or when creating or substantially revising Markdown learning documents, technical demos, or exercises.
+description: 当用户希望在本仓库学习、理解、探索、记录或练习某个主题，或需要创建、实质修改 Markdown 学习文档、技术 Demo 或练习题时使用。
 ---
 
-# Personal Learn
+# 个人学习
 
-## Overview
+## 概述
 
-Create source-grounded Markdown at a user-selected depth. Read personal context from repository configuration; keep editorial rules in this skill.
+根据用户明确选择的档位，生成有可靠来源支撑的 Markdown 学习文档。个人背景来自仓库配置，稳定的内容规范由本 skill 管理。
 
-## Required setup
+## 必要准备
 
-1. Resolve the repository root with `git rev-parse --show-toplevel`.
-2. Look for `<repo>/personal-learn-config.yaml`.
-3. If missing, tell the user it will be initialized from the bundled default, then run `scripts/init-config.sh <repo>`.
-4. Run `scripts/validate-config.sh <repo>/personal-learn-config.yaml`.
-5. On failure, report the field error; never use silent defaults or overwrite existing config.
-6. Read the config without inferring unlisted experience.
+1. 使用 `git rev-parse --show-toplevel` 确定仓库根目录。
+2. 检查 `<repo>/personal-learn-config.yaml`。
+3. 配置缺失时，先说明将从内置模板初始化，再运行 `scripts/init-config.sh <repo>`。
+4. 运行 `scripts/validate-config.sh <repo>/personal-learn-config.yaml`。
+5. 校验失败时报告具体字段错误；不得静默使用默认值或覆盖现有配置。
+6. 读取配置，但不得推断配置中没有写明的经验。
 
-## Required interaction
+## 必要交互
 
-Complete this sequence before authoring. Skip it only for non-semantic edits.
+生成正文前按顺序完成以下交互。只有拼写修正、机械格式化等不改变语义的编辑可以跳过。
 
-### 1. Understand
+### 1. 理解与消歧
 
-- If topic, scope, or artifact has materially different interpretations, present mutually exclusive options and wait.
-- Otherwise describe the understood topic and goal in one or two sentences. Never ask the user to design the outline.
+- 主题、范围或产物存在实质不同的解释时，提供简洁、互斥的选项并等待选择。
+- 不存在实质歧义时，用一至两句话说明对主题和目标的理解。不得要求用户设计目录。
 
-### 2. Ask for a level
+### 2. 选择内容档位
 
-Always let the user choose. A configured recommendation is not a selection.
+档位必须由用户选择，不得依据配置或画像自动推荐、预选或代替用户决定。正式定义见 `references/editorial-policy.md`。
 
-- **专家 (`expert`)**: mechanisms, evolution, trade-offs, production constraints, failures, and frontier questions; skip routine introduction.
-- **入门 (`beginner`)**: necessary concepts, basic use, and minimum viable understanding.
-- **全面 (`deep-dive`)**: foundations through models, evidence, disagreements, trade-offs, counterexamples, and boundaries.
-- **了解 (`survey`)**: a landscape map with necessary introductory context, major parts, value, and key questions; avoid full implementation or exhaustive argument.
+- **专家（`expert`）**：聚焦机制、演化、取舍、生产约束、失败模式与前沿问题。
+- **入门（`beginner`）**：建立必要概念、基本用法与最小可用理解。
+- **全面（`deep-dive`）**：从必要基础深入模型、证据、分歧、取舍、反例与边界。
+- **了解（`survey`）**：建立视野地图，说明主要组成、价值与关键问题。
 
-### 3. Classify the topic
+等待用户选择后再继续。
 
-For a technical topic, ask two separate questions and wait for each answer:
+### 3. 判断主题类型
 
-1. Does the user want a Demo?
-2. Does the user want exercises?
+技术主题需要分别询问并等待用户回答：
 
-For non-technical topics, skip both. Never generate either artifact without an affirmative answer.
+1. 是否需要 Demo？
+2. 是否需要练习题？
 
-## Required references
+非技术主题直接跳过这两个问题。没有得到肯定回答时，不得生成对应产物。
 
-- Always: `references/editorial-policy.md`
-- Always: `references/markdown-quality.md`
-- Only after Demo is selected: `references/demo-quality.md`
-- Only after exercises are selected: `references/exercise-quality.md`
+## 必读参考
 
-## Authoring workflow
+- 始终读取：`references/editorial-policy.md`
+- 始终读取：`references/markdown-quality.md`
+- 仅在用户选择 Demo 后读取：`references/demo-quality.md`
+- 仅在用户选择练习题后读取：`references/exercise-quality.md`
 
-1. Read the target file and adjacent repository context before editing.
-2. Verify time-sensitive or professional claims, standards, versions, policies, and disputes with primary or authoritative sources.
-3. Choose a natural structure from the selected level and policy; never force a universal outline.
-4. Create or revise Markdown. Create a Demo or exercises only when selected.
-5. Verify Markdown structure, metadata, links, and citation proximity.
-6. Run every Demo; check console output and key behavior, or disclose what is unverified.
-7. Ensure exercises are answerable and include answers or grading criteria.
-8. Align terminology, assumptions, behavior, and boundaries across all artifacts.
-9. Report actual verification; evidence is required for completion claims.
+## 生成流程
 
-## Guardrails
+1. 编辑前读取目标文件及仓库中的相邻上下文。
+2. 使用一手或权威来源核实时效性事实、专业结论、标准、版本、政策与争议。
+3. 根据所选档位与编辑规范选择自然结构，不套用统一目录。
+4. 创建或修改 Markdown；只有用户选择后才创建 Demo 或练习题。
+5. 检查 Markdown 结构、元信息、链接与引用位置。
+6. 实际运行每个 Demo，检查控制台和关键行为；无法验证时说明未验证范围。
+7. 确保练习题可由正文作答，并提供答案或评价标准。
+8. 对齐正文、Demo 与练习题中的术语、前提、行为和边界。
+9. 说明实际完成的验证；没有证据时不得宣称完成。
 
-- README is project introduction, not a knowledge map or manual.
-- Never recreate `EDITORIAL_GUIDE.md` or `READER_PROFILE.md`.
-- Never infer unconfigured frameworks, languages, industries, projects, opinions, or progress.
-- Do not turn a knowledge request into a course, schedule, Demo, or exercise set unless the interaction selected it.
-- Preserve existing user edits and avoid unrelated rewrites.
+## 边界
+
+- README 只用于项目介绍，不作为知识地图或编辑手册。
+- 不得重新创建 `EDITORIAL_GUIDE.md` 或 `READER_PROFILE.md`。
+- 不得虚构配置或用户输入中没有的框架、语言、行业、项目、观点或学习进度。
+- 除非用户在交互中选择，否则不得把知识请求扩张成课程、计划、Demo 或练习题集。
+- 保留用户已有修改，避免无关重写。

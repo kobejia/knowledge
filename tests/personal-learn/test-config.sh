@@ -29,10 +29,24 @@ if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/unknown-field.yaml" >/d
   exit 1
 fi
 
+awk '/^  experience:/ { print "  unknown_profile_field: true" } { print }' \
+  "$fixture_dir/personal-learn-config.yaml" > "$fixture_dir/unknown-nested-field.yaml"
+if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/unknown-nested-field.yaml" >/dev/null 2>&1; then
+  echo "FAIL: validator accepted an unknown learner field" >&2
+  exit 1
+fi
+
 sed 's/frontend_years: 10/frontend_years: ten/' \
   "$fixture_dir/personal-learn-config.yaml" > "$fixture_dir/invalid-years.yaml"
 if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/invalid-years.yaml" >/dev/null 2>&1; then
   echo "FAIL: validator accepted non-integer experience" >&2
+  exit 1
+fi
+
+cp "$fixture_dir/personal-learn-config.yaml" "$fixture_dir/invalid-utf8.yaml"
+printf '\377' >> "$fixture_dir/invalid-utf8.yaml"
+if "$skill_dir/scripts/validate-config.sh" "$fixture_dir/invalid-utf8.yaml" >/dev/null 2>&1; then
+  echo "FAIL: validator accepted invalid UTF-8" >&2
   exit 1
 fi
 
