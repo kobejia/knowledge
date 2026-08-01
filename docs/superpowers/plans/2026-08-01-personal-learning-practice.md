@@ -13,7 +13,7 @@
 ### Task 1: Define the failing practice contract
 
 **Files:**
-- Modify: `tests/personal-learn/test-structure.sh`
+- Modify: `tests/personal-learning/test-structure.sh`
 
 - [ ] **Step 1: Replace old reference expectations**
 
@@ -25,24 +25,24 @@ Require `SKILL.md` to ask once whether the user needs “配套实践”, descri
 
 - [ ] **Step 3: Run the structure test to verify RED**
 
-Run: `sh tests/personal-learn/test-structure.sh`
+Run: `sh tests/personal-learning/test-structure.sh`
 
 Expected: FAIL because `practice-quality.md` is missing and old reference files remain.
 
 - [ ] **Step 4: Commit failing test**
 
 ```bash
-git add tests/personal-learn/test-structure.sh
+git add tests/personal-learning/test-structure.sh
 git commit -m "test: define combined practice workflow"
 ```
 
 ### Task 2: Implement the combined practice workflow
 
 **Files:**
-- Modify: `.agents/skills/personal-learn/SKILL.md`
-- Create: `.agents/skills/personal-learn/references/practice-quality.md`
-- Delete: `.agents/skills/personal-learn/references/demo-quality.md`
-- Delete: `.agents/skills/personal-learn/references/exercise-quality.md`
+- Modify: `.agents/skills/personal-learning/SKILL.md`
+- Create: `.agents/skills/personal-learning/references/practice-quality.md`
+- Delete: `.agents/skills/personal-learning/references/demo-quality.md`
+- Delete: `.agents/skills/personal-learning/references/exercise-quality.md`
 
 - [ ] **Step 1: Replace the interaction**
 
@@ -62,21 +62,21 @@ Remove both old reference files after all effective rules have a destination in 
 
 - [ ] **Step 5: Run structure test to verify GREEN**
 
-Run: `sh tests/personal-learn/test-structure.sh`
+Run: `sh tests/personal-learning/test-structure.sh`
 
 Expected: PASS with one practice route and no obsolete files.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add .agents/skills/personal-learn tests/personal-learn/test-structure.sh
+git add .agents/skills/personal-learning tests/personal-learning/test-structure.sh
 git commit -m "refactor: combine personal learn practice artifacts"
 ```
 
 ### Task 3: Update evals and verify
 
 **Files:**
-- Modify: `.agents/skills/personal-learn/evals/evals.json`
+- Modify: `.agents/skills/personal-learning/evals/evals.json`
 
 - [ ] **Step 1: Update the six eval scenarios**
 
@@ -93,6 +93,6 @@ Run configuration and structure tests, validate live config, syntax-check shell 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add .agents/skills/personal-learn/evals/evals.json
+git add .agents/skills/personal-learning/evals/evals.json
 git commit -m "test: update personal learn practice scenarios"
 ```

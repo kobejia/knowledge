@@ -81,12 +81,12 @@ async function validateDocument(repoRoot, contentRootReal, document) {
 
 export async function validateRepository(repoRoot) {
   const root = await realpath(repoRoot);
-  const knowledgePath = path.join(root, "personal-learn-knowledge.json");
+  const knowledgePath = path.join(root, "personal-learning-knowledge.json");
   let knowledge;
   try {
     knowledge = JSON.parse(await readFile(knowledgePath, "utf8"));
   } catch (error) {
-    throw new Error(`personal-learn-knowledge.json: ${error.message}`);
+    throw new Error(`personal-learning-knowledge.json: ${error.message}`);
   }
   if (!validateKnowledge(knowledge)) throw new Error(`invalid knowledge schema: ${schemaError()}`);
 

@@ -2,7 +2,7 @@
 
 ## 背景
 
-当前 `personal-learn` 已统一生成前交互、个人画像、Markdown 质量规范和配套实践，但仍有三类缺口：
+当前 `personal-learning` 已统一生成前交互、个人画像、Markdown 质量规范和配套实践，但仍有三类缺口：
 
 1. 四个档位混合了“建立视野”和“内容深度”，缺少从会用走向理解机制的进阶层。
 2. skill 没有稳定的文档归类与落盘流程，生成工具可能自行决定目录，导致知识结构漂移。
@@ -15,15 +15,15 @@
 - 将内容档位扩展为“了解、入门、进阶、全面、专家”五档，并明确相邻档位的边界。
 - 同一档位结合完整用户画像与主题熟悉度调整起点、术语密度、例子和推理跨度，而不是机械套模板。
 - 为新文档提供 `confirm` 和 `automatic` 两种归类模式。
-- 使用 `personal-learn-knowledge.json` 作为知识分类、目录层级和文档索引的唯一事实源。
+- 使用 `personal-learning-knowledge.json` 作为知识分类、目录层级和文档索引的唯一事实源。
 - 将现有知识文档迁入 `learn/` 下的多级领域目录。
 - 建立 Markdown 友好的丰富图表策略，覆盖架构、层次、流程、状态、时序、数据模型、演化和取舍。
-- 将 Markdown 和 Mermaid 在构建时渲染后嵌入 `personal-learn-preview.html`，提供无需服务器的本地浏览体验。
+- 将 Markdown 和 Mermaid 在构建时渲染后嵌入 `personal-learning-preview.html`，提供无需服务器的本地浏览体验。
 - 用校验脚本、构建测试和 skill 评估场景约束不同生成工具的行为。
 
 ## 非目标
 
-- 不把 `personal-learn-config.yaml` 变成目录、分类或知识地图配置。
+- 不把 `personal-learning-config.yaml` 变成目录、分类或知识地图配置。
 - 不让 skill 自动选择内容档位、实践范围或图表数量。
 - 不建设在线站点、CMS、全文搜索、文档编辑器、评论、学习进度或同步服务。
 - 不把图表数量设为固定指标，也不为“看起来丰富”添加无解释价值的图。
@@ -35,10 +35,10 @@
 采用“画像、知识结构、内容、预览”四层分离：
 
 ```text
-personal-learn-config.yaml
+personal-learning-config.yaml
   -> 只描述学习者画像与输出语言
 
-personal-learn-knowledge.json
+personal-learning-knowledge.json
   -> 分类模式、领域树、目录路径与文档索引的唯一事实源
 
 learn/**/*.md
@@ -48,16 +48,16 @@ scripts/build-preview.mjs
   -> 校验 JSON 与 Markdown
   -> Markdown 转 HTML
   -> Mermaid 转 SVG
-  -> 生成 personal-learn-preview.html
+  -> 生成 personal-learning-preview.html
 ```
 
 目标仓库结构：
 
 ```text
 .
-├── personal-learn-config.yaml
-├── personal-learn-knowledge.json
-├── personal-learn-preview.html
+├── personal-learning-config.yaml
+├── personal-learning-knowledge.json
+├── personal-learning-preview.html
 ├── learn/
 │   ├── frontend/
 │   │   ├── vue/
@@ -73,17 +73,17 @@ scripts/build-preview.mjs
 ├── scripts/
 │   ├── validate-knowledge.mjs
 │   └── build-preview.mjs
-└── .agents/skills/personal-learn/
+└── .agents/skills/personal-learning/
     ├── SKILL.md
     └── references/
         └── visual-policy.md
 ```
 
-`personal-learn-preview.html` 是生成产物并提交到 Git，但文件头必须注明“由构建脚本生成，请勿手工编辑”。
+`personal-learning-preview.html` 是生成产物并提交到 Git，但文件头必须注明“由构建脚本生成，请勿手工编辑”。
 
 ## 配置职责边界
 
-### `personal-learn-config.yaml`
+### `personal-learning-config.yaml`
 
 继续只保存个人差异：
 
@@ -94,7 +94,7 @@ scripts/build-preview.mjs
 
 不得加入分类模式、内容根目录、分类树、文档索引、档位推荐或预览选项。画像只能影响表达起点，不能替用户选择档位，也不能推断未声明的项目、框架或掌握程度。
 
-### `personal-learn-knowledge.json`
+### `personal-learning-knowledge.json`
 
 保存知识结构和归类行为。首版 schema：
 
@@ -275,7 +275,7 @@ skill 默认选择最匹配的现有分类并直接处理。只有以下情况�
 
 ## 本地预览
 
-`personal-learn-preview.html` 是一个构建时生成、可双击离线打开的单文件应用：
+`personal-learning-preview.html` 是一个构建时生成、可双击离线打开的单文件应用：
 
 - 左侧显示可折叠的知识分类树，顺序来自 JSON。
 - 右侧显示选中文档的已渲染 HTML。
@@ -297,7 +297,7 @@ skill 默认选择最匹配的现有分类并直接处理。只有以下情况�
 - 依赖版本固定并提交 lockfile；
 - 使用当前维护中的官方包，并在实现时核对其最新官方文档与 Node 版本要求。
 
-社区 Mermaid 或 Draw.io skills 只作为设计参考，不安装为 `personal-learn` 的强制依赖。图形判断、质量门槛和 C4 式分层原则应内化进 `visual-policy.md`，保证换工具后规则仍然成立。
+社区 Mermaid 或 Draw.io skills 只作为设计参考，不安装为 `personal-learning` 的强制依赖。图形判断、质量门槛和 C4 式分层原则应内化进 `visual-policy.md`，保证换工具后规则仍然成立。
 
 ## 现有文档迁移
 
@@ -352,7 +352,7 @@ skill 默认选择最匹配的现有分类并直接处理。只有以下情况�
 
 - 五档均被 schema、规范和 skill 接受，旧四档断言失败后更新。
 - `advanced` 与 `beginner`、`deep-dive` 的边界在 reference 中可检索。
-- `personal-learn-config.yaml` 仍拒绝分类、目录和档位推荐字段。
+- `personal-learning-config.yaml` 仍拒绝分类、目录和档位推荐字段。
 - 知识 JSON 接受合法递归树，拒绝未知字段、重复 ID、路径穿越、文件缺失和未索引 Markdown。
 - `confirm` 与 `automatic` 是仅有的分类模式。
 - 四篇现有文档全部迁移并被索引，旧路径不存在，内部链接有效。
@@ -382,8 +382,8 @@ skill 默认选择最匹配的现有分类并直接处理。只有以下情况�
 
 - 五档定义完整且互不替代，`advanced` 已贯穿 skill、规范、frontmatter 和实践规则。
 - 档位由用户选择；画像只调整起点与表达，不机械决定内容。
-- `personal-learn-config.yaml` 继续只承担个人画像。
-- `personal-learn-knowledge.json` 成为分类、目录树和文档索引的唯一事实源。
+- `personal-learning-config.yaml` 继续只承担个人画像。
+- `personal-learning-knowledge.json` 成为分类、目录树和文档索引的唯一事实源。
 - `confirm` 和 `automatic` 按设计工作，且自动模式只在明确例外中请求确认。
 - 四篇现有内容迁入指定 `learn/` 路径，旧目录清理，链接和 frontmatter 有效。
 - `visual-policy.md` 提供丰富、Markdown 友好的类型路由、解释要求和验证门槛。

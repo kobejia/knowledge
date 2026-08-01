@@ -2,9 +2,9 @@
 set -eu
 
 script_dir=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
-template_path="$script_dir/../assets/personal-learn-config.template.yaml"
+template_path="$script_dir/../assets/personal-learning-config.template.yaml"
 repo_dir=${1:-"$PWD"}
-destination="$repo_dir/personal-learn-config.yaml"
+destination="$repo_dir/personal-learning-config.yaml"
 
 if [ ! -f "$template_path" ]; then
   echo "Missing config template: $template_path" >&2

@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 将 `personal-learn` 升级为画像自适应的五档学习 skill，并用独立 JSON 管理 `learn/` 分类、生成包含 Mermaid SVG 的单文件离线预览。
+**Goal:** 将 `personal-learning` 升级为画像自适应的五档学习 skill，并用独立 JSON 管理 `learn/` 分类、生成包含 Mermaid SVG 的单文件离线预览。
 
-**Architecture:** `personal-learn-config.yaml` 继续只保存画像；`personal-learn-knowledge.json` 是分类树和文档索引的唯一事实源。Node 脚本复用同一套严格校验逻辑，构建器读取索引和 Markdown，将 Mermaid 真实渲染成 SVG，再把导航、正文和样式嵌入 `personal-learn-preview.html`。
+**Architecture:** `personal-learning-config.yaml` 继续只保存画像；`personal-learning-knowledge.json` 是分类树和文档索引的唯一事实源。Node 脚本复用同一套严格校验逻辑，构建器读取索引和 Markdown，将 Mermaid 真实渲染成 SVG，再把导航、正文和样式嵌入 `personal-learning-preview.html`。
 
 **Tech Stack:** Node.js 22、Node 内置 test runner、Ajv 8.20.0、marked 18.0.7、gray-matter 4.0.3、`@mermaid-js/mermaid-cli` 11.16.0、POSIX shell、Markdown、JSON、HTML/CSS/JavaScript。
 
@@ -13,7 +13,7 @@
 ## 文件职责
 
 - Create `package.json`, `package-lock.json`: Node 版本、锁定依赖、test/validate/build/check 命令。
-- Create `personal-learn-knowledge.json`: 分类模式、递归分类树、文档索引。
+- Create `personal-learning-knowledge.json`: 分类模式、递归分类树、文档索引。
 - Create `scripts/lib/knowledge-schema.mjs`: 严格 JSON schema 与五档枚举。
 - Create `scripts/lib/markdown-document.mjs`: frontmatter、内部链接、Mermaid 图块解析。
 - Create `scripts/lib/knowledge-model.mjs`: 分类树展开、路径安全、JSON/Markdown 双向一致性。
@@ -21,9 +21,9 @@
 - Create `scripts/lib/render-mermaid.mjs`: Mermaid CLI API 到 SVG。
 - Create `scripts/lib/render-preview.mjs`: Markdown 渲染、知识树数据与单文件 HTML 模板。
 - Create `scripts/build-preview.mjs`: 原子生成预览的 CLI 与可测试 API。
-- Create `tests/personal-learn/knowledge-validator.test.mjs`, `preview-builder.test.mjs`: Node 测试。
-- Create `.agents/skills/personal-learn/references/visual-policy.md`: 图表选择、解释与验证规范。
-- Create and commit `personal-learn-preview.html`: 可重建的离线产物。
+- Create `tests/personal-learning/knowledge-validator.test.mjs`, `preview-builder.test.mjs`: Node 测试。
+- Create `.agents/skills/personal-learning/references/visual-policy.md`: 图表选择、解释与验证规范。
+- Create and commit `personal-learning-preview.html`: 可重建的离线产物。
 - Modify `SKILL.md`, three existing references, evals and shell tests.
 - Move four existing documents into the approved `learn/` hierarchy; only change metadata required by the move.
 
@@ -32,7 +32,7 @@
 **Files:**
 - Create: `package.json`
 - Create: `package-lock.json`
-- Create: `tests/personal-learn/knowledge-validator.test.mjs`
+- Create: `tests/personal-learning/knowledge-validator.test.mjs`
 - Create: `scripts/lib/knowledge-schema.mjs`
 
 - [ ] **Step 1: 创建精确依赖和命令**
@@ -44,10 +44,10 @@
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
-    "test": "node --test tests/personal-learn/*.test.mjs",
+    "test": "node --test tests/personal-learning/*.test.mjs",
     "validate:knowledge": "node scripts/validate-knowledge.mjs",
     "build:preview": "node scripts/build-preview.mjs",
-    "check": "npm run test && sh tests/personal-learn/test-config.sh && sh tests/personal-learn/test-structure.sh && npm run validate:knowledge && npm run build:preview"
+    "check": "npm run test && sh tests/personal-learning/test-config.sh && sh tests/personal-learning/test-structure.sh && npm run validate:knowledge && npm run build:preview"
   },
   "dependencies": {
     "@mermaid-js/mermaid-cli": "11.16.0",
@@ -73,11 +73,11 @@ import test from "node:test";
 import { validateRepository } from "../../scripts/lib/knowledge-model.mjs";
 
 async function fixture(overrides = {}) {
-  const root = await mkdtemp(path.join(tmpdir(), "personal-learn-"));
+  const root = await mkdtemp(path.join(tmpdir(), "personal-learning-"));
   await mkdir(path.join(root, "learn/frontend/vue"), { recursive: true });
   await writeFile(path.join(root, "learn/frontend/vue/reactivity.md"), `---\ntitle: Vue 响应式\ndomain: frontend\ndepth: advanced\ncreated: 2026-08-01\nupdated: 2026-08-01\n---\n\n# Vue 响应式\n`);
   const knowledge = { version: 1, classificationMode: "confirm", contentRoot: "learn", categories: [{ id: "frontend", title: "前端", path: "frontend", documents: [], children: [{ id: "frontend-vue", title: "Vue", path: "vue", children: [], documents: [{ id: "vue-reactivity", title: "Vue 响应式", path: "reactivity.md" }] }] }], ...overrides };
-  await writeFile(path.join(root, "personal-learn-knowledge.json"), JSON.stringify(knowledge, null, 2));
+  await writeFile(path.join(root, "personal-learning-knowledge.json"), JSON.stringify(knowledge, null, 2));
   return root;
 }
 
@@ -95,7 +95,7 @@ test("rejects unknown fields", async () => {
 
 - [ ] **Step 3: 运行 RED 测试**
 
-Run: `npm test -- tests/personal-learn/knowledge-validator.test.mjs`
+Run: `npm test -- tests/personal-learning/knowledge-validator.test.mjs`
 
 Expected: FAIL with `ERR_MODULE_NOT_FOUND` for `scripts/lib/knowledge-model.mjs`。
 
@@ -135,7 +135,7 @@ export const knowledgeSchema = {
 - [ ] **Step 5: Commit RED 契约**
 
 ```bash
-git add package.json package-lock.json scripts/lib/knowledge-schema.mjs tests/personal-learn/knowledge-validator.test.mjs
+git add package.json package-lock.json scripts/lib/knowledge-schema.mjs tests/personal-learning/knowledge-validator.test.mjs
 git commit -m "test: define personal learn knowledge contract"
 ```
 
@@ -145,7 +145,7 @@ git commit -m "test: define personal learn knowledge contract"
 - Create: `scripts/lib/markdown-document.mjs`
 - Create: `scripts/lib/knowledge-model.mjs`
 - Create: `scripts/validate-knowledge.mjs`
-- Modify: `tests/personal-learn/knowledge-validator.test.mjs`
+- Modify: `tests/personal-learning/knowledge-validator.test.mjs`
 
 - [ ] **Step 1: 实现 Markdown 解析**
 
@@ -173,7 +173,7 @@ export function parseMarkdownDocument(source, relativePath) {
 
 ```js
 export async function validateRepository(repoRoot) {
-  const knowledge = JSON.parse(await readFile(path.join(repoRoot, "personal-learn-knowledge.json"), "utf8"));
+  const knowledge = JSON.parse(await readFile(path.join(repoRoot, "personal-learning-knowledge.json"), "utf8"));
   validateSchema(knowledge);
   const categoryIds = new Set(), documentIds = new Set(), documents = [];
   walkCategories(knowledge.categories, [], ({ category, segments }) => {
@@ -209,27 +209,27 @@ try {
 
 - [ ] **Step 4: 运行 GREEN 测试并提交**
 
-Run: `npm test -- tests/personal-learn/knowledge-validator.test.mjs`
+Run: `npm test -- tests/personal-learning/knowledge-validator.test.mjs`
 
 Expected: 所有合法/非法 schema、路径、索引、frontmatter、链接测试 PASS。
 
 ```bash
-git add scripts/lib/markdown-document.mjs scripts/lib/knowledge-model.mjs scripts/validate-knowledge.mjs tests/personal-learn/knowledge-validator.test.mjs
+git add scripts/lib/markdown-document.mjs scripts/lib/knowledge-model.mjs scripts/validate-knowledge.mjs tests/personal-learning/knowledge-validator.test.mjs
 git commit -m "feat: validate personal learn knowledge index"
 ```
 
 ## Task 3: 创建索引并迁移文档
 
 **Files:**
-- Create: `personal-learn-knowledge.json`
+- Create: `personal-learning-knowledge.json`
 - Move four approved documents into `learn/`
 - Modify: `learn/frontend/browser/chrome-extension-architecture.md`
-- Modify: `tests/personal-learn/test-structure.sh`
+- Modify: `tests/personal-learning/test-structure.sh`
 
 - [ ] **Step 1: 先扩展结构测试并观察失败**
 
 ```sh
-test -f "$repo_root/personal-learn-knowledge.json"
+test -f "$repo_root/personal-learning-knowledge.json"
 for relative_path in \
   learn/frontend/vue/vuex-pinia.md \
   learn/frontend/browser/chrome-extension-architecture.md \
@@ -241,7 +241,7 @@ done
 for old_path in vue browser ai awards; do test ! -e "$repo_root/$old_path" || exit 1; done
 ```
 
-Run: `sh tests/personal-learn/test-structure.sh`
+Run: `sh tests/personal-learning/test-structure.sh`
 
 Expected: FAIL because the JSON does not exist。
 
@@ -290,28 +290,28 @@ JSON title 必须逐字等于对应 frontmatter title。
 
 - [ ] **Step 4: 校验迁移并提交**
 
-Run: `npm run validate:knowledge && sh tests/personal-learn/test-structure.sh && rg -n '\]\((\.\./)*(vue|browser|ai|awards)/' . --glob '*.md'`
+Run: `npm run validate:knowledge && sh tests/personal-learning/test-structure.sh && rg -n '\]\((\.\./)*(vue|browser|ai|awards)/' . --glob '*.md'`
 
 Expected: 前两项 PASS，`rg` 无输出，`git diff --summary` 显示四个 rename。
 
 ```bash
-git add personal-learn-knowledge.json learn tests/personal-learn/test-structure.sh
+git add personal-learning-knowledge.json learn tests/personal-learning/test-structure.sh
 git commit -m "refactor: organize personal learning documents"
 ```
 
 ## Task 4: 用契约测试升级 skill、档位与视觉规范
 
 **Files:**
-- Modify: `tests/personal-learn/test-config.sh`, `test-structure.sh`
-- Modify: `.agents/skills/personal-learn/SKILL.md`
+- Modify: `tests/personal-learning/test-config.sh`, `test-structure.sh`
+- Modify: `.agents/skills/personal-learning/SKILL.md`
 - Modify: three existing reference files and `evals/evals.json`
-- Create: `.agents/skills/personal-learn/references/visual-policy.md`
+- Create: `.agents/skills/personal-learning/references/visual-policy.md`
 
 - [ ] **Step 1: 写失败契约**
 
-`test-structure.sh` 检查 `进阶（\`advanced\`）`、`personal-learn-knowledge.json`、`classificationMode`、`references/visual-policy.md`，并检查三个 reference 都包含 `advanced`。`test-config.sh` 将 `classificationMode` 和 `contentRoot` 追加到合法画像配置并断言被拒绝。
+`test-structure.sh` 检查 `进阶（\`advanced\`）`、`personal-learning-knowledge.json`、`classificationMode`、`references/visual-policy.md`，并检查三个 reference 都包含 `advanced`。`test-config.sh` 将 `classificationMode` 和 `contentRoot` 追加到合法画像配置并断言被拒绝。
 
-Run: `sh tests/personal-learn/test-structure.sh; sh tests/personal-learn/test-config.sh`
+Run: `sh tests/personal-learning/test-structure.sh; sh tests/personal-learning/test-config.sh`
 
 Expected: 结构测试 FAIL；配置越界测试 PASS。
 
@@ -326,7 +326,7 @@ Expected: 结构测试 FAIL；配置越界测试 PASS。
 ```markdown
 ### 4. 归类与落盘
 
-读取 `<repo>/personal-learn-knowledge.json` 并先运行知识校验。
+读取 `<repo>/personal-learning-knowledge.json` 并先运行知识校验。
 
 - `confirm`：给出 2–3 个互斥的“分类 + 目标路径”候选，允许用户自行输入；确认后再写入。
 - `automatic`：唯一明确归属时自动处理；并列候选、新顶级分类、路径占用或用户指定位置冲突时才确认。
@@ -343,12 +343,12 @@ Expected: 结构测试 FAIL；配置越界测试 PASS。
 
 - [ ] **Step 5: 运行并提交**
 
-Run: `sh tests/personal-learn/test-config.sh && sh tests/personal-learn/test-structure.sh && node -e 'JSON.parse(require("node:fs").readFileSync(".agents/skills/personal-learn/evals/evals.json", "utf8"))'`
+Run: `sh tests/personal-learning/test-config.sh && sh tests/personal-learning/test-structure.sh && node -e 'JSON.parse(require("node:fs").readFileSync(".agents/skills/personal-learning/evals/evals.json", "utf8"))'`
 
 Expected: PASS。
 
 ```bash
-git add .agents/skills/personal-learn tests/personal-learn/test-config.sh tests/personal-learn/test-structure.sh
+git add .agents/skills/personal-learning tests/personal-learning/test-config.sh tests/personal-learning/test-structure.sh
 git commit -m "feat: expand personal learn workflow"
 ```
 
@@ -357,7 +357,7 @@ git commit -m "feat: expand personal learn workflow"
 **Files:**
 - Create: `scripts/lib/render-mermaid.mjs`
 - Create: `scripts/lib/render-preview.mjs`
-- Create: `tests/personal-learn/preview-builder.test.mjs`
+- Create: `tests/personal-learning/preview-builder.test.mjs`
 
 - [ ] **Step 1: 写 RED 测试**
 
@@ -378,7 +378,7 @@ test("identifies an invalid Mermaid block", async () => {
 });
 ```
 
-Run: `npm test -- tests/personal-learn/preview-builder.test.mjs`
+Run: `npm test -- tests/personal-learning/preview-builder.test.mjs`
 
 Expected: FAIL with missing `render-preview.mjs`。
 
@@ -386,7 +386,7 @@ Expected: FAIL with missing `render-preview.mjs`。
 
 ```js
 export async function renderMermaid(source, context) {
-  const dir = await mkdtemp(path.join(tmpdir(), "personal-learn-mermaid-"));
+  const dir = await mkdtemp(path.join(tmpdir(), "personal-learning-mermaid-"));
   const input = path.join(dir, "diagram.mmd"), output = path.join(dir, "diagram.svg");
   try {
     await writeFile(input, source, "utf8");
@@ -404,14 +404,14 @@ export async function renderMermaid(source, context) {
 
 实现 `export async function renderMarkdown(source, context = { relativePath: "<inline>" })`。用 `extractMermaidBlocks` 先将图块替换为不可碰撞 token，逐块渲染后调用 `marked.parse`，最后把 token 替换为 `<figure class="diagram">${svg}</figure>`。普通代码必须保持转义。
 
-Run: `npm test -- tests/personal-learn/preview-builder.test.mjs`
+Run: `npm test -- tests/personal-learning/preview-builder.test.mjs`
 
 Expected: 合法图得到 `<svg>`；非法图错误包含路径和块序号。
 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add scripts/lib/render-mermaid.mjs scripts/lib/render-preview.mjs tests/personal-learn/preview-builder.test.mjs
+git add scripts/lib/render-mermaid.mjs scripts/lib/render-preview.mjs tests/personal-learning/preview-builder.test.mjs
 git commit -m "feat: render markdown and mermaid for preview"
 ```
 
@@ -420,8 +420,8 @@ git commit -m "feat: render markdown and mermaid for preview"
 **Files:**
 - Modify: `scripts/lib/render-preview.mjs`
 - Create: `scripts/build-preview.mjs`
-- Modify: `tests/personal-learn/preview-builder.test.mjs`
-- Create: `personal-learn-preview.html`
+- Modify: `tests/personal-learning/preview-builder.test.mjs`
+- Create: `personal-learning-preview.html`
 
 - [ ] **Step 1: 写端到端失败测试**
 
@@ -430,7 +430,7 @@ import { buildPreview } from "../../scripts/build-preview.mjs";
 
 test("builds an offline tree and hash-routed documents", async () => {
   const root = await createPreviewFixture();
-  const output = path.join(root, "personal-learn-preview.html");
+  const output = path.join(root, "personal-learning-preview.html");
   await buildPreview(root, output);
   const html = await readFile(output, "utf8");
   assert.match(html, /由构建脚本生成，请勿手工编辑/);
@@ -442,7 +442,7 @@ test("builds an offline tree and hash-routed documents", async () => {
 
 test("preserves the old preview on build failure", async () => {
   const root = await createPreviewFixture({ invalidMermaid: true });
-  const output = path.join(root, "personal-learn-preview.html");
+  const output = path.join(root, "personal-learning-preview.html");
   await writeFile(output, "previous-preview");
   await assert.rejects(buildPreview(root, output), /Mermaid block 1/);
   assert.equal(await readFile(output, "utf8"), "previous-preview");
@@ -456,7 +456,7 @@ test("preserves the old preview on build failure", async () => {
 - [ ] **Step 3: 实现原子构建 API/CLI**
 
 ```js
-export async function buildPreview(repoRoot, outputPath = path.join(repoRoot, "personal-learn-preview.html")) {
+export async function buildPreview(repoRoot, outputPath = path.join(repoRoot, "personal-learning-preview.html")) {
   const model = await validateRepository(repoRoot);
   const rendered = await renderAllDocuments(repoRoot, model);
   const html = renderPreviewPage({ knowledge: model.knowledge, documents: rendered });
@@ -471,22 +471,22 @@ export async function buildPreview(repoRoot, outputPath = path.join(repoRoot, "p
 }
 ```
 
-使用 `pathToFileURL(process.argv[1]).href === import.meta.url` 保护 CLI 分支，确保测试导入模块时不会自动构建。直接执行成功打印 `PASS: built personal-learn-preview.html with 4 documents`，失败打印 `FAIL:` 并非零退出。
+使用 `pathToFileURL(process.argv[1]).href === import.meta.url` 保护 CLI 分支，确保测试导入模块时不会自动构建。直接执行成功打印 `PASS: built personal-learning-preview.html with 4 documents`，失败打印 `FAIL:` 并非零退出。
 
 - [ ] **Step 4: 测试、构建和单文件检查**
 
-Run: `npm test -- tests/personal-learn/preview-builder.test.mjs && npm run build:preview`
+Run: `npm test -- tests/personal-learning/preview-builder.test.mjs && npm run build:preview`
 
 Expected: PASS，并生成含四篇文档和 Chrome Extension 内联 SVG 的 HTML。
 
-Run: `rg -n "<script[^>]+src=|<link[^>]+href=|https?://[^\\\"']+\\.(js|css)" personal-learn-preview.html`
+Run: `rg -n "<script[^>]+src=|<link[^>]+href=|https?://[^\\\"']+\\.(js|css)" personal-learning-preview.html`
 
 Expected: 无输出；普通资料链接允许保留。
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add scripts/build-preview.mjs scripts/lib/render-preview.mjs tests/personal-learn/preview-builder.test.mjs personal-learn-preview.html
+git add scripts/build-preview.mjs scripts/lib/render-preview.mjs tests/personal-learning/preview-builder.test.mjs personal-learning-preview.html
 git commit -m "feat: build offline personal learn preview"
 ```
 
@@ -501,17 +501,17 @@ Run: `npm run check`
 
 Expected: Node tests、配置契约、结构契约、4 篇知识文档校验和预览构建全部 PASS。
 
-Run: `git diff --check && node --check scripts/validate-knowledge.mjs && node --check scripts/build-preview.mjs && sh -n tests/personal-learn/test-config.sh && sh -n tests/personal-learn/test-structure.sh`
+Run: `git diff --check && node --check scripts/validate-knowledge.mjs && node --check scripts/build-preview.mjs && sh -n tests/personal-learning/test-config.sh && sh -n tests/personal-learning/test-structure.sh`
 
 Expected: 退出码 0，无输出。
 
 - [ ] **Step 2: 浏览器验收**
 
-打开 `file:///Users/jiajun/Documents/knowledge/personal-learn-preview.html`，检查：左侧三大分类及子树；四篇文档切换；分类折叠；active 状态；hash 刷新保持；Chrome Extension SVG；表格/代码/长文档可读；离线可用；控制台无预览自身错误。
+打开 `file:///Users/jiajun/Documents/knowledge/personal-learning-preview.html`，检查：左侧三大分类及子树；四篇文档切换；分类折叠；active 状态；hash 刷新保持；Chrome Extension SVG；表格/代码/长文档可读；离线可用；控制台无预览自身错误。
 
 - [ ] **Step 3: 生成幂等性**
 
-Run: `npm run build:preview && git diff --exit-code -- personal-learn-preview.html`
+Run: `npm run build:preview && git diff --exit-code -- personal-learning-preview.html`
 
 Expected: PASS，第二次构建无 diff。
 
@@ -522,11 +522,11 @@ Expected: PASS，第二次构建无 diff。
 若缺陷位于预览交互，使用：
 
 ```bash
-git add scripts/lib/render-preview.mjs scripts/build-preview.mjs tests/personal-learn/preview-builder.test.mjs personal-learn-preview.html
+git add scripts/lib/render-preview.mjs scripts/build-preview.mjs tests/personal-learning/preview-builder.test.mjs personal-learning-preview.html
 git commit -m "fix: correct personal learn preview behavior"
 ```
 
-若缺陷位于校验器，则改为暂存 `scripts/lib/knowledge-model.mjs`、`scripts/lib/markdown-document.mjs` 和 `tests/personal-learn/knowledge-validator.test.mjs`，提交消息使用 `fix: correct personal learn validation`。
+若缺陷位于校验器，则改为暂存 `scripts/lib/knowledge-model.mjs`、`scripts/lib/markdown-document.mjs` 和 `tests/personal-learning/knowledge-validator.test.mjs`，提交消息使用 `fix: correct personal learn validation`。
 
 - [ ] **Step 5: 最终状态检查**
 

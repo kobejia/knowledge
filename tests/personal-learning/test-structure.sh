@@ -2,10 +2,10 @@
 set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
-skill_dir="$repo_root/.agents/skills/personal-learn"
+skill_dir="$repo_root/.agents/skills/personal-learning"
 
 required_files='SKILL.md
-assets/personal-learn-config.template.yaml
+assets/personal-learning-config.template.yaml
 references/editorial-policy.md
 references/markdown-quality.md
 references/practice-quality.md
@@ -21,13 +21,13 @@ printf '%s\n' "$required_files" | while IFS= read -r relative_path; do
   }
 done
 
-test -f "$repo_root/personal-learn-config.yaml" || {
-  echo "FAIL: missing root personal-learn-config.yaml" >&2
+test -f "$repo_root/personal-learning-config.yaml" || {
+  echo "FAIL: missing root personal-learning-config.yaml" >&2
   exit 1
 }
 
-test -f "$repo_root/personal-learn-knowledge.json" || {
-  echo "FAIL: missing personal-learn-knowledge.json" >&2
+test -f "$repo_root/personal-learning-knowledge.json" || {
+  echo "FAIL: missing personal-learning-knowledge.json" >&2
   exit 1
 }
 
@@ -50,15 +50,21 @@ for old_path in vue browser ai awards; do
   }
 done
 
-grep -q '^name: personal-learn$' "$skill_dir/SKILL.md"
+grep -q '^name: personal-learning$' "$skill_dir/SKILL.md"
 grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
 grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
 grep -q '^## 概述$' "$skill_dir/SKILL.md"
 grep -q '必须由用户选择' "$skill_dir/SKILL.md"
 grep -q '进阶（`advanced`）' "$skill_dir/SKILL.md"
-grep -q '是否需要配套实践（可运行 Demo + 配套练习题）' "$skill_dir/SKILL.md"
+grep -q '需要完整配套实践（可运行 Demo + 配套练习题）' "$skill_dir/SKILL.md"
+grep -q '每一步需要用户决策时' "$skill_dir/SKILL.md"
+grep -q '1\. 确认并继续' "$skill_dir/SKILL.md"
+grep -q '2\. 返回调整' "$skill_dir/SKILL.md"
+grep -q '3\. 自定义输入' "$skill_dir/SKILL.md"
+grep -q '1\. \*\*专家（`expert`）\*\*' "$skill_dir/SKILL.md"
+grep -q '5\. \*\*了解（`survey`）\*\*' "$skill_dir/SKILL.md"
 grep -q '非技术主题.*跳过.*实践' "$skill_dir/SKILL.md"
-grep -q 'personal-learn-knowledge.json' "$skill_dir/SKILL.md"
+grep -q 'personal-learning-knowledge.json' "$skill_dir/SKILL.md"
 grep -q 'classificationMode' "$skill_dir/SKILL.md"
 grep -q 'references/visual-policy.md' "$skill_dir/SKILL.md"
 grep -q '从仓库根目录运行 `npm run check`' "$skill_dir/SKILL.md"
@@ -127,4 +133,4 @@ if [ "$readme_heading_count" -ne 1 ]; then
   exit 1
 fi
 
-echo "PASS: personal-learn structure contract"
+echo "PASS: personal-learning structure contract"

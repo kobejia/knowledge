@@ -2,7 +2,7 @@
 
 ## 背景
 
-当前 `personal-learn` 将 Demo 与练习题作为两个可独立选择的附加产物，使用两次确认和两份专项规范。这种设计允许只生成 Demo 或只生成练习题，但两者的学习价值没有形成稳定连接：Demo 容易退化为展示，练习题也可能脱离可观察行为。
+当前 `personal-learning` 将 Demo 与练习题作为两个可独立选择的附加产物，使用两次确认和两份专项规范。这种设计允许只生成 Demo 或只生成练习题，但两者的学习价值没有形成稳定连接：Demo 容易退化为展示，练习题也可能脱离可观察行为。
 
 本设计将两者合并为一个“配套实践”能力。实践通过可运行 Demo 提供观察对象，通过练习题引导解释、调试、修改和验证，形成完整学习闭环。
 
@@ -65,7 +65,7 @@ Demo 与练习题必须共享术语、前提和目标。练习题不能依赖 De
 调整后：
 
 ```text
-.agents/skills/personal-learn/
+.agents/skills/personal-learning/
 ├── SKILL.md
 ├── references/
 │   ├── editorial-policy.md

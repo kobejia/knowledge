@@ -382,8 +382,8 @@ Codex 不是独立于仓库存在的，它的价值很大一部分来自你给�
 
 ### 适合配合阅读的仓库文档
 
-- [Personal Learn 配置](../../../personal-learn-config.yaml)：记录输出语言、学习目标、已有经验和熟悉领域。
-- [Personal Learn Skill](../../../.agents/skills/personal-learn/SKILL.md)：规定知识文档生成前的交互、内容档位和验证流程。
+- [Personal Learn 配置](../../../personal-learning-config.yaml)：记录输出语言、学习目标、已有经验和熟悉领域。
+- [Personal Learning Skill](../../../.agents/skills/personal-learning/SKILL.md)：规定知识文档生成前的交互、内容档位和验证流程。
 
 ## 10. 这篇指南的核心结论
 

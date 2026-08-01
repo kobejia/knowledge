@@ -6,11 +6,11 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test tests/personal-learn/*.test.mjs",
+    "test": "node --test tests/personal-learning/*.test.mjs",
     "knowledge:image": "node scripts/knowledge-image/cli.mjs",
     "validate:knowledge": "node scripts/validate-knowledge.mjs",
     "build:preview": "node scripts/build-preview.mjs",
-    "check": "npm run test && sh tests/personal-learn/test-config.sh && sh tests/personal-learn/test-structure.sh && npm run validate:knowledge && npm run build:preview"
+    "check": "npm run test && sh tests/personal-learning/test-config.sh && sh tests/personal-learning/test-structure.sh && npm run validate:knowledge && npm run build:preview"
   },
   "dependencies": {
     "@antv/infographic": "^0.2.19",

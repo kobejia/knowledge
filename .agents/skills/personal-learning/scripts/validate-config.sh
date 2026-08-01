@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-config_path=${1:-personal-learn-config.yaml}
+config_path=${1:-personal-learning-config.yaml}
 
 if [ ! -f "$config_path" ]; then
   echo "Config not found: $config_path" >&2
@@ -56,5 +56,5 @@ domains = learner["known_domains"]
 valid_domains = domains.is_a?(Array) && !domains.empty? && domains.all? { |item| item.is_a?(String) && !item.strip.empty? }
 fail_field("learner.known_domains", "a non-empty array of strings") unless valid_domains
 
-puts "Valid personal-learn config: #{path}"
+puts "Valid personal-learning config: #{path}"
 RUBY

@@ -78,6 +78,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "operations",
+      "title": "运维",
+      "path": "operations",
+      "documents": [],
+      "children": [
+        {
+          "id": "operations-docker",
+          "title": "Docker",
+          "path": "docker",
+          "children": [],
+          "documents": [
+            {
+              "id": "docker",
+              "title": "Docker：容器运行模型、镜像供应链与生产边界",
+              "path": "docker.md"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -16,7 +16,7 @@ updated: YYYY-MM-DD
 
 - `depth` 只能是 `beginner`、`survey`、`advanced`、`deep-dive` 或 `expert`。
 - 保留 `created`；只有实质修改才更新 `updated`。
-- `domain` 必须等于 `personal-learn-knowledge.json` 中所属文档的顶级分类路径。
+- `domain` 必须等于 `personal-learning-knowledge.json` 中所属文档的顶级分类路径。
 - README 和轻量清单在元信息没有检索价值时可以省略 frontmatter。
 - 不添加学习进度、掌握程度、生成阶段或虚构的个人状态。
 

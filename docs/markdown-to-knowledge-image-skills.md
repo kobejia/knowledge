@@ -27,7 +27,7 @@ updated: 2026-08-01
 
 | Skill | 在目标中的作用 | 适合产物 | 不应承担的职责 |
 | --- | --- | --- | --- |
-| `personal-learn` | 生成或实质修订仓库内的 Markdown 学习文档，并按仓库规范组织内容、图表与验证 | 标准化知识文档、Mermaid 图表 | 不宜直接代替位图的视觉设计与图像生成 |
+| `personal-learning` | 生成或实质修订仓库内的 Markdown 学习文档，并按仓库规范组织内容、图表与验证 | 标准化知识文档、Mermaid 图表 | 不宜直接代替位图的视觉设计与图像生成 |
 | `imagegen` | 根据内容说明生成全新位图，或编辑已有图片 | PNG 等位图知识卡片、插图、视觉海报 | 不应负责从长文中决定哪些结论最重要 |
 | `visualize:visualize` | 在对话中创建可视化、图表、比较、可调整探索工具或 UI 原型 | 交互式图表、可视化原型、信息布局验证 | 它的核心是交互可视化，不等同于稳定输出一张最终位图 |
 | `skill-creator` | 将反复执行的“Markdown 到知识图片”流程封装成专用 skill，并改进其触发描述、评估和质量 | 专用 workflow skill、参考模板、评估用例 | 不直接代替实际的文档归纳或图片生成 |
@@ -83,7 +83,7 @@ Anthropic 的 knowledge-work 仓库中有 [`knowledge-synthesis`](https://skills
 npx skills add markdown-viewer/skills@infographic
 ```
 
-它补足的是当前流程中最明显的空缺：将已结构化的知识脚本稳定地映射到可维护的信息图模板。它不应代替 `personal-learn` 的文档质量规则，也不解决自动摘要的编辑决策。
+它补足的是当前流程中最明显的空缺：将已结构化的知识脚本稳定地映射到可维护的信息图模板。它不应代替 `personal-learning` 的文档质量规则，也不解决自动摘要的编辑决策。
 
 暂不建议立即安装多个视觉 skill。先用 3–5 篇样本检验 `infographic` 的模板覆盖率、中文排版、导出格式和渲染器依赖，再决定是否增加 `canvas-design` 或 `visual-explainer`。
 
@@ -91,18 +91,18 @@ npx skills add markdown-viewer/skills@infographic
 
 ### 最小可行组合
 
-`personal-learn` + `imagegen`
+`personal-learning` + `imagegen`
 
-- `personal-learn` 负责原始 Markdown 的知识质量、归纳结构和文本图表。
+- `personal-learning` 负责原始 Markdown 的知识质量、归纳结构和文本图表。
 - `imagegen` 负责将已确认的图片脚本转换成位图。
 
 这个组合已能完成一次性任务，但还没有固化“如何从文档提取图片内容”的中间规则。
 
 ### 搜索后的低代码组合
 
-`personal-learn` + `markdown-viewer/skills@infographic` + 现有 Mermaid 渲染
+`personal-learning` + `markdown-viewer/skills@infographic` + 现有 Mermaid 渲染
 
-- 使用 `personal-learn` 管理原文的知识质量和文档规范。
+- 使用 `personal-learning` 管理原文的知识质量和文档规范。
 - 先产出可审查的图片内容脚本。
 - 对适合时间线、路线图、对比、分层或 KPI 卡片的内容，优先生成模板化 infographic。
 - 对流程、组件关系、时序和状态转换，继续使用 Mermaid。
@@ -112,7 +112,7 @@ npx skills add markdown-viewer/skills@infographic
 
 ### 推荐的稳定组合
 
-`personal-learn` + 专用的 `markdown-to-knowledge-image` skill + `imagegen`
+`personal-learning` + 专用的 `markdown-to-knowledge-image` skill + `imagegen`
 
 专用 skill 应负责：
 
@@ -186,7 +186,7 @@ flowchart LR
 
 1. 先选择 3–5 篇结构不同的 Markdown 作为样本，包含概念文、流程文、对比文和有较多限定条件的深度文章。
 2. 人工为每篇样本编写理想的图片内容脚本，将它作为评估基准。
-3. 先验证 `personal-learn` + `imagegen` 的手动组合，记录内容遗漏、文字错误和版式问题。
+3. 先验证 `personal-learning` + `imagegen` 的手动组合，记录内容遗漏、文字错误和版式问题。
 4. 根据实际失败案例设计专用 skill，不在没有基线的情况下先写大量抽象规则。
 5. 将输出分成“内容脚本”和“最终图片”两个可单独验收的阶段。
 6. 建立至少包含内容忠实度、文字准确性、层级清晰度、视觉可读性和源文档可追溯性的评估项。
@@ -196,7 +196,7 @@ flowchart LR
 当前项目的 `AGENTS.md` 禁止隐式使用 skill、MCP、App/Connector 和插件能力。因此，执行本文建议的组合时，用户应在当前消息中明确点名要使用的能力，例如：
 
 ```text
-使用 personal-learn 和 imagegen，将 learn/.../source.md 归纳为一张 16:9 的中文知识图片。
+使用 personal-learning 和 imagegen，将 learn/.../source.md 归纳为一张 16:9 的中文知识图片。
 先输出图片内容脚本供我确认，不要直接生成图片。
 ```
 

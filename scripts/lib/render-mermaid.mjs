@@ -5,11 +5,11 @@ import { run } from "@mermaid-js/mermaid-cli";
 
 export function namespaceSvg(svg, namespace) {
   const safeNamespace = namespace.replaceAll(/[^a-zA-Z0-9_-]/g, "-");
-  return svg.replaceAll("my-svg", `personal-learn-${safeNamespace}`);
+  return svg.replaceAll("my-svg", `personal-learning-${safeNamespace}`);
 }
 
 export async function renderMermaid(source, context) {
-  const directory = await mkdtemp(path.join(tmpdir(), "personal-learn-mermaid-"));
+  const directory = await mkdtemp(path.join(tmpdir(), "personal-learning-mermaid-"));
   const input = path.join(directory, "diagram.mmd");
   const output = path.join(directory, "diagram.svg");
   try {

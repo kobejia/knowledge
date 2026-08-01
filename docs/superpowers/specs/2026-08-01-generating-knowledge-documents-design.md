@@ -4,14 +4,14 @@
 
 当前仓库通过 `EDITORIAL_GUIDE.md` 与 `READER_PROFILE.md` 分别保存编辑规则和个人画像。不同工具不一定主动读取或完整执行它们，而且规则、个人偏好与项目导航混在多个入口中，容易造成生成结果不一致。
 
-本设计将文档生成能力收敛为仓库级 `personal-learn` skill：稳定的编辑规则由 skill 管理，个人差异由根目录配置管理，Markdown、Demo 和练习题规则按需加载。原有两份规范文件迁移完成后删除，不再保留并行规范源。
+本设计将文档生成能力收敛为仓库级 `personal-learning` skill：稳定的编辑规则由 skill 管理，个人差异由根目录配置管理，Markdown、Demo 和练习题规则按需加载。原有两份规范文件迁移完成后删除，不再保留并行规范源。
 
 ## 目标
 
 - 仓库内创建或实质修改学习文档时，稳定触发同一套交互、生成和验证流程。
 - 先理解用户输入并消除实质歧义，再由用户选择内容档位。
 - 对技术主题分别确认是否需要 Demo 和练习题；非技术主题跳过该确认。
-- 将个人画像抽离为 `personal-learn-config.yaml`，并提供预填当前画像的默认模板。
+- 将个人画像抽离为 `personal-learning-config.yaml`，并提供预填当前画像的默认模板。
 - 将稳定编辑原则迁入 skill，将 Markdown、Demo 和练习题规则拆成按需参考文件。
 - 删除 `EDITORIAL_GUIDE.md` 与 `READER_PROFILE.md`，避免多个规范源漂移。
 - README 只保留项目介绍，不再承担知识地图或编辑规范入口职责。
@@ -31,12 +31,12 @@
 采用“skill 编排 + 专项 references + 独立个人配置”：
 
 ```text
-personal-learn-config.yaml
+personal-learning-config.yaml
 
-.agents/skills/personal-learn/
+.agents/skills/personal-learning/
 ├── SKILL.md
 ├── assets/
-│   └── personal-learn-config.template.yaml
+│   └── personal-learning-config.template.yaml
 ├── references/
 │   ├── editorial-policy.md
 │   ├── markdown-quality.md
@@ -53,7 +53,7 @@ personal-learn-config.yaml
 
 ## 触发范围
 
-当任务在当前仓库内创建或实质修改以下内容时使用 `personal-learn`：
+当任务在当前仓库内创建或实质修改以下内容时使用 `personal-learning`：
 
 - 技术或非技术学习文档；
 - 深度专题、概览、入门介绍和资料清单；
@@ -94,8 +94,8 @@ personal-learn-config.yaml
 
 ### 配置位置与生命周期
 
-- 生效配置固定为仓库根目录 `personal-learn-config.yaml`。
-- 默认模板固定为 `.agents/skills/personal-learn/assets/personal-learn-config.template.yaml`。
+- 生效配置固定为仓库根目录 `personal-learning-config.yaml`。
+- 默认模板固定为 `.agents/skills/personal-learning/assets/personal-learning-config.template.yaml`。
 - skill 首次运行时先检查生效配置。
 - 配置缺失时，说明将基于默认模板初始化，并运行 `scripts/init-config.sh` 生成根目录配置。
 - 初始化后运行 `scripts/validate-config.sh`；校验失败则停止生成并给出具体字段错误。
@@ -191,7 +191,7 @@ README 只保留：
 
 - 项目名称；
 - 一至数段项目定位与目标介绍；
-- 必要时说明内容由 `personal-learn` 协助生成。
+- 必要时说明内容由 `personal-learning` 协助生成。
 
 README 删除：
 
@@ -204,7 +204,7 @@ README 删除：
 
 ## Skill 工作流程
 
-1. 判断是否触发 `personal-learn`。
+1. 判断是否触发 `personal-learning`。
 2. 检查根目录配置；缺失时从默认模板初始化并校验，存在时直接校验。
 3. 读取配置，理解用户输入；存在实质歧义时给出选项，否则用一至两句话介绍理解。
 4. 展示四档及基于配置的推荐，请用户选择。
@@ -266,8 +266,8 @@ skill 按 RED-GREEN-REFACTOR 创建：先在没有 skill 的情况下运行真�
 
 ## 完成标准
 
-- `.agents/skills/personal-learn/SKILL.md` 可被项目级发现，frontmatter 覆盖学习文档、Markdown、Demo 和练习题等触发语境。
-- 根目录 `personal-learn-config.yaml` 已由默认模板生成并通过校验，模板预填当前画像。
+- `.agents/skills/personal-learning/SKILL.md` 可被项目级发现，frontmatter 覆盖学习文档、Markdown、Demo 和练习题等触发语境。
+- 根目录 `personal-learning-config.yaml` 已由默认模板生成并通过校验，模板预填当前画像。
 - 配置与 skill 规则职责清楚，推荐档位不会替代用户选择。
 - 生成前稳定执行“理解或消歧 → 用户选择档位 → 技术类确认 Demo 与练习题”。
 - `EDITORIAL_GUIDE.md` 与 `READER_PROFILE.md` 的有效内容完成迁移后被删除。

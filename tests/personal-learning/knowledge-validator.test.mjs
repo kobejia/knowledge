@@ -38,13 +38,13 @@ function baseKnowledge() {
 }
 
 async function fixture(mutator = () => {}) {
-  const root = await mkdtemp(path.join(tmpdir(), "personal-learn-"));
+  const root = await mkdtemp(path.join(tmpdir(), "personal-learning-"));
   const documentPath = path.join(root, "learn/frontend/vue/reactivity.md");
   await mkdir(path.dirname(documentPath), { recursive: true });
   await writeFile(documentPath, markdown);
   const knowledge = baseKnowledge();
   await mutator({ root, knowledge, documentPath });
-  await writeFile(path.join(root, "personal-learn-knowledge.json"), JSON.stringify(knowledge, null, 2));
+  await writeFile(path.join(root, "personal-learning-knowledge.json"), JSON.stringify(knowledge, null, 2));
   return root;
 }
 

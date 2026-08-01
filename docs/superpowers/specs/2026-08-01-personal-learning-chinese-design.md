@@ -2,7 +2,7 @@
 
 ## 背景
 
-`personal-learn` 已能统一学习文档、Demo 和练习题的生成流程，但 skill 正文与专项规范仍以英文编写，和仓库主要使用语言不一致。根配置中的 `level_recommendations` 还把内置内容档位与个人画像混在一起，既造成概念误导，也与“每次由用户选择档位”的交互规则重复。
+`personal-learning` 已能统一学习文档、Demo 和练习题的生成流程，但 skill 正文与专项规范仍以英文编写，和仓库主要使用语言不一致。根配置中的 `level_recommendations` 还把内置内容档位与个人画像混在一起，既造成概念误导，也与“每次由用户选择档位”的交互规则重复。
 
 本轮在保持 skill 标识、路径和内部档位标识兼容的前提下，将可见说明中文化，删除推荐档位配置，并对现有 skill 做一次范围内的结构和一致性优化。
 
@@ -10,7 +10,7 @@
 
 - 将 `SKILL.md` 的 frontmatter 描述、标题与正文翻译为中文。
 - 将四份 `references/*.md` 的标题与正文翻译为中文。
-- 保持 `personal-learn`、目录名、文件名、脚本名和四个内部档位标识不变。
+- 保持 `personal-learning`、目录名、文件名、脚本名和四个内部档位标识不变。
 - 从根配置和默认模板中删除 `level_recommendations`。
 - 让配置校验器采用严格 schema，拒绝未知字段和残留的推荐档位字段。
 - 显式按 UTF-8 读取中文 YAML，避免受 `LC_ALL=C` 等环境设置影响。
@@ -37,9 +37,9 @@
 
 以下内容保持英文或现状：
 
-- frontmatter 的 `name: personal-learn`；
-- `.agents/skills/personal-learn/` 及其子目录和文件名；
-- `personal-learn-config.yaml`；
+- frontmatter 的 `name: personal-learning`；
+- `.agents/skills/personal-learning/` 及其子目录和文件名；
+- `personal-learning-config.yaml`；
 - `init-config.sh`、`validate-config.sh` 及命令参数；
 - `expert`、`beginner`、`deep-dive`、`survey`；
 - Markdown、HTML、CSS、JavaScript、README、Demo 等通用技术名称；
