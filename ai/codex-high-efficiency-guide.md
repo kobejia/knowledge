@@ -382,8 +382,8 @@ Codex 不是独立于仓库存在的，它的价值很大一部分来自你给�
 
 ### 适合配合阅读的仓库文档
 
-- [读者画像](../READER_PROFILE.md)：告诉 Codex 你的起点、深度偏好和不该重复的内容。
-- [编辑指南](../EDITORIAL_GUIDE.md)：规定知识库应该怎样写，尤其适合和 Codex 一起用。
+- [Personal Learn 配置](../personal-learn-config.yaml)：记录学习目标、已有经验、熟悉领域和推荐档位。
+- [Personal Learn Skill](../.agents/skills/personal-learn/SKILL.md)：规定知识文档生成前的交互、内容档位和验证流程。
 
 ## 10. 这篇指南的核心结论
 
