@@ -3,32 +3,32 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "在这个仓库里写一篇解释浏览器渲染流水线的文档。",
-      "expected_output": "用一至两句话复述理解，展示专家、入门、全面、了解四档并等待用户选择，不推荐或预选档位，也不提前生成正文。",
+      "prompt": "主题是浏览器渲染流水线，我已经选择专家档。",
+      "expected_output": "识别为技术主题，只询问一次是否需要配套实践，并明确实践包含可运行 Demo 与配套练习题。",
       "files": []
     },
     {
       "id": 2,
-      "prompt": "我想了解缓存，帮我写下来。",
-      "expected_output": "识别缓存存在多个实质不同方向，提供互斥选项消歧，而不是直接设计目录。",
+      "prompt": "写 CSS 容器查询的全面文档，需要配套实践。",
+      "expected_output": "生成可运行 Demo 与围绕 Demo 的练习题，形成运行、观察、推理、修改、验证闭环，并实际验证行为。",
       "files": []
     },
     {
       "id": 3,
-      "prompt": "主题已经确定为 WebAssembly，我选择了解档。",
-      "expected_output": "判断为技术主题，先分别确认 Demo 和练习题；生成阶段使用 survey 视野地图而非压缩版全面文档。",
+      "prompt": "写 JavaScript 事件循环的专家文档，不需要配套实践。",
+      "expected_output": "生成 expert 文档且不创建 Demo 或独立练习题产物。",
       "files": []
     },
     {
       "id": 4,
-      "prompt": "写 CSS 容器查询的全面文档，需要 Demo，也需要练习题。",
-      "expected_output": "分别确认附加产物后加载全部专项规范，验证 Demo，并提供与 deep-dive 正文一致且可核对答案的练习题。",
+      "prompt": "写一篇 Web Components 的全面文档，再给我一个 Demo。",
+      "expected_output": "说明实践产物同时包含 Demo 与配套练习题，确认用户是否接受完整实践，不静默只生成 Demo。",
       "files": []
     },
     {
       "id": 5,
-      "prompt": "写 JavaScript 事件循环的专家文档，不要 Demo，也不要练习题。",
-      "expected_output": "生成 expert 文档且不创建 Demo 或练习题。",
+      "prompt": "写 TypeScript 类型收窄的入门文档，再出一些练习题。",
+      "expected_output": "说明实践产物同时包含可运行 Demo 与练习题，确认用户是否接受完整实践，不静默只生成练习题。",
       "files": []
     },
     {
