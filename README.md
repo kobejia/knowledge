@@ -39,10 +39,10 @@
 5. 执行 `finalize`，完成 PNG 导出、QA 和临时文件清理。
 
 ```bash
-npm run knowledge:image -- prepare <markdown-path> [--hard]
-npm run knowledge:image -- status <article-slug>
-npm run knowledge:image -- approve <article-slug> [--figure <figure-id>]
-npm run knowledge:image -- finalize <article-slug> [--keep-work]
+pnpm knowledge:image prepare <markdown-path> [--hard]
+pnpm knowledge:image status <article-slug>
+pnpm knowledge:image approve <article-slug> [--figure <figure-id>]
+pnpm knowledge:image finalize <article-slug> [--keep-work]
 ```
 
 **三、命令参数**
@@ -67,4 +67,4 @@ npm run knowledge:image -- finalize <article-slug> [--keep-work]
 | 正式 PNG | `docs/knowledge-images/articles/<article-slug>/images/` |
 | 状态与 QA | `manifest.json`、`source-map.json`、`qa/`、`revisions/` |
 
-详细设计见 `docs/knowledge-images/README.md`，项目检查统一运行 `npm run check`。
+详细设计见 `docs/knowledge-images/README.md`，项目依赖使用 `pnpm install`，日常检查运行 `pnpm check`；Skill 和 CI 也可以直接调用稳定入口 `node scripts/check.mjs`。

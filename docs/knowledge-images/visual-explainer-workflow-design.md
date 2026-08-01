@@ -176,13 +176,13 @@ stale -> drafting / reviewing / approved
 建议统一入口：
 
 ```bash
-npm run knowledge:image -- <command> <source-or-slug> [options]
+pnpm knowledge:image <command> <source-or-slug> [options]
 ```
 
 ### 1. 创建或增量更新草稿
 
 ```bash
-npm run knowledge:image -- prepare learn/frontend/browser/chrome-extension-architecture.md
+pnpm knowledge:image prepare learn/frontend/browser/chrome-extension-architecture.md
 ```
 
 默认行为：
@@ -197,7 +197,7 @@ npm run knowledge:image -- prepare learn/frontend/browser/chrome-extension-archi
 ### 2. 全量重新生成
 
 ```bash
-npm run knowledge:image -- prepare learn/frontend/browser/chrome-extension-architecture.md --hard
+pnpm knowledge:image prepare learn/frontend/browser/chrome-extension-architecture.md --hard
 ```
 
 `--hard` 的确切语义：
@@ -214,7 +214,7 @@ npm run knowledge:image -- prepare learn/frontend/browser/chrome-extension-archi
 ### 3. 对话修订
 
 ```bash
-npm run knowledge:image -- revise chrome-extension-architecture \
+pnpm knowledge:image revise chrome-extension-architecture \
   --figure 02-mechanism \
   --instruction "将 Service Worker 生命周期放到视觉中心，保留 30 秒空闲终止的限定"
 ```
@@ -231,7 +231,7 @@ Agent 将这条对话转换为结构化 revision，然后只修改目标图的�
 ### 4. 查看状态
 
 ```bash
-npm run knowledge:image -- status chrome-extension-architecture
+pnpm knowledge:image status chrome-extension-architecture
 ```
 
 输出至少包含：
@@ -245,8 +245,8 @@ npm run knowledge:image -- status chrome-extension-architecture
 ### 5. 定稿
 
 ```bash
-npm run knowledge:image -- approve chrome-extension-architecture
-npm run knowledge:image -- approve chrome-extension-architecture --figure 01-overview
+pnpm knowledge:image approve chrome-extension-architecture
+pnpm knowledge:image approve chrome-extension-architecture --figure 01-overview
 ```
 
 `approve` 必须是用户的显式行为。“看起来可以”“继续”“差不多”默认不是定稿；只有“定稿”“批准”“用这版出图”等明确表述才改变状态。
@@ -254,7 +254,7 @@ npm run knowledge:image -- approve chrome-extension-architecture --figure 01-ove
 ### 6. 生成正式图片
 
 ```bash
-npm run knowledge:image -- render chrome-extension-architecture
+pnpm knowledge:image render chrome-extension-architecture
 ```
 
 `render` 只处理 `approved` 图。未定稿图片应跳过并报告，不得自动批准。
@@ -262,7 +262,7 @@ npm run knowledge:image -- render chrome-extension-architecture
 便捷命令：
 
 ```bash
-npm run knowledge:image -- finalize chrome-extension-architecture
+pnpm knowledge:image finalize chrome-extension-architecture
 ```
 
 `finalize` 等于“校验当前全部图已经 approved → render → QA → 更新 manifest”，不得暗含 approve。
@@ -270,7 +270,7 @@ npm run knowledge:image -- finalize chrome-extension-architecture
 `finalize` 全部成功后默认还会执行一次安全清理。如果需要保留本轮草稿预览和调试文件，可显式使用：
 
 ```bash
-npm run knowledge:image -- finalize chrome-extension-architecture --keep-work
+pnpm knowledge:image finalize chrome-extension-architecture --keep-work
 ```
 
 安全清理只在所有定稿图片渲染和 QA 通过、manifest 已原子写入后执行。任何图片失败时都应保留中间产物，便于诊断和继续对话修订。
@@ -460,10 +460,10 @@ npm run knowledge:image -- finalize chrome-extension-architecture --keep-work
 
 ```bash
 # 预览将被删除的文件，不修改磁盘
-npm run knowledge:image -- cleanup chrome-extension-architecture --dry-run
+pnpm knowledge:image cleanup chrome-extension-architecture --dry-run
 
 # 只清理安全的临时产物
-npm run knowledge:image -- cleanup chrome-extension-architecture
+pnpm knowledge:image cleanup chrome-extension-architecture
 ```
 
 `cleanup` 必须从 manifest 解析精确文件清单，不使用未校验的宽泛 glob，也不删除未在当前文章产物目录内的文件。每次实际清理都向 revision 日志追加一条记录，包含删除的路径、文件哈希与清理原因。

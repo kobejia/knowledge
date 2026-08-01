@@ -2,6 +2,7 @@
   "name": "personal-knowledge",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.33.0",
   "engines": {
     "node": ">=20"
   },
@@ -10,7 +11,7 @@
     "knowledge:image": "node scripts/knowledge-image/cli.mjs",
     "validate:knowledge": "node scripts/validate-knowledge.mjs",
     "build:preview": "node scripts/build-preview.mjs",
-    "check": "npm run test && sh tests/personal-learning/test-config.sh && sh tests/personal-learning/test-structure.sh && npm run validate:knowledge && npm run build:preview"
+    "check": "node scripts/check.mjs"
   },
   "dependencies": {
     "@antv/infographic": "^0.2.19",
@@ -18,5 +19,10 @@
     "ajv": "8.20.0",
     "gray-matter": "4.0.3",
     "marked": "18.0.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "puppeteer"
+    ]
   }
 }

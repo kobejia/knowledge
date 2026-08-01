@@ -80,9 +80,22 @@ grep -q '大纲尚未得到确认时停止' "$skill_dir/SKILL.md"
 grep -q '不展示大纲，也不请求大纲确认' "$skill_dir/SKILL.md"
 grep -q 'references/visual-policy.md' "$skill_dir/SKILL.md"
 grep -q 'references/source-quality.md' "$skill_dir/SKILL.md"
-grep -q '从仓库根目录运行 `npm run check`' "$skill_dir/SKILL.md"
+grep -q '从仓库根目录运行 `node scripts/check.mjs`' "$skill_dir/SKILL.md"
+grep -q '不依赖 npm、pnpm 或 Yarn' "$skill_dir/SKILL.md"
 grep -q '不要把运行命令转交给用户' "$skill_dir/SKILL.md"
 grep -q '检查未通过时不得宣称完成' "$skill_dir/SKILL.md"
+
+test -f "$repo_root/pnpm-lock.yaml" || {
+  echo "FAIL: missing pnpm-lock.yaml" >&2
+  exit 1
+}
+test ! -e "$repo_root/package-lock.json" || {
+  echo "FAIL: package-lock.json remains after pnpm migration" >&2
+  exit 1
+}
+grep -q '"packageManager": "pnpm@' "$repo_root/package.json"
+grep -q '"check": "node scripts/check.mjs"' "$repo_root/package.json"
+grep -q '"onlyBuiltDependencies"' "$repo_root/package.json"
 grep -q '^# 来源质量与证据验证规范$' "$skill_dir/references/source-quality.md"
 grep -q '^## 主张与首选来源$' "$skill_dir/references/source-quality.md"
 grep -q '^## 内部证据卡$' "$skill_dir/references/source-quality.md"

@@ -42,12 +42,13 @@
   "name": "personal-knowledge",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.33.0",
   "engines": { "node": ">=20" },
   "scripts": {
     "test": "node --test tests/personal-learning/*.test.mjs",
     "validate:knowledge": "node scripts/validate-knowledge.mjs",
     "build:preview": "node scripts/build-preview.mjs",
-    "check": "npm run test && sh tests/personal-learning/test-config.sh && sh tests/personal-learning/test-structure.sh && npm run validate:knowledge && npm run build:preview"
+    "check": "node scripts/check.mjs"
   },
   "dependencies": {
     "@mermaid-js/mermaid-cli": "11.16.0",
@@ -58,9 +59,9 @@
 }
 ```
 
-Run: `npm install`
+Run: `pnpm install`
 
-Expected: 生成 `package-lock.json`，退出码 0；不得使用 `--force`。
+Expected: 生成 `pnpm-lock.yaml`，退出码 0；不得使用 `--force`。
 
 - [ ] **Step 2: 写最小合法 fixture 和失败测试**
 
@@ -95,7 +96,7 @@ test("rejects unknown fields", async () => {
 
 - [ ] **Step 3: 运行 RED 测试**
 
-Run: `npm test -- tests/personal-learning/knowledge-validator.test.mjs`
+Run: `node --test tests/personal-learning/knowledge-validator.test.mjs`
 
 Expected: FAIL with `ERR_MODULE_NOT_FOUND` for `scripts/lib/knowledge-model.mjs`。
 
@@ -209,7 +210,7 @@ try {
 
 - [ ] **Step 4: 运行 GREEN 测试并提交**
 
-Run: `npm test -- tests/personal-learning/knowledge-validator.test.mjs`
+Run: `node --test tests/personal-learning/knowledge-validator.test.mjs`
 
 Expected: 所有合法/非法 schema、路径、索引、frontmatter、链接测试 PASS。
 
@@ -290,7 +291,7 @@ JSON title 必须逐字等于对应 frontmatter title。
 
 - [ ] **Step 4: 校验迁移并提交**
 
-Run: `npm run validate:knowledge && sh tests/personal-learning/test-structure.sh && rg -n '\]\((\.\./)*(vue|browser|ai|awards)/' . --glob '*.md'`
+Run: `node scripts/validate-knowledge.mjs && sh tests/personal-learning/test-structure.sh && rg -n '\]\((\.\./)*(vue|browser|ai|awards)/' . --glob '*.md'`
 
 Expected: 前两项 PASS，`rg` 无输出，`git diff --summary` 显示四个 rename。
 
@@ -333,7 +334,7 @@ Expected: 结构测试 FAIL；配置越界测试 PASS。
 - 修改已索引文档时沿用原归属，除非用户要求移动、主题明显改变或索引冲突。
 ```
 
-始终加载 `visual-policy.md`；生成后更新 JSON、运行 `npm run validate:knowledge` 与 `npm run build:preview`，再报告路径、分类和验证范围。
+始终加载 `visual-policy.md`；生成后更新 JSON、运行 `node scripts/validate-knowledge.mjs` 与 `node scripts/build-preview.mjs`，再报告路径、分类和验证范围。
 
 - [ ] **Step 4: 更新 references**
 
@@ -378,7 +379,7 @@ test("identifies an invalid Mermaid block", async () => {
 });
 ```
 
-Run: `npm test -- tests/personal-learning/preview-builder.test.mjs`
+Run: `node --test tests/personal-learning/preview-builder.test.mjs`
 
 Expected: FAIL with missing `render-preview.mjs`。
 
@@ -404,7 +405,7 @@ export async function renderMermaid(source, context) {
 
 实现 `export async function renderMarkdown(source, context = { relativePath: "<inline>" })`。用 `extractMermaidBlocks` 先将图块替换为不可碰撞 token，逐块渲染后调用 `marked.parse`，最后把 token 替换为 `<figure class="diagram">${svg}</figure>`。普通代码必须保持转义。
 
-Run: `npm test -- tests/personal-learning/preview-builder.test.mjs`
+Run: `node --test tests/personal-learning/preview-builder.test.mjs`
 
 Expected: 合法图得到 `<svg>`；非法图错误包含路径和块序号。
 
@@ -475,7 +476,7 @@ export async function buildPreview(repoRoot, outputPath = path.join(repoRoot, "p
 
 - [ ] **Step 4: 测试、构建和单文件检查**
 
-Run: `npm test -- tests/personal-learning/preview-builder.test.mjs && npm run build:preview`
+Run: `node --test tests/personal-learning/preview-builder.test.mjs && node scripts/build-preview.mjs`
 
 Expected: PASS，并生成含四篇文档和 Chrome Extension 内联 SVG 的 HTML。
 
@@ -497,7 +498,7 @@ git commit -m "feat: build offline personal learn preview"
 
 - [ ] **Step 1: 自动检查**
 
-Run: `npm run check`
+Run: `node scripts/check.mjs`
 
 Expected: Node tests、配置契约、结构契约、4 篇知识文档校验和预览构建全部 PASS。
 
@@ -511,13 +512,13 @@ Expected: 退出码 0，无输出。
 
 - [ ] **Step 3: 生成幂等性**
 
-Run: `npm run build:preview && git diff --exit-code -- personal-learning-preview.html`
+Run: `node scripts/build-preview.mjs && git diff --exit-code -- personal-learning-preview.html`
 
 Expected: PASS，第二次构建无 diff。
 
 - [ ] **Step 4: 修复验收缺陷时坚持 RED-GREEN**
 
-先在相应 `.test.mjs` 添加失败断言，确认 FAIL，再修改最小实现并运行 `npm run check`。仅有实际修复时提交：
+先在相应 `.test.mjs` 添加失败断言，确认 FAIL，再修改最小实现并运行 `node scripts/check.mjs`。仅有实际修复时提交：
 
 若缺陷位于预览交互，使用：
 

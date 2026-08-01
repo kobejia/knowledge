@@ -163,5 +163,5 @@ Codex 属于与软件工程相邻的 AI 工具领域。全面档可以借助熟�
 - 关键时效性与制度性结论有邻近的权威来源。
 - 不存在未经支撑的包体积、版本、配额、推荐或“最高/最权威”等绝对判断。
 - Mermaid 全部实际渲染，图前后有解释，多图 ID 不冲突。
-- `npm run validate:knowledge`、`npm run build:preview`、`npm test`、shell 契约测试和 `git diff --check` 全部通过。
+- `node scripts/validate-knowledge.mjs`、`node scripts/build-preview.mjs`、`pnpm test`、shell 契约测试和 `git diff --check` 全部通过。
 - 离线预览能够显示四篇重写后的文档，导航与 hash 正常，控制台无预览自身错误。

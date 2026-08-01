@@ -14,7 +14,7 @@ const option = (name) => { const index = args.indexOf(name); return index >= 0 ?
 const has = (name) => args.includes(name);
 
 function usage() {
-  console.error('Usage: npm run knowledge:image -- <prepare|status|approve|render|finalize|cleanup> <source-or-slug> [--hard] [--figure id] [--dry-run] [--keep-work]');
+  console.error('Usage: pnpm knowledge:image <prepare|status|approve|render|finalize|cleanup> <source-or-slug> [--hard] [--figure id] [--dry-run] [--keep-work]');
   process.exit(1);
 }
 

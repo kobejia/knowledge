@@ -45,7 +45,7 @@ description: 当用户希望在本仓库学习、理解、探索、记录或练�
 4. 运行 `scripts/validate-config.sh <repo>/personal-learning-config.yaml`。
 5. 校验失败时报告具体字段错误；不得静默使用默认值或覆盖现有配置。
 6. 读取配置中的用户画像和 `review` 开关，但不得推断配置中没有写明的经验。
-7. 检查 `<repo>/personal-learning-knowledge.json`，并运行 `npm run validate:knowledge`。
+7. 检查 `<repo>/personal-learning-knowledge.json`，并运行 `node scripts/validate-knowledge.mjs`。
 8. 知识索引缺失或校验失败时停止，报告具体字段、ID 或路径；不得绕过索引直接落盘。
 
 ## 必要交互
@@ -138,7 +138,7 @@ description: 当用户希望在本仓库学习、理解、探索、记录或练�
 8. 实际运行 Demo，检查控制台、关键行为与边界；无法验证时说明未验证范围。
 9. 执行或推演练习步骤，确保问题围绕 Demo、可以作答并提供答案或评价标准。
 10. 对齐正文、来源证据、图表、Demo 与练习题中的目标、术语、前提、行为和边界；按来源规范处理冲突、时效性和未验证范围。
-11. 从仓库根目录运行 `npm run check`。该统一脚本负责自动化测试、Skill 配置与目录契约、知识索引和 Markdown 校验，以及离线预览与 Mermaid 构建；不要把运行命令转交给用户。
+11. 从仓库根目录运行 `node scripts/check.mjs`。这是不依赖 npm、pnpm 或 Yarn 的稳定检查入口，负责自动化测试、Skill 配置与目录契约、知识索引和 Markdown 校验，以及离线预览与 Mermaid 构建；不要把运行命令转交给用户。
 12. 检查失败时，先判断失败是否由本次变更造成：修复范围内的问题并重跑；对既有或无关失败保留现场并明确报告。检查未通过时不得宣称完成，预览构建失败时不得覆盖旧预览。
 13. 检查通过后，报告最终分类、文档路径、档位、统一检查结果，以及来源审计、图表和实践的实际验证范围；没有证据时不得宣称完成。
 

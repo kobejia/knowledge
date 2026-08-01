@@ -99,6 +99,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "backend",
+      "title": "后端",
+      "path": "backend",
+      "documents": [],
+      "children": [
+        {
+          "id": "backend-authentication",
+          "title": "身份认证",
+          "path": "authentication",
+          "children": [],
+          "documents": [
+            {
+              "id": "verification-code-registration-login",
+              "title": "邮箱与手机号验证码认证：从一次性挑战到可撤销登录态",
+              "path": "verification-code-registration-login.md"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

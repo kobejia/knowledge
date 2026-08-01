@@ -14,24 +14,24 @@
 
 ```bash
 # 默认增量：原文哈希未变化时不改写任何产物
-npm run knowledge:image -- prepare <markdown-path>
+pnpm knowledge:image prepare <markdown-path>
 
 # 全量重建 brief 和 HTML 草稿，不自动发布
-npm run knowledge:image -- prepare <markdown-path> --hard
+pnpm knowledge:image prepare <markdown-path> --hard
 
 # 查看原文变化、图片状态和批准状态
-npm run knowledge:image -- status <article-slug>
+pnpm knowledge:image status <article-slug>
 
 # 用户明确“定稿”后执行；也可以用 --figure 只批准一张
-npm run knowledge:image -- approve <article-slug> [--figure <figure-id>]
+pnpm knowledge:image approve <article-slug> [--figure <figure-id>]
 
 # 只渲染 approved 图片，或校验全部已批准后统一定稿
-npm run knowledge:image -- render <article-slug> [--figure <figure-id>]
-npm run knowledge:image -- finalize <article-slug> [--keep-work]
+pnpm knowledge:image render <article-slug> [--figure <figure-id>]
+pnpm knowledge:image finalize <article-slug> [--keep-work]
 
 # 预览或执行安全清理
-npm run knowledge:image -- cleanup <article-slug> --dry-run
-npm run knowledge:image -- cleanup <article-slug>
+pnpm knowledge:image cleanup <article-slug> --dry-run
+pnpm knowledge:image cleanup <article-slug>
 ```
 
 `prepare` 会根据文章 H2 主题生成 1–5 张图的 `plan.md`、逐图 `briefs/*.md` 和自包含 `drafts/*.html`。第一阶段以文件哈希为增量单位：原文完全未变时直接跳过；原文变化时重新规划草稿，但只有 HTML 与已批准版本哈希一致的图片才能保留批准状态。
