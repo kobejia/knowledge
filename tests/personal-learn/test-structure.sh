@@ -9,6 +9,7 @@ assets/personal-learn-config.template.yaml
 references/editorial-policy.md
 references/markdown-quality.md
 references/practice-quality.md
+references/visual-policy.md
 scripts/init-config.sh
 scripts/validate-config.sh
 evals/evals.json'
@@ -54,8 +55,12 @@ grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
 grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
 grep -q '^## 概述$' "$skill_dir/SKILL.md"
 grep -q '必须由用户选择' "$skill_dir/SKILL.md"
+grep -q '进阶（`advanced`）' "$skill_dir/SKILL.md"
 grep -q '是否需要配套实践（可运行 Demo + 配套练习题）' "$skill_dir/SKILL.md"
 grep -q '非技术主题.*跳过.*实践' "$skill_dir/SKILL.md"
+grep -q 'personal-learn-knowledge.json' "$skill_dir/SKILL.md"
+grep -q 'classificationMode' "$skill_dir/SKILL.md"
+grep -q 'references/visual-policy.md' "$skill_dir/SKILL.md"
 
 if grep -q '是否需要 Demo\|是否需要练习题' "$skill_dir/SKILL.md"; then
   echo "FAIL: SKILL.md still asks separate Demo or exercise questions" >&2
@@ -94,6 +99,10 @@ test ! -e "$skill_dir/references/exercise-quality.md" || {
 grep -q '^# 编辑规范$' "$skill_dir/references/editorial-policy.md"
 grep -q '^# Markdown 质量规范$' "$skill_dir/references/markdown-quality.md"
 grep -q '^# 配套实践质量规范$' "$skill_dir/references/practice-quality.md"
+grep -q '^# 可视化质量规范$' "$skill_dir/references/visual-policy.md"
+grep -q '`advanced` | 进阶' "$skill_dir/references/editorial-policy.md"
+grep -q 'advanced' "$skill_dir/references/markdown-quality.md"
+grep -q 'advanced' "$skill_dir/references/practice-quality.md"
 
 test ! -e "$repo_root/EDITORIAL_GUIDE.md" || {
   echo "FAIL: EDITORIAL_GUIDE.md still exists" >&2
