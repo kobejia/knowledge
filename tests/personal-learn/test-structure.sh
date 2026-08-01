@@ -25,6 +25,30 @@ test -f "$repo_root/personal-learn-config.yaml" || {
   exit 1
 }
 
+test -f "$repo_root/personal-learn-knowledge.json" || {
+  echo "FAIL: missing personal-learn-knowledge.json" >&2
+  exit 1
+}
+
+for relative_path in \
+  learn/frontend/vue/vuex-pinia.md \
+  learn/frontend/browser/chrome-extension-architecture.md \
+  learn/ai/tools/codex-high-efficiency-guide.md \
+  learn/reference/awards/awards-catalog.md
+do
+  test -f "$repo_root/$relative_path" || {
+    echo "FAIL: missing $relative_path" >&2
+    exit 1
+  }
+done
+
+for old_path in vue browser ai awards; do
+  test ! -e "$repo_root/$old_path" || {
+    echo "FAIL: old path remains: $old_path" >&2
+    exit 1
+  }
+done
+
 grep -q '^name: personal-learn$' "$skill_dir/SKILL.md"
 grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
 grep -q '^# 个人学习$' "$skill_dir/SKILL.md"
