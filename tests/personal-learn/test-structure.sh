@@ -27,13 +27,20 @@ test -f "$repo_root/personal-learn-config.yaml" || {
 }
 
 grep -q '^name: personal-learn$' "$skill_dir/SKILL.md"
-grep -q 'Always let the user choose' "$skill_dir/SKILL.md"
-grep -q 'ask two separate questions' "$skill_dir/SKILL.md"
-grep -q 'For non-technical topics, skip both' "$skill_dir/SKILL.md"
+grep -q '^description: .*本仓库' "$skill_dir/SKILL.md"
+grep -q '^## 概述$' "$skill_dir/SKILL.md"
+grep -q '必须由用户选择' "$skill_dir/SKILL.md"
+grep -q '分别询问' "$skill_dir/SKILL.md"
+grep -q '非技术主题.*跳过' "$skill_dir/SKILL.md"
 
-understand_line=$(grep -n '^### 1\. Understand$' "$skill_dir/SKILL.md" | cut -d: -f1)
-level_line=$(grep -n '^### 2\. Ask for a level$' "$skill_dir/SKILL.md" | cut -d: -f1)
-classify_line=$(grep -n '^### 3\. Classify the topic$' "$skill_dir/SKILL.md" | cut -d: -f1)
+if grep -qi 'recommend' "$skill_dir/SKILL.md"; then
+  echo "FAIL: SKILL.md still recommends a level" >&2
+  exit 1
+fi
+
+understand_line=$(grep -n '^### 1\. 理解与消歧$' "$skill_dir/SKILL.md" | cut -d: -f1)
+level_line=$(grep -n '^### 2\. 选择内容档位$' "$skill_dir/SKILL.md" | cut -d: -f1)
+classify_line=$(grep -n '^### 3\. 判断主题类型$' "$skill_dir/SKILL.md" | cut -d: -f1)
 if [ "$understand_line" -ge "$level_line" ] || [ "$level_line" -ge "$classify_line" ]; then
   echo "FAIL: required interaction is out of order" >&2
   exit 1
@@ -45,6 +52,11 @@ for reference in editorial-policy markdown-quality demo-quality exercise-quality
     exit 1
   }
 done
+
+grep -q '^# 编辑规范$' "$skill_dir/references/editorial-policy.md"
+grep -q '^# Markdown 质量规范$' "$skill_dir/references/markdown-quality.md"
+grep -q '^# Demo 质量规范$' "$skill_dir/references/demo-quality.md"
+grep -q '^# 练习题质量规范$' "$skill_dir/references/exercise-quality.md"
 
 test ! -e "$repo_root/EDITORIAL_GUIDE.md" || {
   echo "FAIL: EDITORIAL_GUIDE.md still exists" >&2
