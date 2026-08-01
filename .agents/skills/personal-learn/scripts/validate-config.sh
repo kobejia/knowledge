@@ -12,8 +12,9 @@ ruby -ryaml - "$config_path" <<'RUBY'
 path = ARGV.fetch(0)
 
 begin
-  config = YAML.safe_load(File.read(path), permitted_classes: [], aliases: false)
-rescue Psych::Exception => error
+  yaml = File.read(path, encoding: "UTF-8")
+  config = YAML.safe_load(yaml, permitted_classes: [], aliases: false)
+rescue Psych::Exception, Encoding::InvalidByteSequenceError, Encoding::UndefinedConversionError => error
   warn "Invalid YAML in #{path}: #{error.message}"
   exit 1
 end
@@ -23,7 +24,16 @@ def fail_field(path, expectation)
   exit 1
 end
 
+def assert_keys(mapping, path, allowed)
+  unknown = mapping.keys - allowed
+  return if unknown.empty?
+
+  warn "Invalid #{path}: unknown fields #{unknown.map(&:inspect).join(', ')}; allowed fields: #{allowed.join(', ')}"
+  exit 1
+end
+
 fail_field("root", "a mapping") unless config.is_a?(Hash)
+assert_keys(config, "root", %w[version language learner])
 fail_field("version", "integer 1") unless config["version"] == 1
 
 language = config["language"]
@@ -31,34 +41,20 @@ fail_field("language", "a non-empty string") unless language.is_a?(String) && !l
 
 learner = config["learner"]
 fail_field("learner", "a mapping") unless learner.is_a?(Hash)
+assert_keys(learner, "learner", %w[goal experience known_domains])
 
 goal = learner["goal"]
 fail_field("learner.goal", "a non-empty string") unless goal.is_a?(String) && !goal.strip.empty?
 
 experience = learner["experience"]
 fail_field("learner.experience", "a mapping") unless experience.is_a?(Hash)
+assert_keys(experience, "learner.experience", %w[frontend_years])
 years = experience["frontend_years"]
 fail_field("learner.experience.frontend_years", "a non-negative integer") unless years.is_a?(Integer) && years >= 0
 
 domains = learner["known_domains"]
 valid_domains = domains.is_a?(Array) && !domains.empty? && domains.all? { |item| item.is_a?(String) && !item.strip.empty? }
 fail_field("learner.known_domains", "a non-empty array of strings") unless valid_domains
-
-recommendations = config["level_recommendations"]
-fail_field("level_recommendations", "a mapping") unless recommendations.is_a?(Hash)
-
-allowed_levels = %w[beginner survey deep-dive expert].freeze
-required_recommendations = %w[
-  known_technical_domains
-  adjacent_technical_domains
-  unfamiliar_domains
-  quick_overview
-].freeze
-
-required_recommendations.each do |key|
-  value = recommendations[key]
-  fail_field("level_recommendations.#{key}", "one of #{allowed_levels.join(', ')}") unless allowed_levels.include?(value)
-end
 
 puts "Valid personal-learn config: #{path}"
 RUBY

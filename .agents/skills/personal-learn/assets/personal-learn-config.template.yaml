@@ -10,9 +10,3 @@ learner:
     - browser
     - javascript
     - web-engineering
-
-level_recommendations:
-  known_technical_domains: expert
-  adjacent_technical_domains: deep-dive
-  unfamiliar_domains: deep-dive
-  quick_overview: survey
