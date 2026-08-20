@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mini Vault RAG Lab</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="lab-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">MINI VAULT RAG LAB · OFFLINE</p>
+          <h1>看见 AI 知识库的检索层</h1>
+          <p class="lede">
+            样例 Vault 是事实源；分块、BM25、链接加权和上下文是可重建的派生状态。
+            本实验故意不接入大模型，让你先看清一次回答能拿到哪些证据。
+          </p>
+        </div>
+        <aside class="boundary-card" aria-label="实验边界">
+          <strong>能力边界</strong>
+          <p>这里实现真实的词法检索与引用组装，但不实现向量语义搜索，也不把确定性摘要冒充 LLM 输出。</p>
+        </aside>
+      </header>
+
+      <section class="control-panel" aria-labelledby="controls-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">QUERY &amp; RETRIEVAL</p>
+            <h2 id="controls-title">控制检索条件</h2>
+          </div>
+          <span id="run-status" class="run-status" aria-live="polite">等待运行</span>
+        </div>
+
+        <div class="control-grid">
+          <label class="control control--wide">
+            <span>实验问题</span>
+            <textarea id="query" rows="3">为什么同步不能替代备份？</textarea>
+          </label>
+
+          <label class="control">
+            <span>预设问题</span>
+            <select id="preset">
+              <option value="sync">同步为什么不是备份？</option>
+              <option value="evidence">怎样让 AI 回答能够追溯来源？</option>
+              <option value="decision">Atlas 为什么选择本地 Markdown？</option>
+              <option value="injection">网页里的指令可以自动执行吗？</option>
+              <option value="semantic">遗忘的想法怎样重新浮现？</option>
+            </select>
+          </label>
+
+          <label class="control">
+            <span>分块上限</span>
+            <select id="chunk-size">
+              <option value="45">45 tokens · 更碎</option>
+              <option value="90" selected>90 tokens · 基线</option>
+              <option value="160">160 tokens · 更多上下文</option>
+            </select>
+          </label>
+
+          <label class="control">
+            <span>Top-K：<output id="top-k-output" for="top-k">4</output></span>
+            <input id="top-k" type="range" min="1" max="6" value="4">
+          </label>
+
+          <label class="control">
+            <span>状态过滤</span>
+            <select id="status-filter">
+              <option value="all">全部状态</option>
+              <option value="verified">仅 verified</option>
+              <option value="draft">仅 draft</option>
+              <option value="unreviewed">仅 unreviewed</option>
+            </select>
+          </label>
+
+          <label class="toggle-control">
+            <input id="link-boost" type="checkbox" checked>
+            <span>
+              <strong>链接邻居加权</strong>
+              <small>让显式的 [[链接]] 作为第二路排序信号</small>
+            </span>
+          </label>
+
+          <button id="run-query" class="primary-action" type="button">重新构建并检索</button>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="运行指标">
+        <article><span>事实源</span><strong id="metric-notes">0 notes</strong></article>
+        <article><span>派生分块</span><strong id="metric-chunks">0 chunks</strong></article>
+        <article><span>查询词项</span><strong id="metric-terms">0 terms</strong></article>
+        <article><span>召回证据</span><strong id="metric-results">0 sources</strong></article>
+      </section>
+
+      <section class="workspace" aria-label="知识库实验工作区">
+        <aside class="vault-panel">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <p class="eyebrow">SOURCE OF TRUTH</p>
+              <h2>样例 Vault</h2>
+            </div>
+            <button id="reset-vault" class="quiet-action" type="button">重置</button>
+          </div>
+          <p class="panel-note">选择笔记可以编辑内存副本。修改只影响当前页面，不会写入你的文件。</p>
+          <nav id="note-list" class="note-list" aria-label="样例笔记"></nav>
+          <label class="editor-label" for="note-editor">当前 Markdown</label>
+          <textarea id="note-editor" class="note-editor" spellcheck="false"></textarea>
+          <button id="apply-note" class="secondary-action" type="button">应用修改并重建索引</button>
+        </aside>
+
+        <div class="retrieval-panel">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <p class="eyebrow">DERIVED STATE</p>
+              <h2>排序后的证据</h2>
+            </div>
+            <span class="method-tag">BM25 + link graph</span>
+          </div>
+          <div id="diagnostics" class="diagnostics" aria-live="polite"></div>
+          <ol id="result-list" class="result-list"></ol>
+        </div>
+      </section>
+
+      <section class="output-grid">
+        <article class="answer-panel">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <p class="eyebrow">GROUNDED EXTRACT</p>
+              <h2>可追溯摘要</h2>
+            </div>
+            <span id="answer-status" class="method-tag"></span>
+          </div>
+          <div id="answer" class="answer"></div>
+          <ol id="citation-list" class="citation-list"></ol>
+        </article>
+
+        <article class="context-panel">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <p class="eyebrow">MODEL INPUT</p>
+              <h2>上下文包</h2>
+            </div>
+          </div>
+          <pre id="context-output" tabindex="0"></pre>
+        </article>
+      </section>
+
+      <section class="reading-guide" aria-labelledby="guide-title">
+        <p class="eyebrow">HOW TO READ THE LAB</p>
+        <h2 id="guide-title">这不是一条“分数越高就越真实”的流水线</h2>
+        <div class="guide-grid">
+          <article>
+            <strong>相关性 ≠ 真实性</strong>
+            <p>BM25 分数只表示词项匹配。`verified` 也只是样例流程状态，不是数学证明。</p>
+          </article>
+          <article>
+            <strong>链接 ≠ 逻辑蕴含</strong>
+            <p>链接加权能带回邻近上下文，也可能放大错误连接，所以必须显示分数组成。</p>
+          </article>
+          <article>
+            <strong>更多上下文 ≠ 更好</strong>
+            <p>增大 Top-K 会提高覆盖，也会把重复、冲突和恶意内容带给模型。</p>
+          </article>
+          <article>
+            <strong>本地文件 ≠ 全链路本地</strong>
+            <p>如果后续把上下文发给云模型，相关笔记内容仍会离开设备。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./core.js"></script>
+    <script src="./sample-vault.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -34,6 +34,24 @@
               "path": "chrome-extension-architecture.md"
             }
           ]
+        },
+        {
+          "id": "frontend-layout",
+          "title": "布局与适配",
+          "path": "layout",
+          "children": [],
+          "documents": [
+            {
+              "id": "responsive-layout",
+              "title": "响应式布局：交付架构、布局机制与工程取舍",
+              "path": "responsive-layout.md"
+            },
+            {
+              "id": "responsive-layout-exercises",
+              "title": "响应式布局专家练习：上下文、约束与验证",
+              "path": "responsive-layout-exercises.md"
+            }
+          ]
         }
       ]
     },
@@ -44,6 +62,19 @@
       "documents": [],
       "children": [
         {
+          "id": "ai-rag",
+          "title": "RAG",
+          "path": "rag",
+          "children": [],
+          "documents": [
+            {
+              "id": "rag",
+              "title": "RAG：从非参数记忆到可验证的知识系统",
+              "path": "rag.md"
+            }
+          ]
+        },
+        {
           "id": "ai-tools",
           "title": "工具",
           "path": "tools",
@@ -53,6 +84,26 @@
               "id": "codex-high-efficiency-guide",
               "title": "Codex：从上手到高效协作",
               "path": "codex-high-efficiency-guide.md"
+            },
+            {
+              "id": "obsidian-ai-knowledge-base",
+              "title": "AI + Obsidian：从本地 Markdown Vault 到可验证的个人知识系统",
+              "path": "obsidian-ai-knowledge-base.md"
+            },
+            {
+              "id": "obsidian-ai-knowledge-base-exercises",
+              "title": "AI + Obsidian 全面练习：从 Vault 到可审计检索",
+              "path": "obsidian-ai-knowledge-base-exercises.md"
+            },
+            {
+              "id": "deepseek-harness",
+              "title": "DeepSeek Harness：把模型变成可执行 Agent 的插件化运行时",
+              "path": "deepseek-harness.md"
+            },
+            {
+              "id": "deepseek-harness-exercises",
+              "title": "DeepSeek Harness 全面练习：工具循环、事件日志与权限边界",
+              "path": "deepseek-harness-exercises.md"
             }
           ]
         }

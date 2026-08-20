@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>响应式上下文实验</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="lab" data-strategy="viewport">
+      <header class="hero">
+        <p class="eyebrow">RESPONSIVE CONTEXT LAB</p>
+        <h1>同一组件，究竟应该响应视口还是宿主？</h1>
+        <p class="lede">
+          保持页面视口不变，只调节第二个宿主的宽度。对比媒体查询、内在 Grid
+          和容器查询如何决定同一张卡片的结构。
+        </p>
+      </header>
+
+      <section class="controls" aria-labelledby="controls-title">
+        <h2 id="controls-title">实验控制</h2>
+
+        <div class="control-grid">
+          <label class="control">
+            <span>布局策略</span>
+            <select id="strategy">
+              <option value="viewport">媒体查询：响应页面视口</option>
+              <option value="intrinsic">内在 Grid：内容驱动换列</option>
+              <option value="container">容器查询：响应组件宿主</option>
+            </select>
+          </label>
+
+          <label class="control">
+            <span>可调宿主宽度：<output id="host-width-output" for="host-width">320px</output></span>
+            <input id="host-width" type="range" min="240" max="720" step="16" value="320">
+          </label>
+
+          <label class="control">
+            <span>内容压力</span>
+            <select id="content-profile">
+              <option value="normal">常规内容</option>
+              <option value="stress">长内容与不可断标识符</option>
+              <option value="rtl">RTL 内容</option>
+            </select>
+          </label>
+        </div>
+
+        <p id="strategy-explanation" class="explanation" aria-live="polite"></p>
+      </section>
+
+      <section class="experiment" aria-labelledby="experiment-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SAME MARKUP · DIFFERENT HOSTS</p>
+            <h2 id="experiment-title">上下文对照</h2>
+          </div>
+          <p>
+            下方两张卡片的 DOM 和组件 CSS 完全相同；只有宿主分配的空间不同。
+          </p>
+        </div>
+
+        <article class="case">
+          <header class="case-header">
+            <div>
+              <h3>主内容宿主</h3>
+              <p>宿主最大宽度 760px，用作宽组件基线。</p>
+            </div>
+            <output id="main-status" class="status" aria-live="polite"></output>
+          </header>
+          <div class="card-host card-host--main" data-host="main"></div>
+        </article>
+
+        <article class="case">
+          <header class="case-header">
+            <div>
+              <h3>可调嵌入宿主</h3>
+              <p>模拟侧栏、弹窗、分屏面板或微前端插槽。</p>
+            </div>
+            <output id="embed-status" class="status" aria-live="polite"></output>
+          </header>
+          <div class="card-host card-host--embed" data-host="embed"></div>
+        </article>
+      </section>
+
+      <section class="legend" aria-labelledby="legend-title">
+        <h2 id="legend-title">如何读实验结果</h2>
+        <div class="legend-grid">
+          <article>
+            <strong>宿主错配</strong>
+            <p>窄宿主仍进入双列，说明组件状态被页面视口错误地支配。</p>
+          </article>
+          <article>
+            <strong>无查询换列</strong>
+            <p>内在 Grid 根据内容的最小轨道尺寸决定一列或两列。</p>
+          </article>
+          <article>
+            <strong>组件契约</strong>
+            <p>容器查询在宿主达到 34rem 时切换结构，不关心页面多宽。</p>
+          </article>
+          <article>
+            <strong>ResizeObserver</strong>
+            <p>本页只用它读取实验数据，不让 JavaScript 决定布局。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <template id="card-template">
+      <article class="responsive-card">
+        <div class="card-media" role="img" aria-label="由抽象轨道和节点组成的布局示意图">
+          <span class="media-axis media-axis--x"></span>
+          <span class="media-axis media-axis--y"></span>
+          <span class="media-node media-node--a"></span>
+          <span class="media-node media-node--b"></span>
+          <span class="media-node media-node--c"></span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge">Context-aware</span>
+            <span class="card-index">EXP-34</span>
+          </div>
+          <h4 class="card-title"></h4>
+          <p class="card-description"></p>
+          <code class="card-token"></code>
+          <div class="card-actions">
+            <a href="#legend-title">查看判定规则</a>
+            <button type="button">保持语义顺序</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
