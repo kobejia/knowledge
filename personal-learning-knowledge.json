@@ -272,6 +272,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "business",
+      "title": "商业与消费",
+      "path": "business",
+      "documents": [],
+      "children": [
+        {
+          "id": "business-consumer-brands",
+          "title": "消费品牌",
+          "path": "consumer-brands",
+          "children": [],
+          "documents": [
+            {
+              "id": "apparel-categories-and-brands",
+              "title": "广义服饰品类与品牌地图：从服装、鞋履到箱包与配饰",
+              "path": "apparel-categories-and-brands.md"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
