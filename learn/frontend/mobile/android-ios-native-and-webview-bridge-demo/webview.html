@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN" data-web-ready="false">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <title>H5 Bridge Client</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./webview.js"></script>
+  </head>
+  <body class="webview-page">
+    <header class="webview-header">
+      <div>
+        <p class="mini-kicker">H5 APPLICATION</p>
+        <h1>Trip Card</h1>
+      </div>
+      <span id="web-platform" class="web-platform">waiting</span>
+    </header>
+
+    <main>
+      <section class="capability-card" aria-labelledby="capability-title">
+        <div class="route-card" aria-hidden="true">
+          <span>SHA</span>
+          <i></i>
+          <span>HND</span>
+        </div>
+        <h2 id="capability-title">从 Web 请求宿主能力</h2>
+        <p>按钮始终调用同一套 <code>bridge.call()</code>。平台差异只存在于 transport。</p>
+
+        <div class="web-actions">
+          <button id="get-app-info" type="button">读取 App 信息</button>
+          <button id="choose-image" type="button">选择行程封面</button>
+          <button id="run-concurrent" type="button">并发调用两个能力</button>
+          <button id="run-slow" type="button">调用慢操作</button>
+        </div>
+      </section>
+
+      <section class="web-state" aria-labelledby="state-title">
+        <div>
+          <p class="mini-kicker">CLIENT STATE</p>
+          <h2 id="state-title">当前请求状态</h2>
+        </div>
+        <dl>
+          <div>
+            <dt>session</dt>
+            <dd><output id="web-session">booting</output></dd>
+          </div>
+          <div>
+            <dt>pending</dt>
+            <dd><output id="pending-count">0</output></dd>
+          </div>
+          <div>
+            <dt>lifecycle</dt>
+            <dd><output id="lifecycle-state">foreground</output></dd>
+          </div>
+          <div>
+            <dt>last result</dt>
+            <dd><output id="last-result">尚未调用</output></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="web-log-title">
+        <div class="console-heading">
+          <div>
+            <p class="mini-kicker">H5 / TRACE</p>
+            <h2 id="web-log-title">Promise 与事件日志</h2>
+          </div>
+          <button id="clear-web-log" type="button" class="quiet-button">清空</button>
+        </div>
+        <ol id="web-log" class="event-log compact" aria-live="polite"></ol>
+      </section>
+    </main>
+  </body>
+</html>

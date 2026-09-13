@@ -1,0 +1,5 @@
+alpha
+two words
+-dash-name
+.hidden-note
+你好

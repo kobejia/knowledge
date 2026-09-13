@@ -4,6 +4,27 @@
   "contentRoot": "learn",
   "categories": [
     {
+      "id": "systems",
+      "title": "计算机系统",
+      "path": "systems",
+      "documents": [],
+      "children": [
+        {
+          "id": "systems-operating-systems",
+          "title": "操作系统",
+          "path": "operating-systems",
+          "children": [],
+          "documents": [
+            {
+              "id": "processes-and-threads",
+              "title": "进程与线程：从执行与资源边界到语言、虚拟机与容器",
+              "path": "processes-and-threads.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "frontend",
       "title": "前端",
       "path": "frontend",
@@ -50,6 +71,55 @@
               "id": "responsive-layout-exercises",
               "title": "响应式布局专家练习：上下文、约束与验证",
               "path": "responsive-layout-exercises.md"
+            }
+          ]
+        },
+        {
+          "id": "frontend-theming",
+          "title": "主题与样式",
+          "path": "theming",
+          "children": [],
+          "documents": [
+            {
+              "id": "theme-systems",
+              "title": "前端主题系统：从换肤、深浅模式到 Design Token 架构",
+              "path": "theme-systems.md"
+            },
+            {
+              "id": "theme-systems-exercises",
+              "title": "前端主题系统全面练习：状态、Token、首屏与渲染边界",
+              "path": "theme-systems-exercises.md"
+            }
+          ]
+        },
+        {
+          "id": "frontend-mobile",
+          "title": "移动端与跨端",
+          "path": "mobile",
+          "children": [],
+          "documents": [
+            {
+              "id": "android-ios-native-and-webview-bridge",
+              "title": "Android、iOS 双原生与 WebView Bridge：从两条技术栈到混合架构边界",
+              "path": "android-ios-native-and-webview-bridge.md"
+            },
+            {
+              "id": "android-ios-native-and-webview-bridge-exercises",
+              "title": "Android、iOS 与 WebView Bridge 全面练习：调用、生命周期与信任边界",
+              "path": "android-ios-native-and-webview-bridge-exercises.md"
+            }
+          ]
+        },
+        {
+          "id": "frontend-cross-platform",
+          "title": "跨端开发",
+          "path": "cross-platform",
+          "children": [],
+          "documents": [
+            {
+              "id": "cross-platform-application-development",
+              "title": "跨端应用开发：Android、iOS、PC 与小程序的十年演进与工程取舍",
+              "path": "cross-platform-application-development.md"
             }
           ]
         }
@@ -146,6 +216,37 @@
               "id": "docker",
               "title": "Docker：容器运行模型、镜像供应链与生产边界",
               "path": "docker.md"
+            }
+          ]
+        },
+        {
+          "id": "operations-shell",
+          "title": "命令行与 Shell",
+          "path": "shell",
+          "children": [],
+          "documents": [
+            {
+              "id": "cross-platform-command-line",
+              "title": "Linux、Windows 与 macOS 命令行：从命令结构到跨平台对照",
+              "path": "cross-platform-command-line.md"
+            },
+            {
+              "id": "cross-platform-command-line-exercises",
+              "title": "跨平台命令行全面练习：参数、管道、退出状态与可移植性",
+              "path": "cross-platform-command-line-exercises.md"
+            }
+          ]
+        },
+        {
+          "id": "operations-observability",
+          "title": "可观测性",
+          "path": "observability",
+          "children": [],
+          "documents": [
+            {
+              "id": "centralized-logging-platform-evolution",
+              "title": "集中式日志平台十五年演进：从 ELK、Kafka 到云日志与 OpenTelemetry",
+              "path": "centralized-logging-platform-evolution.md"
             }
           ]
         }

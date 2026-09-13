@@ -1,0 +1,229 @@
+<!doctype html>
+<html
+  lang="zh-CN"
+  data-theme="system"
+  data-scheme="light"
+  data-skin="ocean"
+  data-theme-storage-key="theme-systems-demo.mode"
+  data-skin-storage-key="theme-systems-demo.skin"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta id="theme-color" name="theme-color" content="#eef6ff">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='%230569a8'/%3E%3Cpath d='M32 6a26 26 0 0 0 0 52Z' fill='%23eef6ff'/%3E%3C/svg%3E">
+    <title>前端主题系统实验室</title>
+    <script>
+      (function bootTheme() {
+        var root = document.documentElement;
+        var modeKey = root.dataset.themeStorageKey;
+        var skinKey = root.dataset.skinStorageKey;
+        var allowedModes = ["system", "light", "dark"];
+        var allowedSkins = ["ocean", "orchid"];
+        var mode = "system";
+        var skin = "ocean";
+        var storageStatus = "available";
+
+        try {
+          var storedMode = localStorage.getItem(modeKey);
+          var storedSkin = localStorage.getItem(skinKey);
+          if (allowedModes.indexOf(storedMode) !== -1) mode = storedMode;
+          if (allowedSkins.indexOf(storedSkin) !== -1) skin = storedSkin;
+        } catch (error) {
+          storageStatus = "unavailable";
+        }
+
+        var systemScheme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        var resolvedScheme = mode === "system" ? systemScheme : mode;
+
+        root.dataset.theme = mode;
+        root.dataset.scheme = resolvedScheme;
+        root.dataset.skin = skin;
+        root.dataset.storageStatus = storageStatus;
+        root.style.colorScheme = resolvedScheme;
+
+        window.__THEME_BOOT__ = Object.freeze({
+          mode: mode,
+          skin: skin,
+          systemScheme: systemScheme,
+          resolvedScheme: resolvedScheme,
+          storageStatus: storageStatus
+        });
+      })();
+    </script>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到实验区</a>
+
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Theme Systems Lab</p>
+        <h1>前端主题系统实验室</h1>
+        <p class="lede">
+          把“用户请求”“系统偏好”“最终颜色模式”和“品牌皮肤”拆开观察，沿着状态解析、Token 映射、CSS 层叠与命令式绘制追踪主题变化。
+        </p>
+      </div>
+      <svg class="header-mark" viewBox="0 0 96 96" role="img" aria-label="由太阳和月亮组成的主题图标">
+        <circle cx="48" cy="48" r="34" fill="none" stroke="currentColor" stroke-width="8"></circle>
+        <path d="M48 14a34 34 0 0 0 0 68Z" fill="currentColor"></path>
+      </svg>
+    </header>
+
+    <main id="main-content">
+      <section class="control-panel" aria-labelledby="controls-title">
+        <div>
+          <p class="section-kicker">01 / 状态输入</p>
+          <h2 id="controls-title">选择请求模式与品牌皮肤</h2>
+          <p>模式决定明暗语义，皮肤只替换品牌色。两者独立组合，不复制整套组件 CSS。</p>
+        </div>
+
+        <div class="control-grid">
+          <fieldset>
+            <legend>请求模式</legend>
+            <label><input type="radio" name="mode" value="system"> 跟随系统</label>
+            <label><input type="radio" name="mode" value="light"> 浅色</label>
+            <label><input type="radio" name="mode" value="dark"> 深色</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>品牌皮肤</legend>
+            <label><input type="radio" name="skin" value="ocean"> Ocean</label>
+            <label><input type="radio" name="skin" value="orchid"> Orchid</label>
+          </fieldset>
+
+          <div class="control-actions">
+            <button id="clear-preferences" type="button">清除持久化设置</button>
+            <p class="hint">可打开第二个标签页，观察 <code>storage</code> 事件带来的同步。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-panel" aria-labelledby="status-title" aria-live="polite">
+        <div>
+          <p class="section-kicker">02 / 解析结果</p>
+          <h2 id="status-title">主题状态不是单个布尔值</h2>
+        </div>
+        <dl class="status-grid">
+          <div>
+            <dt>requested mode</dt>
+            <dd><output id="requested-mode">system</output></dd>
+          </div>
+          <div>
+            <dt>system preference</dt>
+            <dd><output id="system-scheme">light</output></dd>
+          </div>
+          <div>
+            <dt>resolved scheme</dt>
+            <dd><output id="resolved-scheme">light</output></dd>
+          </div>
+          <div>
+            <dt>brand skin</dt>
+            <dd><output id="active-skin">ocean</output></dd>
+          </div>
+          <div>
+            <dt>storage</dt>
+            <dd><output id="storage-status">available</output></dd>
+          </div>
+          <div>
+            <dt>last source</dt>
+            <dd><output id="last-source">boot</output></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="tokens-title">
+        <p class="section-kicker">03 / Token 求值</p>
+        <h2 id="tokens-title">同一组件只消费语义，不认识具体皮肤</h2>
+        <div class="card-grid">
+          <article class="demo-card token-card">
+            <div class="card-icon" aria-hidden="true">A</div>
+            <h3>语义 Token</h3>
+            <p>组件使用 <code>--color-surface</code>、<code>--color-text</code> 和 <code>--color-accent</code>，而不是直接引用某个蓝色或紫色。</p>
+            <div class="swatch-row" aria-label="当前语义颜色">
+              <span class="swatch swatch-surface">surface</span>
+              <span class="swatch swatch-text">text</span>
+              <span class="swatch swatch-accent">accent</span>
+            </div>
+          </article>
+
+          <article class="demo-card auto-scheme-card">
+            <div class="card-icon" aria-hidden="true">B</div>
+            <h3><code>light-dark()</code></h3>
+            <p>这个区域以普通声明作为回退，再由 <code>light-dark()</code> 根据元素最终采用的 <code>color-scheme</code> 选择颜色。</p>
+            <span class="scheme-chip">used scheme: <strong id="used-scheme-label">light</strong></span>
+          </article>
+
+          <article class="demo-card local-theme-card" id="local-theme-card">
+            <div class="card-icon" aria-hidden="true">C</div>
+            <h3>局部主题作用域</h3>
+            <p>局部容器覆盖语义 Token，同时设置自己的 <code>color-scheme</code>，无需修改全局状态。</p>
+            <label for="local-scheme">局部模式</label>
+            <select id="local-scheme">
+              <option value="inherit">继承全局</option>
+              <option value="light">固定浅色</option>
+              <option value="dark">固定深色</option>
+            </select>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="boundaries-title">
+        <p class="section-kicker">04 / 渲染边界</p>
+        <h2 id="boundaries-title">并非所有像素都由同一套 CSS 自动更新</h2>
+        <div class="boundary-grid">
+          <article class="boundary-card">
+            <h3>浏览器原生控件</h3>
+            <p><code>color-scheme</code> 告诉浏览器当前元素支持哪种模式，影响表单控件等用户代理绘制内容。</p>
+            <div class="native-controls">
+              <label>文本框 <input type="text" value="原生 input"></label>
+              <label>选择框
+                <select>
+                  <option>系统外观</option>
+                  <option>由浏览器绘制</option>
+                </select>
+              </label>
+              <label><input type="checkbox" checked> 原生复选框</label>
+            </div>
+          </article>
+
+          <article class="boundary-card">
+            <h3>SVG：继承 <code>currentColor</code></h3>
+            <div class="svg-demo" aria-label="继承当前文本色和强调色的 SVG 图标">
+              <svg viewBox="0 0 160 96" role="img" aria-label="主题 Token 流向组件的示意图">
+                <circle cx="32" cy="48" r="20" fill="currentColor"></circle>
+                <path d="M58 48h38" stroke="currentColor" stroke-width="8" stroke-linecap="round"></path>
+                <rect x="104" y="26" width="40" height="44" rx="10" class="svg-accent"></rect>
+              </svg>
+            </div>
+            <p>内联 SVG 可以通过继承和 CSS 类进入主题系统；外链图片则有不同边界。</p>
+          </article>
+
+          <article class="boundary-card">
+            <h3>Canvas：需要命令式重绘</h3>
+            <canvas id="theme-canvas" width="640" height="240" aria-label="根据当前主题重新绘制的 Canvas 图表"></canvas>
+            <p>Canvas 已经写入位图的像素不会因 CSS 变量变化自动改色，应用需要读取新 Token 并重新绘制。</p>
+            <output id="canvas-render-count">render count: 0</output>
+          </article>
+        </div>
+      </section>
+
+      <section class="inspection-panel" aria-labelledby="inspection-title">
+        <p class="section-kicker">05 / 检查点</p>
+        <h2 id="inspection-title">在开发者工具中追踪这条链路</h2>
+        <ol>
+          <li>检查 <code>&lt;html&gt;</code> 上的 <code>data-theme</code>、<code>data-scheme</code> 和 <code>data-skin</code>。</li>
+          <li>查看卡片的 computed style，确认组件属性来自语义 Token。</li>
+          <li>切换系统偏好：仅在 requested mode 为 <code>system</code> 时，resolved scheme 才随之变化。</li>
+          <li>比较 SVG 与 Canvas：前者通过 CSS 继承自动更新，后者由 JavaScript 重绘。</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>该 Demo 验证浏览器内主题解析链路，不代表真实 SSR、跨源 iframe、移动设备或全部浏览器兼容性验收。</p>
+    </footer>
+  </body>
+</html>

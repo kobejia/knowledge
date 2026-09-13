@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN" data-app-ready="false">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <title>Android / iOS Bridge Lab</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./host.js"></script>
+  </head>
+  <body class="host-page">
+    <a class="skip-link" href="#lab">跳到实验区</a>
+
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Hybrid Systems Lab / 01</p>
+        <h1>Android / iOS Bridge Lab</h1>
+        <p class="lede">
+          同一套 H5 Promise API，经 Android 注入对象或 iOS message handler 形态进入宿主；观察请求关联、错误、超时和页面会话失效。
+        </p>
+      </div>
+      <div class="boundary-mark" aria-label="WebView 与 Native 两个运行边界">
+        <span>WEB</span>
+        <i aria-hidden="true"></i>
+        <span>NATIVE</span>
+      </div>
+    </header>
+
+    <main id="lab" class="lab-shell">
+      <section class="control-rail" aria-labelledby="host-controls-title">
+        <p class="section-number">HOST / CONTROL</p>
+        <h2 id="host-controls-title">原生宿主</h2>
+        <p class="muted">切换宿主会重建 WebView 会话。故障档位只改变原生端响应，不改 H5 调用代码。</p>
+
+        <label for="platform">Transport 形态</label>
+        <select id="platform">
+          <option value="android">Android injected object</option>
+          <option value="ios">iOS message handler</option>
+        </select>
+
+        <label for="fault-profile">宿主响应档位</label>
+        <select id="fault-profile">
+          <option value="normal">正常</option>
+          <option value="reorder">并发响应乱序</option>
+          <option value="deny">相册权限拒绝</option>
+          <option value="timeout">慢操作超时</option>
+          <option value="version">协议版本不兼容</option>
+        </select>
+
+        <div class="button-stack">
+          <button id="emit-background" type="button">发送 background 事件</button>
+          <button id="simulate-untrusted" type="button">模拟不可信 frame 调用</button>
+          <button id="reload-webview" type="button">重载 WebView 会话</button>
+        </div>
+
+        <dl class="host-status">
+          <div>
+            <dt>host</dt>
+            <dd><output id="host-platform">android</output></dd>
+          </div>
+          <div>
+            <dt>session</dt>
+            <dd><output id="host-session">booting</output></dd>
+          </div>
+          <div>
+            <dt>profile</dt>
+            <dd><output id="host-profile">normal</output></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="device-stage" aria-labelledby="webview-title">
+        <div class="device-label">
+          <div>
+            <p class="section-number">WEBVIEW / PAGE</p>
+            <h2 id="webview-title">受控 H5 页面</h2>
+          </div>
+          <span id="transport-badge" class="status-badge">booting</span>
+        </div>
+
+        <div class="device-frame">
+          <div class="device-bar" aria-hidden="true">
+            <span></span>
+            <code>app.example.test/hybrid</code>
+          </div>
+          <iframe
+            id="webview-frame"
+            title="模拟 WebView 中的 H5 页面"
+            src="./webview.html"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="native-console" aria-labelledby="native-console-title">
+        <div class="console-heading">
+          <div>
+            <p class="section-number">NATIVE / TRACE</p>
+            <h2 id="native-console-title">宿主边界日志</h2>
+          </div>
+          <button id="clear-log" type="button" class="quiet-button">清空</button>
+        </div>
+        <ol id="native-log" class="event-log" aria-live="polite"></ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        这是协议与生命周期模拟器，不是真实 Android WebView 或 WKWebView。线程、系统权限、进程隔离和真机性能不在本 Demo 的验证范围内。
+      </p>
+    </footer>
+  </body>
+</html>

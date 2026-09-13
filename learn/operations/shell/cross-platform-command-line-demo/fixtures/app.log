@@ -1,0 +1,5 @@
+2026-09-07T08:00:00Z INFO server started
+2026-09-07T08:01:00Z WARN retry scheduled
+2026-09-07T08:01:03Z ERROR timeout while calling provider
+2026-09-07T08:02:00Z INFO request completed
+2026-09-07T08:03:00Z ERROR invalid token
