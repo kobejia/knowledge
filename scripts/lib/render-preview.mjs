@@ -1,6 +1,8 @@
 import path from "node:path";
 import { marked } from "marked";
 import { extractMermaidBlocks } from "./markdown-document.mjs";
+import { previewPageRuntime } from "./preview-page-runtime.mjs";
+import { previewPageStyles } from "./preview-page-styles.mjs";
 import { renderMermaid } from "./render-mermaid.mjs";
 
 function escapeScriptData(value) {
@@ -39,13 +41,23 @@ function flattenCategories(categories, result = []) {
   return result;
 }
 
-function renderTree(categories) {
+function documentCategoryPaths(categories, trail = [], result = {}) {
+  for (const category of categories) {
+    const nextTrail = [...trail, category.title];
+    for (const document of category.documents) result[document.id] = nextTrail;
+    documentCategoryPaths(category.children, nextTrail, result);
+  }
+  return result;
+}
+
+function renderTree(categories, prefix) {
   return `<ul>${categories.map((category) => {
     const documentItems = category.documents.map((document) => `<li><a href="#${encodeURIComponent(document.id)}" data-document-id="${escapeHtml(document.id)}">${escapeHtml(document.title)}</a></li>`).join("");
     const documents = documentItems ? `<ul>${documentItems}</ul>` : "";
-    const children = category.children.length ? renderTree(category.children) : "";
+    const children = category.children.length ? renderTree(category.children, prefix) : "";
     const contents = `${documents}${children}`;
-    return `<li class="category"><button type="button" aria-expanded="true">${escapeHtml(category.title)}</button><div class="category-contents">${contents || '<span class="empty">暂无文档</span>'}</div></li>`;
+    const contentId = `${prefix}-category-${escapeHtml(category.id)}`;
+    return `<li class="category" data-category-id="${escapeHtml(category.id)}"><button class="category-toggle" type="button" data-category-toggle="${escapeHtml(category.id)}" aria-expanded="true" aria-controls="${contentId}">${escapeHtml(category.title)}</button><div class="category-contents" id="${contentId}">${contents || '<span class="empty">暂无文档</span>'}</div></li>`;
   }).join("")}</ul>`;
 }
 
@@ -82,9 +94,17 @@ export async function renderAllDocuments(model) {
 
 export function renderPreviewPage({ knowledge, documents }) {
   const firstDocumentId = Object.keys(documents)[0] ?? null;
-  const data = escapeScriptData({ documents, firstDocumentId });
-  const tree = renderTree(knowledge.categories);
+  const categoryPaths = documentCategoryPaths(knowledge.categories);
+  const documentsWithPaths = Object.fromEntries(Object.entries(documents).map(([id, document]) => [id, {
+    ...document,
+    categoryPath: categoryPaths[id] ?? []
+  }]));
+  const data = escapeScriptData({ documents: documentsWithPaths, firstDocumentId });
+  const desktopTree = renderTree(knowledge.categories, "desktop");
+  const mobileTree = renderTree(knowledge.categories, "mobile");
   const categoryCount = flattenCategories(knowledge.categories).length;
+  const runtime = `(${previewPageRuntime.toString()})();`;
+
   return `<!doctype html>
 <!-- 由构建脚本生成，请勿手工编辑 -->
 <html lang="zh-CN">
@@ -92,63 +112,61 @@ export function renderPreviewPage({ knowledge, documents }) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Personal Learn</title>
-  <style>
-    :root { color-scheme: light; --ink:#172033; --muted:#667085; --line:#d9dfeb; --accent:#3157d5; --paper:#fff; --nav:#f5f7fb; }
-    * { box-sizing:border-box; }
-    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.72 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; }
-    .layout { display:grid; grid-template-columns:minmax(240px,320px) minmax(0,1fr); min-height:100vh; }
-    aside { position:sticky; top:0; height:100vh; overflow:auto; padding:24px 18px; border-right:1px solid var(--line); background:var(--nav); }
-    aside h1 { margin:0 0 4px; font-size:20px; } .meta { color:var(--muted); font-size:13px; margin-bottom:18px; }
-    aside ul { list-style:none; margin:0; padding-left:14px; } aside>ul { padding:0; }
-    .category>button { width:100%; border:0; padding:7px 8px; background:transparent; color:var(--ink); text-align:left; font-weight:650; cursor:pointer; }
-    .category>button::before { content:"▾"; display:inline-block; width:18px; } .category>button[aria-expanded="false"]::before { content:"▸"; }
-    .category>button[aria-expanded="false"]+.category-contents { display:none; }
-    aside a { display:block; margin:2px 0; padding:5px 8px; border-radius:7px; color:#344054; text-decoration:none; }
-    aside a:hover, aside a.active { color:var(--accent); background:#e7ecff; }
-    main { min-width:0; padding:48px clamp(24px,6vw,88px) 96px; } article { max-width:920px; margin:0 auto; }
-    article h1 { line-height:1.24; font-size:clamp(30px,4vw,46px); } article h2 { margin-top:2.2em; border-bottom:1px solid var(--line); }
-    pre { overflow:auto; padding:16px; border-radius:10px; background:#111827; color:#e5e7eb; } code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-    :not(pre)>code { padding:.12em .35em; border-radius:4px; background:#eef1f6; }
-    .table-wrap, article { overflow-wrap:anywhere; } table { display:block; width:100%; overflow:auto; border-collapse:collapse; }
-    th,td { padding:8px 12px; border:1px solid var(--line); text-align:left; vertical-align:top; }
-    blockquote { margin-left:0; padding-left:16px; border-left:4px solid #9badf0; color:#475467; }
-    .diagram { margin:28px 0; padding:18px; overflow:auto; border:1px solid var(--line); border-radius:12px; background:#fff; }
-    .diagram svg { display:block; max-width:100%; height:auto; margin:auto; }
-    .empty,.error { color:var(--muted); }
-    @media (max-width:760px) { .layout { grid-template-columns:1fr; } aside { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); } main { padding:28px 18px 64px; } }
-  </style>
+  <style>${previewPageStyles}</style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="knowledge-tree" aria-label="知识目录">
-      <h1>Personal Learn</h1><div class="meta">${categoryCount} 个分类 · ${Object.keys(documents).length} 篇文档</div>${tree}
+  <a class="skip-link" href="#document-view">跳到正文</a>
+  <div class="app-shell">
+    <aside class="library-sidebar knowledge-tree" aria-label="知识文库">
+      <header class="library-header">
+        <strong class="brand-name">Personal Learn</strong>
+        <span class="meta">${categoryCount} 个分类，${Object.keys(documents).length} 篇文档</span>
+      </header>
+      <div class="desktop-tree">${desktopTree}</div>
+      <div class="theme-controls" aria-label="外观">
+        <button class="theme-choice" type="button" data-theme-choice="auto" aria-pressed="true">自动</button>
+        <button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="false">浅色</button>
+        <button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="false">深色</button>
+      </div>
     </aside>
-    <main class="document-view" tabindex="-1"><article></article></main>
+    <header class="mobile-toolbar">
+      <button class="toolbar-button" type="button" data-open-sheet="library">文库</button>
+      <span class="toolbar-title">Personal Learn</span>
+      <button class="toolbar-button" type="button" data-open-sheet="outline">目录</button>
+    </header>
+    <main class="document-view" id="document-view" tabindex="-1">
+      <div class="document-context" aria-label="文章分类"></div>
+      <article id="document-article"></article>
+    </main>
+    <nav class="article-outline" aria-label="本文目录">
+      <strong class="outline-title">本文目录</strong>
+      <ol class="outline-list" data-outline-list="desktop"></ol>
+    </nav>
   </div>
-  <script>
-    const knowledge = ${data};
-    const article = document.querySelector("article");
-    const view = document.querySelector("main");
-    function selectDocument() {
-      const requested = decodeURIComponent(location.hash.slice(1));
-      const id = knowledge.documents[requested] ? requested : knowledge.firstDocumentId;
-      const selected = id ? knowledge.documents[id] : null;
-      document.querySelectorAll("[data-document-id]").forEach((link) => link.classList.toggle("active", link.dataset.documentId === id));
-      if (!selected) {
-        article.innerHTML = '<p class="error">知识索引中没有可显示的文档。</p>';
-        document.title = "Personal Learn";
-        return;
-      }
-      article.innerHTML = selected.html;
-      document.title = selected.title + " · Personal Learn";
-      view.focus({ preventScroll: true });
-    }
-    document.querySelectorAll(".category>button").forEach((button) => button.addEventListener("click", () => {
-      button.setAttribute("aria-expanded", button.getAttribute("aria-expanded") === "false" ? "true" : "false");
-    }));
-    window.addEventListener("hashchange", selectDocument);
-    selectDocument();
-  </script>
+  <dialog class="mobile-sheet" id="mobile-sheet" aria-labelledby="sheet-title">
+    <div class="mobile-sheet-inner">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <header class="sheet-header">
+        <strong id="sheet-title">阅读目录</strong>
+        <button class="sheet-close" type="button" data-close-sheet>关闭</button>
+      </header>
+      <div class="sheet-tabs" role="tablist" aria-label="目录类型">
+        <button class="sheet-tab" id="library-tab" type="button" role="tab" data-sheet-tab="library" aria-controls="library-panel" aria-selected="true">知识文库</button>
+        <button class="sheet-tab" id="outline-tab" type="button" role="tab" data-sheet-tab="outline" aria-controls="outline-panel" aria-selected="false">本文目录</button>
+      </div>
+      <section class="sheet-panel knowledge-tree" id="library-panel" role="tabpanel" aria-labelledby="library-tab" data-sheet-panel="library">${mobileTree}</section>
+      <section class="sheet-panel" id="outline-panel" role="tabpanel" aria-labelledby="outline-tab" data-sheet-panel="outline" hidden>
+        <ol class="outline-list" data-outline-list="mobile"></ol>
+      </section>
+      <div class="theme-controls" aria-label="外观">
+        <button class="theme-choice" type="button" data-theme-choice="auto" aria-pressed="true">自动</button>
+        <button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="false">浅色</button>
+        <button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="false">深色</button>
+      </div>
+    </div>
+  </dialog>
+  <script type="application/json" id="knowledge-data">${data}</script>
+  <script>${runtime}</script>
 </body>
 </html>
 `;

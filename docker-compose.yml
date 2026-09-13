@@ -1,0 +1,12 @@
+services:
+  personal-learning-preview:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: personal-learning-preview:local
+    container_name: personal-learning-preview
+    ports:
+      - "${PREVIEW_PORT:-8080}:80"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
