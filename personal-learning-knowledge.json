@@ -21,6 +21,24 @@
               "path": "processes-and-threads.md"
             }
           ]
+        },
+        {
+          "id": "systems-networking",
+          "title": "计算机网络",
+          "path": "networking",
+          "children": [],
+          "documents": [
+            {
+              "id": "network-layers-l3-l7",
+              "title": "计算机网络分层：从 OSI 七层到 L3 路由与 L7 应用处理",
+              "path": "network-layers-l3-l7.md"
+            },
+            {
+              "id": "internet-protocol-evolution",
+              "title": "互联网协议演进：从 TCP、UDP 到 HTTP/3 与 QUIC",
+              "path": "internet-protocol-evolution.md"
+            }
+          ]
         }
       ]
     },
@@ -36,6 +54,11 @@
           "path": "vue",
           "children": [],
           "documents": [
+            {
+              "id": "vue-ecosystem-evolution",
+              "title": "Vue 全生态发展史：从渐进式框架到编译、构建、测试与服务端渲染体系",
+              "path": "vue-ecosystem-evolution.md"
+            },
             {
               "id": "vuex-pinia",
               "title": "Vue 状态管理演进：从 Vuex 到 Pinia",
@@ -120,6 +143,19 @@
               "id": "cross-platform-application-development",
               "title": "跨端应用开发：Android、iOS、PC 与小程序的十年演进与工程取舍",
               "path": "cross-platform-application-development.md"
+            }
+          ]
+        },
+        {
+          "id": "frontend-tooling",
+          "title": "工程化与构建",
+          "path": "tooling",
+          "children": [],
+          "documents": [
+            {
+              "id": "frontend-build-tools-evolution",
+              "title": "前端构建工具演进：从模块加载器到 Rust 工具链",
+              "path": "frontend-build-tools-evolution.md"
             }
           ]
         }

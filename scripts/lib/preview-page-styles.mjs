@@ -396,6 +396,11 @@ export const previewPageStyles = String.raw`
     background: var(--canvas);
   }
 
+  .document-loading {
+    padding: 32px 0;
+    color: var(--muted);
+  }
+
   .knowledge-tree ul {
     margin: 0;
     padding-left: 16px;

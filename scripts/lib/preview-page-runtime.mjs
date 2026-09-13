@@ -1,4 +1,4 @@
-export function previewPageRuntime() {
+export async function previewPageRuntime(options = {}) {
   const dataNode = document.getElementById("knowledge-data");
   const article = document.getElementById("document-article");
   const documentView = document.getElementById("document-view");
@@ -18,7 +18,8 @@ export function previewPageRuntime() {
     headings: [],
     sheetOpener: null,
     pendingNavigation: null,
-    focusTarget: null
+    focusTarget: null,
+    renderSequence: 0
   };
 
   function renderFatalError(message) {
@@ -30,13 +31,18 @@ export function previewPageRuntime() {
     article.append(error);
   }
 
-  let model;
-  try {
-    model = JSON.parse(dataNode.textContent);
-  } catch {
-    renderFatalError("预览数据无法读取，请重新运行构建命令。");
-    return;
+  let model = options.model;
+  if (!model) {
+    try {
+      model = JSON.parse(dataNode.textContent);
+    } catch {
+      renderFatalError("预览数据无法读取，请重新运行构建命令。");
+      return;
+    }
   }
+  const loadDocumentHtml = typeof options.loadDocumentHtml === "function"
+    ? options.loadDocumentHtml
+    : null;
 
   function safeDecode(value) {
     try {
@@ -204,7 +210,8 @@ export function previewPageRuntime() {
     state.focusTarget = null;
   }
 
-  function renderDocument() {
+  async function renderDocument() {
+    const renderSequence = ++state.renderSequence;
     if (!model.firstDocumentId || !Object.keys(model.documents).length) {
       state.activeDocumentId = null;
       documentContext.textContent = "";
@@ -228,14 +235,35 @@ export function previewPageRuntime() {
     }
 
     if (documentChanged) {
-      state.activeDocumentId = documentId;
       documentContext.textContent = selectedDocument.categoryPath.join(" / ");
-      article.innerHTML = selectedDocument.html;
-      const articleTitle = article.querySelector("h1");
-      if (articleTitle) articleTitle.tabIndex = -1;
       toolbarTitle.textContent = selectedDocument.title;
       document.title = selectedDocument.title + " | Personal Learn";
       setCurrentDocument(documentId);
+
+      let documentHtml = selectedDocument.html;
+      if (loadDocumentHtml) {
+        state.activeDocumentId = null;
+        article.setAttribute("aria-busy", "true");
+        article.innerHTML = '<div class="document-loading" role="status">正在读取文章…</div>';
+        try {
+          documentHtml = await loadDocumentHtml(selectedDocument);
+        } catch (error) {
+          if (renderSequence !== state.renderSequence) return;
+          article.removeAttribute("aria-busy");
+          renderFatalError(error instanceof Error ? error.message : "文章读取失败，请刷新后重试。");
+          state.headings = [];
+          buildOutline([]);
+          observeHeadings([]);
+          return;
+        }
+        if (renderSequence !== state.renderSequence) return;
+      }
+
+      state.activeDocumentId = documentId;
+      article.removeAttribute("aria-busy");
+      article.innerHTML = documentHtml;
+      const articleTitle = article.querySelector("h1");
+      if (articleTitle) articleTitle.tabIndex = -1;
       prepareWideContent();
       state.headings = prepareHeadings();
       buildOutline(state.headings);
@@ -331,7 +359,7 @@ export function previewPageRuntime() {
   function applyNavigation(hash, focusTarget) {
     state.focusTarget = focusTarget;
     if (window.location.hash === hash) {
-      renderDocument();
+      void renderDocument();
     } else {
       window.location.hash = hash;
     }
@@ -415,7 +443,9 @@ export function previewPageRuntime() {
     if (event.target === sheet) closeSheet();
   });
 
-  window.addEventListener("hashchange", renderDocument);
+  window.addEventListener("hashchange", () => {
+    void renderDocument();
+  });
   window.addEventListener("popstate", (event) => {
     if (state.pendingNavigation) {
       const pending = state.pendingNavigation;
@@ -434,5 +464,5 @@ export function previewPageRuntime() {
 
   applyTheme(readStoredTheme() ?? "auto");
   selectSheetPanel("library");
-  renderDocument();
+  await renderDocument();
 }

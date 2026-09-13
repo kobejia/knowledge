@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Learn</title>
+  <style id="boot-styles">
+    body { margin: 0; font: 16px/1.6 system-ui, sans-serif; background: #f3f6f5; color: #172c33; }
+    .app-shell { display: none; }
+    .boot-message { max-width: 720px; margin: 18vh auto; padding: 24px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="boot-message" data-boot-message role="status">正在加载知识库…</div>
+  <a class="skip-link" href="#document-view">跳到正文</a>
+  <div class="app-shell">
+    <aside class="library-sidebar knowledge-tree" aria-label="知识文库">
+      <header class="library-header">
+        <strong class="brand-name">Personal Learn</strong>
+        <span class="meta" data-library-meta>正在读取索引…</span>
+      </header>
+      <div class="desktop-tree" data-knowledge-tree="desktop"></div>
+      <div class="theme-controls" aria-label="外观">
+        <button class="theme-choice" type="button" data-theme-choice="auto" aria-pressed="true">自动</button>
+        <button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="false">浅色</button>
+        <button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="false">深色</button>
+      </div>
+    </aside>
+    <header class="mobile-toolbar">
+      <button class="toolbar-button" type="button" data-open-sheet="library">文库</button>
+      <span class="toolbar-title">Personal Learn</span>
+      <button class="toolbar-button" type="button" data-open-sheet="outline">目录</button>
+    </header>
+    <main class="document-view" id="document-view" tabindex="-1">
+      <div class="document-context" aria-label="文章分类"></div>
+      <article id="document-article"></article>
+    </main>
+    <nav class="article-outline" aria-label="本文目录">
+      <strong class="outline-title">本文目录</strong>
+      <ol class="outline-list" data-outline-list="desktop"></ol>
+    </nav>
+  </div>
+  <dialog class="mobile-sheet" id="mobile-sheet" aria-labelledby="sheet-title">
+    <div class="mobile-sheet-inner">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <header class="sheet-header">
+        <strong id="sheet-title">阅读目录</strong>
+        <button class="sheet-close" type="button" data-close-sheet>关闭</button>
+      </header>
+      <div class="sheet-tabs" role="tablist" aria-label="目录类型">
+        <button class="sheet-tab" id="library-tab" type="button" role="tab" data-sheet-tab="library" aria-controls="library-panel" aria-selected="true">知识文库</button>
+        <button class="sheet-tab" id="outline-tab" type="button" role="tab" data-sheet-tab="outline" aria-controls="outline-panel" aria-selected="false">本文目录</button>
+      </div>
+      <section class="sheet-panel knowledge-tree" id="library-panel" role="tabpanel" aria-labelledby="library-tab" data-sheet-panel="library" data-knowledge-tree="mobile"></section>
+      <section class="sheet-panel" id="outline-panel" role="tabpanel" aria-labelledby="outline-tab" data-sheet-panel="outline" hidden>
+        <ol class="outline-list" data-outline-list="mobile"></ol>
+      </section>
+      <div class="theme-controls" aria-label="外观">
+        <button class="theme-choice" type="button" data-theme-choice="auto" aria-pressed="true">自动</button>
+        <button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="false">浅色</button>
+        <button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="false">深色</button>
+      </div>
+    </div>
+  </dialog>
+  <noscript>此页面需要启用 JavaScript 才能读取 Markdown 文章。</noscript>
+  <script type="module" src="/_app/app.mjs"></script>
+</body>
+</html>

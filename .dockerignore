@@ -1,3 +1,7 @@
 **
 !Dockerfile
-!personal-learning-preview.html
+!nginx.conf
+!docker/
+!docker/web/
+!docker/web/package.json
+!docker/web/package-lock.json

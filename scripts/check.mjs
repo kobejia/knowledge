@@ -8,7 +8,7 @@ const checks = [
   {
     name: "automated tests",
     command: process.execPath,
-    args: ["--test", "tests/personal-learning/knowledge-image.test.mjs", "tests/personal-learning/knowledge-validator.test.mjs", "tests/personal-learning/preview-builder.test.mjs"]
+    args: ["--test", "tests/personal-learning/knowledge-image.test.mjs", "tests/personal-learning/knowledge-validator.test.mjs", "tests/personal-learning/preview-builder.test.mjs", "tests/personal-learning/web-preview.test.mjs"]
   },
   {
     name: "personal-learning configuration contract",
