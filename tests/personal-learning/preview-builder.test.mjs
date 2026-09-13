@@ -156,6 +156,8 @@ test("embeds backward-compatible document and section routing", async () => {
   assert.match(html, /addEventListener\("hashchange"/);
   assert.match(html, /history\.replaceState/);
   assert.match(html, /data-heading-id/);
+  assert.match(html, /const documentChanged = documentId !== state\.activeDocumentId/);
+  assert.doesNotMatch(html, /const nextHash = encodeHashRoute\(state\.activeDocumentId, headingId\)/);
 });
 
 test("embeds accessible dialog, theme, and section observation behavior", async () => {
@@ -169,6 +171,8 @@ test("embeds accessible dialog, theme, and section observation behavior", async 
   assert.match(html, /addEventListener\("popstate"/);
   assert.match(html, /event\.key === "ArrowRight"/);
   assert.match(html, /localStorage\.getItem\("personal-learning-theme"\)/);
+  assert.match(html, /localStorage\.removeItem\(themeStorageKey\)/);
+  assert.match(html, /articleTitle\.focus/);
   assert.match(html, /IntersectionObserver/);
   assert.doesNotMatch(html, /addEventListener\("scroll"/);
 });

@@ -15,6 +15,7 @@ export function previewPageRuntime() {
   const state = {
     activeDocumentId: null,
     observer: null,
+    headings: [],
     sheetOpener: null,
     pendingNavigation: null,
     focusTarget: null
@@ -139,7 +140,7 @@ export function previewPageRuntime() {
       if (!headings.length) {
         const empty = document.createElement("li");
         empty.className = "outline-empty";
-        empty.textContent = "本文没有分节";
+        empty.textContent = "本文没有可跳转章节";
         list.append(empty);
         continue;
       }
@@ -169,10 +170,6 @@ export function previewPageRuntime() {
       if (!visible.length) return;
       const headingId = visible[0].target.dataset.headingId;
       setActiveHeading(headingId);
-      const nextHash = encodeHashRoute(state.activeDocumentId, headingId);
-      if (window.location.hash !== nextHash && !sheet.open) {
-        history.replaceState(history.state, "", nextHash);
-      }
     }, {
       rootMargin: "-12% 0px -72% 0px",
       threshold: [0, 1]
@@ -193,10 +190,16 @@ export function previewPageRuntime() {
 
   function focusRenderedTarget(heading) {
     if (!state.focusTarget) return;
-    if (state.focusTarget === "heading" && heading) {
+    if (state.focusTarget === "section" && heading) {
       heading.focus({ preventScroll: true });
-    } else {
-      documentView.focus({ preventScroll: true });
+    } else if (state.focusTarget === "document") {
+      const articleTitle = article.querySelector("h1");
+      if (articleTitle) {
+        articleTitle.tabIndex = -1;
+        articleTitle.focus({ preventScroll: true });
+      } else {
+        documentView.focus({ preventScroll: true });
+      }
     }
     state.focusTarget = null;
   }
@@ -207,6 +210,7 @@ export function previewPageRuntime() {
       documentContext.textContent = "";
       article.innerHTML = '<div class="error"><strong>没有可阅读的文档</strong><p>请先在 learn 目录添加 Markdown，并重新生成预览。</p></div>';
       toolbarTitle.textContent = "Personal Learn";
+      state.headings = [];
       buildOutline([]);
       setCurrentDocument(null);
       return;
@@ -217,31 +221,36 @@ export function previewPageRuntime() {
       ? route.documentId
       : model.firstDocumentId;
     const selectedDocument = model.documents[documentId];
+    const documentChanged = documentId !== state.activeDocumentId;
 
     if (documentId !== route.documentId || !window.location.hash) {
       history.replaceState(history.state, "", encodeHashRoute(documentId));
     }
 
-    state.activeDocumentId = documentId;
-    documentContext.textContent = selectedDocument.categoryPath.join(" / ");
-    article.innerHTML = selectedDocument.html;
-    toolbarTitle.textContent = selectedDocument.title;
-    document.title = selectedDocument.title + " | Personal Learn";
-    setCurrentDocument(documentId);
-    prepareWideContent();
-    const headings = prepareHeadings();
-    buildOutline(headings);
-    observeHeadings(headings);
+    if (documentChanged) {
+      state.activeDocumentId = documentId;
+      documentContext.textContent = selectedDocument.categoryPath.join(" / ");
+      article.innerHTML = selectedDocument.html;
+      const articleTitle = article.querySelector("h1");
+      if (articleTitle) articleTitle.tabIndex = -1;
+      toolbarTitle.textContent = selectedDocument.title;
+      document.title = selectedDocument.title + " | Personal Learn";
+      setCurrentDocument(documentId);
+      prepareWideContent();
+      state.headings = prepareHeadings();
+      buildOutline(state.headings);
+      observeHeadings(state.headings);
+    }
 
     const targetHeading = route.headingId
-      ? headings.find((heading) => heading.id === route.headingId)
+      ? state.headings.find((heading) => heading.id === route.headingId)
       : null;
     setActiveHeading(targetHeading?.id ?? null);
 
     requestAnimationFrame(() => {
       if (targetHeading) targetHeading.scrollIntoView({ block: "start" });
-      else if (state.focusTarget) window.scrollTo({ top: 0, behavior: "auto" });
-      focusRenderedTarget(targetHeading);
+      else if (documentChanged || state.focusTarget === "document") window.scrollTo({ top: 0, behavior: "auto" });
+      requestAnimationFrame(() => focusRenderedTarget(targetHeading));
     });
   }
 
@@ -255,7 +264,8 @@ export function previewPageRuntime() {
 
   function storeTheme(theme) {
     try {
-      localStorage.setItem(themeStorageKey, theme);
+      if (theme === "auto") localStorage.removeItem(themeStorageKey);
+      else localStorage.setItem(themeStorageKey, theme);
     } catch {
       // The page remains usable when storage is unavailable.
     }
@@ -371,14 +381,14 @@ export function previewPageRuntime() {
     const documentLink = event.target.closest("[data-document-id]");
     if (documentLink) {
       event.preventDefault();
-      navigate(encodeHashRoute(documentLink.dataset.documentId), "article");
+      navigate(encodeHashRoute(documentLink.dataset.documentId), "document");
       return;
     }
 
     const outlineLink = event.target.closest("[data-outline-heading]");
     if (outlineLink) {
       event.preventDefault();
-      navigate(encodeHashRoute(state.activeDocumentId, outlineLink.dataset.outlineHeading), "heading");
+      navigate(encodeHashRoute(state.activeDocumentId, outlineLink.dataset.outlineHeading), "section");
     }
   });
 
