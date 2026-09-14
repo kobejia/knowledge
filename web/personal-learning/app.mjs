@@ -1,9 +1,11 @@
-import { marked } from "/_vendor/marked/marked.esm.js";
-import { previewPageRuntime } from "/_app/preview-page-runtime.mjs";
-import { previewPageStyles } from "/_app/preview-page-styles.mjs";
-import { createWebPreviewModel, stripFrontmatter } from "/_app/model.mjs";
+import { marked } from "../_vendor/marked/marked.esm.js";
+import { previewPageRuntime } from "./preview-page-runtime.mjs";
+import { previewPageStyles } from "./preview-page-styles.mjs";
+import { createWebPreviewModel, stripFrontmatter } from "./model.mjs";
 
-const indexUrl = "/personal-learning-knowledge.json";
+const repositoryBaseUrl = new URL("../", import.meta.url);
+const repositoryBasePath = repositoryBaseUrl.pathname;
+const indexUrl = new URL("personal-learning-knowledge.json", repositoryBaseUrl);
 let diagramSequence = 0;
 let mermaidPromise;
 
@@ -67,14 +69,16 @@ function createTree(categories, prefix) {
 }
 
 function repositoryUrl(relativePath) {
-  return `/${relativePath.split("/").map(encodeURIComponent).join("/")}`;
+  const encodedPath = relativePath.split("/").map(encodeURIComponent).join("/");
+  return new URL(encodedPath, repositoryBaseUrl).href;
 }
 
 function resolveRepositoryTarget(documentPath, target) {
   try {
-    const base = new URL(repositoryUrl(documentPath), window.location.origin);
+    const base = new URL(repositoryUrl(documentPath));
     const resolved = new URL(target, base);
     if (resolved.origin !== window.location.origin) return null;
+    if (!resolved.pathname.startsWith(repositoryBasePath)) return null;
     const encodedHash = resolved.hash.replace(/^#/, "");
     let hash = encodedHash;
     try {
@@ -82,7 +86,7 @@ function resolveRepositoryTarget(documentPath, target) {
     } catch {
       // Preserve a malformed fragment as text instead of failing the article.
     }
-    return { path: decodeURIComponent(resolved.pathname.replace(/^\//, "")), hash };
+    return { path: decodeURIComponent(resolved.pathname.slice(repositoryBasePath.length)), hash };
   } catch {
     return null;
   }
@@ -127,7 +131,7 @@ function rewriteLocalResources(fragment, selectedDocument, model) {
 async function renderDiagrams(fragment, selectedDocument) {
   const diagrams = [...fragment.querySelectorAll("pre > code.language-mermaid")];
   if (!diagrams.length) return;
-  mermaidPromise ??= import("/_vendor/mermaid/mermaid.esm.min.mjs");
+  mermaidPromise ??= import("../_vendor/mermaid/mermaid.esm.min.mjs");
   const { default: mermaid } = await mermaidPromise;
   mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
 

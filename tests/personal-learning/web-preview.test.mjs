@@ -1,6 +1,21 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { createWebPreviewModel, stripFrontmatter } from "../../web/personal-learning/model.mjs";
+
+test("resolves browser assets relative to the deployment path", async () => {
+  const [html, app] = await Promise.all([
+    readFile(new URL("../../web/personal-learning/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../../web/personal-learning/app.mjs", import.meta.url), "utf8")
+  ]);
+
+  assert.match(html, /src="_app\/app\.mjs"/);
+  assert.doesNotMatch(html, /(?:src|href)="\/(?:_app|_vendor|learn)\//);
+  assert.match(app, /new URL\("\.\.\/", import\.meta\.url\)/);
+  assert.match(app, /from "\.\.\/_vendor\/marked\/marked\.esm\.js"/);
+  assert.match(app, /import\("\.\.\/_vendor\/mermaid\/mermaid\.esm\.min\.mjs"\)/);
+  assert.doesNotMatch(app, /["'`]\/(?:_app|_vendor|learn|personal-learning-knowledge\.json)/);
+});
 
 test("builds fetchable document paths from the knowledge index", () => {
   const model = createWebPreviewModel({
