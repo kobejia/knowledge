@@ -37,6 +37,11 @@
               "id": "internet-protocol-evolution",
               "title": "互联网协议演进：从 TCP、UDP 到 HTTP/3 与 QUIC",
               "path": "internet-protocol-evolution.md"
+            },
+            {
+              "id": "ssh-connections-tunnels-and-jump-hosts",
+              "title": "SSH 连接：从 Socket、端口到隧道与跳板机",
+              "path": "ssh-connections-tunnels-and-jump-hosts.md"
             }
           ]
         }
