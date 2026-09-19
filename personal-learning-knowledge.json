@@ -220,6 +220,16 @@
               "id": "superpowers-source-analysis",
               "title": "Superpowers 源码剖析：Skill 如何接入 Harness 并约束开发流程",
               "path": "superpowers-source-analysis.md"
+            },
+            {
+              "id": "engineering-harness-self-evolution",
+              "title": "研发交付 Harness 的自我演化：从任务证据到可验证的项目能力",
+              "path": "engineering-harness-self-evolution.md"
+            },
+            {
+              "id": "engineering-harness-self-evolution-exercises",
+              "title": "研发交付 Harness 自我演化专家练习：经验晋升与回归门禁",
+              "path": "engineering-harness-self-evolution-exercises.md"
             }
           ]
         }
