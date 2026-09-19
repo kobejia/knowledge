@@ -215,6 +215,11 @@
               "id": "deepseek-harness-exercises",
               "title": "DeepSeek Harness 全面练习：工具循环、事件日志与权限边界",
               "path": "deepseek-harness-exercises.md"
+            },
+            {
+              "id": "superpowers-source-analysis",
+              "title": "Superpowers 源码剖析：Skill 如何接入 Harness 并约束开发流程",
+              "path": "superpowers-source-analysis.md"
             }
           ]
         }
