@@ -161,6 +161,11 @@
               "id": "frontend-build-tools-evolution",
               "title": "前端构建工具演进：从模块加载器到 Rust 工具链",
               "path": "frontend-build-tools-evolution.md"
+            },
+            {
+              "id": "node-toolchain-version-management",
+              "title": "前端工具链版本管理：nvm、Volta 与替代方案",
+              "path": "node-toolchain-version-management.md"
             }
           ]
         }
